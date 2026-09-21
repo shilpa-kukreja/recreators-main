@@ -18,7 +18,7 @@ export default function VideoCallRoom() {
   const [peopleOpen, setPeopleOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [waiting, setWaiting] = useState([]);
+ 
 
   /* ------------------- resume an existing session ------------------- */
   useEffect(() => {
@@ -178,7 +178,7 @@ export default function VideoCallRoom() {
         <ParticipantPanel
           open={peopleOpen}
           participants={room.participants}
-          waiting={waiting}
+          waiting={room.waiting} 
           selfId={room.selfId}
           isHost={room.isHost}
           onClose={() => setPeopleOpen(false)}

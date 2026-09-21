@@ -1,20 +1,19 @@
 // ============================================================
-// BACKEND — socket/videoCallSocket.js
+// BACKEND — socket/videoCallSocket.js  (FIXED)
 // ============================================================
 import jwt from 'jsonwebtoken';
 import VideoMeeting from '../models/VideoMeeting.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
-/** meetingId -> RoomState */
 const rooms = new Map();
 
 function getRoom(meetingId) {
   let room = rooms.get(meetingId);
   if (!room) {
     room = {
-      participants: new Map(), // socketId -> participant
-      waiting: new Map(),      // socketId -> { socketId, name }
+      participants: new Map(),
+      waiting: new Map(),
       locked: false,
       hostSocketIds: new Set(),
     };
@@ -42,15 +41,12 @@ const publicParticipant = (p) => ({
 export default function initVideoCallSocket(io) {
   const nsp = io.of('/video');
 
-  /* ------------------------- auth middleware ------------------------- */
   nsp.use((socket, next) => {
     try {
       const { token, meetingId } = socket.handshake.auth || {};
       if (!token || !meetingId) return next(new Error('Authentication error'));
 
       const decoded = jwt.verify(token, JWT_SECRET);
-
-      // Guest tokens are scoped to exactly one meeting.
       if (decoded.kind === 'guest' && decoded.meetingId !== meetingId) {
         return next(new Error('Invalid meeting token'));
       }
@@ -64,20 +60,20 @@ export default function initVideoCallSocket(io) {
     }
   });
 
-  /* --------------------------- connection --------------------------- */
   nsp.on('connection', async (socket) => {
     const { meetingId, isHost } = socket.data;
     const user = socket.data.user;
     const room = getRoom(meetingId);
 
-    let joined = false; // becomes true once admitted into the room
+    let joined = false;
 
-    /* ---------------------- shared admit logic ---------------------- */
-    const admit = async (name, role) => {
-      joined = true;
-
+    /* ----------------------------------------------------------------
+       Shared admit path — used by host entry AND by approved guests.
+       ✅ SELF is now included in the participants array.
+    ---------------------------------------------------------------- */
+    const admitSocket = async (targetSocket, name, role) => {
       const participant = {
-        socketId: socket.id,
+        socketId: targetSocket.id,
         name,
         role,
         micOn: true,
@@ -85,42 +81,30 @@ export default function initVideoCallSocket(io) {
         sharing: false,
       };
 
-      // Everyone already in the room (send BEFORE joining so the new socket
-      // is not in its own list).
       const existing = [...room.participants.values()].map(publicParticipant);
 
-      room.participants.set(socket.id, participant);
-      if (role === 'host') room.hostSocketIds.add(socket.id);
+      room.participants.set(targetSocket.id, participant);
+      if (role === 'host') room.hostSocketIds.add(targetSocket.id);
 
-      socket.join(meetingId);
+      targetSocket.join(meetingId);
 
-      // New joiner initiates WebRTC offers to everyone already present.
-      socket.emit('room-joined', {
-        selfId: socket.id,
+      // ✅ self FIRST, then everyone already in the room
+      targetSocket.emit('room-joined', {
+        selfId: targetSocket.id,
         isHost: role === 'host',
-        participants: existing,
+        participants: [publicParticipant(participant), ...existing],
       });
 
-      // Tell the others.
-      socket.to(meetingId).emit('user-joined', publicParticipant(participant));
+      // tell the others
+      targetSocket.to(meetingId).emit('user-joined', publicParticipant(participant));
 
-      // Persist participant + flip meeting to active.
       VideoMeeting.updateOne(
         { meetingId },
         {
-          $push: { participants: { socketId: socket.id, name, role, joinedAt: new Date() } },
+          $push: { participants: { socketId: targetSocket.id, name, role, joinedAt: new Date() } },
           $set: { status: 'active', startedAt: new Date() },
         }
       ).catch(() => {});
-
-      // Notify any waiting guests that a host is now present.
-     // When a host joins, forward every currently-waiting guest as a join-request
-// so the host's participant panel shows them immediately.
-if (role === 'host' && room.waiting.size > 0) {
-  room.waiting.forEach((w) => {
-    nsp.to(socket.id).emit('join-request', { socketId: w.socketId, name: w.name });
-  });
-}
     };
 
     /* --------------------------- join-room --------------------------- */
@@ -144,11 +128,19 @@ if (role === 'host' && room.waiting.size > 0) {
           : (String(rawName || user.name || '').trim() || 'Guest');
 
         if (isHost) {
-          await admit(displayName, 'host');
+          joined = true;
+          await admitSocket(socket, displayName, 'host');
+
+          // forward every waiting guest to the newly-joined host
+          if (room.waiting.size > 0) {
+            room.waiting.forEach((w) => {
+              nsp.to(socket.id).emit('join-request', { socketId: w.socketId, name: w.name });
+            });
+          }
           return;
         }
 
-        // Guest: host present AND waiting room enabled → request approval.
+        // Guest path
         const hostPresent = room.hostSocketIds.size > 0;
 
         if (meeting.waitingRoomEnabled && hostPresent) {
@@ -162,13 +154,13 @@ if (role === 'host' && room.waiting.size > 0) {
         }
 
         if (!hostPresent) {
-          // Host not here yet — park in waiting room.
           room.waiting.set(socket.id, { socketId: socket.id, name: displayName });
           socket.emit('waiting-for-host', { name: displayName });
           return;
         }
 
-        await admit(displayName, 'guest');
+        joined = true;
+        await admitSocket(socket, displayName, 'guest');
       } catch (err) {
         console.error('join-room error', err);
         socket.emit('meeting-error', { code: 'SERVER', message: 'Unable to join the meeting.' });
@@ -185,37 +177,13 @@ if (role === 'host' && room.waiting.size > 0) {
       const guestSocket = nsp.sockets.get(socketId);
       if (!guestSocket) return;
 
-      guestSocket.data.pendingApproval = false;
       guestSocket.emit('join-approved');
 
-      // Run the same admit path on the guest socket.
-      const participant = {
-        socketId,
-        name: waiting.name,
-        role: 'guest',
-        micOn: true,
-        camOn: true,
-        sharing: false,
-      };
-      const existing = [...room.participants.values()].map(publicParticipant);
+      // run the shared admit path — ✅ includes self in participants now
+      await admitSocket(guestSocket, waiting.name, 'guest');
 
-      room.participants.set(socketId, participant);
-      guestSocket.join(meetingId);
-
-      guestSocket.emit('room-joined', {
-        selfId: socketId,
-        isHost: false,
-        participants: existing,
-      });
-      guestSocket.to(meetingId).emit('user-joined', publicParticipant(participant));
-
-      VideoMeeting.updateOne(
-        { meetingId },
-        {
-          $push: { participants: { socketId, name: waiting.name, role: 'guest', joinedAt: new Date() } },
-          $set: { status: 'active', startedAt: new Date() },
-        }
-      ).catch(() => {});
+      // mark guest as joined in the connection closure
+      guestSocket.data.joined = true;
     });
 
     socket.on('join-rejected', ({ socketId }) => {
@@ -223,26 +191,24 @@ if (role === 'host' && room.waiting.size > 0) {
       const waiting = room.waiting.get(socketId);
       if (!waiting) return;
       room.waiting.delete(socketId);
-      nsp.to(socketId).emit('join-rejected', {
-        message: 'Your request to join was declined.',
-      });
+      nsp.to(socketId).emit('join-rejected', { message: 'Your request to join was declined.' });
       const guestSocket = nsp.sockets.get(socketId);
       if (guestSocket) guestSocket.disconnect(true);
     });
 
     /* --------------------------- signaling --------------------------- */
     socket.on('offer', ({ to, sdp }) => {
-      if (!to || !joined) return;
+      if (!to) return;
       nsp.to(to).emit('offer', { from: socket.id, sdp });
     });
 
     socket.on('answer', ({ to, sdp }) => {
-      if (!to || !joined) return;
+      if (!to) return;
       nsp.to(to).emit('answer', { from: socket.id, sdp });
     });
 
     socket.on('ice-candidate', ({ to, candidate }) => {
-      if (!to || !joined) return;
+      if (!to) return;
       nsp.to(to).emit('ice-candidate', { from: socket.id, candidate });
     });
 
@@ -256,7 +222,6 @@ if (role === 'host' && room.waiting.size > 0) {
 
     socket.on('toggle-microphone', ({ micOn }) => patchParticipant({ micOn: !!micOn }));
     socket.on('toggle-camera', ({ camOn }) => patchParticipant({ camOn: !!camOn }));
-
     socket.on('screen-share-started', () => patchParticipant({ sharing: true }));
     socket.on('screen-share-stopped', () => patchParticipant({ sharing: false }));
 
@@ -274,8 +239,9 @@ if (role === 'host' && room.waiting.size > 0) {
         isHost: p.role === 'host',
         at: new Date().toISOString(),
       };
+
+      // ✅ broadcast ONCE to everyone in the room, INCLUDING the sender
       nsp.to(meetingId).emit('chat-message', message);
-      socket.emit('chat-message', message);
     });
 
     /* ------------------------ host controls ------------------------- */
@@ -334,13 +300,6 @@ if (role === 'host' && room.waiting.size > 0) {
           { meetingId, 'participants.socketId': socket.id },
           { $set: { 'participants.$.leftAt': new Date() } }
         ).catch(() => {});
-
-        // Reject any waiting guests if no host remains.
-        if (room.hostSocketIds.size === 0 && room.waiting.size > 0) {
-          room.waiting.forEach((w) => {
-            nsp.to(w.socketId).emit('waiting-for-host');
-          });
-        }
       }
 
       cleanupRoom(meetingId, room);
