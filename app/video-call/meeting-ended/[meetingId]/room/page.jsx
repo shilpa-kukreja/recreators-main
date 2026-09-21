@@ -2,12 +2,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Video, Wifi, WifiOff, X } from 'lucide-react';
-import { useVideoRoom } from '../context/VideoRoomContext';
-import VideoGrid from '../components/VideoGrid';
-import CallControls from '../components/CallControls';
-import ChatPanel from '../components/ChatPanel';
-import ParticipantPanel from '../components/ParticipantPanel';
-import WaitingRoom from '../components/WaitingRoom';
+import { useVideoRoom } from '../../../context/VideoRoomContext';
+import VideoGrid from '../../../components/VideoGrid';
+import CallControls from '../../../components/CallControls';
+import ChatPanel from '../../../components/ChatPanel';
+import ParticipantPanel from '../../../components/ParticipantPanel';
+import WaitingRoom from '../../../components/WaitingRoom';
 
 export default function VideoCallRoom() {
   const { meetingId } = useParams();
