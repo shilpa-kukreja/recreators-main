@@ -2,9 +2,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { Loader2, Video, AlertCircle, ArrowRight, Link2 } from 'lucide-react';
-import { videoCallApi } from '../lib/api';
-import DeviceCheck from '../components/DeviceCheck';
-import { useVideoRoom } from '../context/VideoRoomContext';
+import { videoCallApi } from '../../lib/api';
+import DeviceCheck from '../../components/DeviceCheck';
+import { useVideoRoom } from '../../context/VideoRoomContext';
 
 const LOGO = process.env.NEXT_PUBLIC_COMPANY_LOGO_URL || '';
 const COMPANY = process.env.NEXT_PUBLIC_COMPANY_NAME || 'My Inner Site';
