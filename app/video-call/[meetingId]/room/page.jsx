@@ -18,7 +18,7 @@ export default function VideoCallRoom() {
   const [peopleOpen, setPeopleOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [elapsed, setElapsed] = useState(0);
- 
+
 
   /* ------------------- resume an existing session ------------------- */
   useEffect(() => {
@@ -99,6 +99,7 @@ export default function VideoCallRoom() {
   if (room.callStatus === 'error') {
     return (
       <div className="!flex !min-h-screen !items-center !justify-center !bg-[#0b0f19] !p-6">
+
         <div className="!w-full !max-w-md !rounded-3xl !bg-slate-900/70 !p-8 !text-center !ring-1 !ring-white/10">
           <X className="!mx-auto !mb-3 !text-rose-400" size={32} />
           <h1 className="!text-lg !font-semibold !text-white">Unable to continue</h1>
@@ -116,6 +117,15 @@ export default function VideoCallRoom() {
 
   return (
     <div className="!flex !h-screen !flex-col !bg-[#0b0f19]">
+      {/* 🔍 TEMP DEBUG — remove later */}
+      <div className="!fixed !bottom-2 !right-2 !z-50 !max-w-xs !rounded-lg !bg-black/80 !p-3 !font-mono !text-[10px] !text-emerald-300">
+        <div>status: {room.callStatus}</div>
+        <div>socket: {room.socket ? (room.socket.connected ? '✅' : '❌') : '❌ null'}</div>
+        <div>selfId: {room.selfId?.slice(-6) || '—'}</div>
+        <div>participants: {room.participants.length}</div>
+        <div>remoteStreams: {Object.keys(room.remoteStreams).length}</div>
+        <div>local: {room.localStream?.getTracks().length || 0} tracks</div>
+      </div>
       {/* Header */}
       <header className="!flex !shrink-0 !items-center !justify-between !gap-4 !border-b !border-white/10 !px-4 !py-3 md:!px-6">
         <div className="!flex !min-w-0 !items-center !gap-3">
@@ -178,7 +188,7 @@ export default function VideoCallRoom() {
         <ParticipantPanel
           open={peopleOpen}
           participants={room.participants}
-          waiting={room.waiting} 
+          waiting={room.waiting}
           selfId={room.selfId}
           isHost={room.isHost}
           onClose={() => setPeopleOpen(false)}

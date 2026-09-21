@@ -28,7 +28,14 @@ import initVideoCallSocket from './socket/videoCallSocket.js';
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://08z4s4jn-3000.inc1.devtunnels.ms",
+      "http://localhost:3000",
+    ],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

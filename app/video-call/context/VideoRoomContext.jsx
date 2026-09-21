@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { useWebRTC } from '../hooks/useWebRTC';
 
 const VideoRoomContext = createContext(null);
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://08z4s4jn-5000.inc1.devtunnels.ms';
 
 const initialRoomState = {
   meeting: null,
@@ -112,12 +112,32 @@ export function VideoRoomProvider({ children }) {
   useEffect(() => {
     if (!socket) return undefined;
 
-    const onRoomJoined = ({ selfId, isHost, participants }) => {
-      patch({ selfId, isHost, participants, callStatus: 'active' });
+    // const onRoomJoined = ({ selfId, isHost, participants }) => {
+    //   patch({ selfId, isHost, participants, callStatus: 'active' });
 
-      // ✅ THE MISSING PIECE: as the newest joiner, WE initiate offers to
-      //    everyone already in the room.
-      participants.forEach((p) => {
+    //   // ✅ THE MISSING PIECE: as the newest joiner, WE initiate offers to
+    //   //    everyone already in the room.
+    //   participants.forEach((p) => {
+    //     if (p.socketId !== selfId) {
+    //       createPeer(p.socketId, { initiator: true });
+    //     }
+    //   });
+    // };
+
+
+    const onRoomJoined = ({ selfId, isHost, participants }) => {
+      // ✅ dedupe by socketId
+      const seen = new Set();
+      const clean = [];
+      for (const p of participants || []) {
+        if (!p?.socketId || seen.has(p.socketId)) continue;
+        seen.add(p.socketId);
+        clean.push(p);
+      }
+
+      patch({ selfId, isHost, participants: clean, callStatus: 'active' });
+
+      clean.forEach((p) => {
         if (p.socketId !== selfId) {
           createPeer(p.socketId, { initiator: true });
         }
@@ -246,53 +266,62 @@ export function VideoRoomProvider({ children }) {
 
   /* ------------------------------ entry points ------------------------------ */
 
-  const enterRoom = useCallback(
-    async ({ meetingId, guestToken, meeting, displayName }) => {
-      patch({ meeting, guestToken, displayName, callStatus: 'connecting', error: null });
+const enterRoom = useCallback(
+  async ({ meetingId, guestToken, meeting, displayName }) => {
+    if (socketRef.current?.connected) return;
 
-      // ✅ acquire media BEFORE connecting so tracks exist when offers fire
-      try {
-        if (!localStreamRef.current) {
-          await getLocalStream({ video: true, audio: true });
-        }
-      } catch (err) {
-        console.error('getUserMedia failed', err);
-        patch({ callStatus: 'error', error: 'Could not access camera/microphone.' });
-        return;
+    patch({ meeting, guestToken, displayName, callStatus: 'connecting', error: null });
+
+    try {
+      if (!localStreamRef.current) {
+        await getLocalStream({ video: true, audio: true });
       }
+    } catch (err) {
+      console.error('getUserMedia failed', err);
+      patch({ callStatus: 'error', error: 'Could not access camera/microphone.' });
+      return;
+    }
 
-      const s = connectSocket({ token: guestToken, meetingId });
+    const s = connectSocket({ token: guestToken, meetingId });
+    if (!s.data?.__joined) {
+      s.data = s.data || {};
+      s.data.__joined = true;
       s.emit('join-room', { name: displayName });
-    },
-    [connectSocket, getLocalStream, patch]
-  );
+    }
+  },
+  [connectSocket, getLocalStream, patch]
+);
 
-  const enterRoomAsHost = useCallback(
-    async ({ meetingId, adminToken, meeting, displayName }) => {
-      patch({
-        meeting,
-        guestToken: adminToken,
-        displayName,
-        isHost: true,
-        callStatus: 'connecting',
-        error: null,
-      });
+const enterRoomAsHost = useCallback(
+  async ({ meetingId, adminToken, meeting, displayName }) => {
+    // ✅ already connected → skip
+    if (socketRef.current?.connected) return;
 
-      try {
-        if (!localStreamRef.current) {
-          await getLocalStream({ video: true, audio: true });
-        }
-      } catch (err) {
-        console.error('getUserMedia failed', err);
-        patch({ callStatus: 'error', error: 'Could not access camera/microphone.' });
-        return;
+    patch({
+      meeting, guestToken: adminToken, displayName,
+      isHost: true, callStatus: 'connecting', error: null,
+    });
+
+    try {
+      if (!localStreamRef.current) {
+        await getLocalStream({ video: true, audio: true });
       }
+    } catch (err) {
+      console.error('getUserMedia failed', err);
+      patch({ callStatus: 'error', error: 'Could not access camera/microphone.' });
+      return;
+    }
 
-      const s = connectSocket({ token: adminToken, meetingId });
+    const s = connectSocket({ token: adminToken, meetingId });
+    // make sure we only emit once per socket
+    if (!s.data?.__joined) {
+      s.data = s.data || {};
+      s.data.__joined = true;
       s.emit('join-room', { name: displayName });
-    },
-    [connectSocket, getLocalStream, patch]
-  );
+    }
+  },
+  [connectSocket, getLocalStream, patch]
+);
 
   /* ---------------------------- controls ---------------------------- */
 

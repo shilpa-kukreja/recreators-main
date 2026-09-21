@@ -16,11 +16,32 @@ export default function VideoTile({
 }) {
   const videoRef = useRef(null);
 
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    if (el.srcObject !== stream) el.srcObject = stream || null;
-  }, [stream]);
+useEffect(() => {
+  const el = videoRef.current;
+  if (!el) return;
+  if (el.srcObject !== stream) el.srcObject = stream || null;
+
+  if (!stream) return;
+
+  // ✅ Force play — handles autoplay-policy blocks
+  const tryPlay = async () => {
+    try {
+      await el.play();
+    } catch (err) {
+      console.warn('Autoplay blocked, muting and retrying…', err);
+      el.muted = true;
+      try {
+        await el.play();
+      } catch (e2) {
+        console.error('Play still failed:', e2);
+      }
+    }
+  };
+
+  // small delay so the browser has the srcObject ready
+  const t = setTimeout(tryPlay, 50);
+  return () => clearTimeout(t);
+}, [stream]);
 
   const initials =
     (name || '?')
