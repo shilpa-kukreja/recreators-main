@@ -185,7 +185,7 @@ export default function VideoGrid({
 }) {
   const activeId = useActiveSpeaker(remoteStreams);
 
-  /* ---------- dedupe: self first, then others ---------- */
+  /* ---------- dedupe by socketId, self first ---------- */
   const unique = useMemo(() => {
     const seen = new Set();
     const out = [];
@@ -212,44 +212,82 @@ export default function VideoGrid({
   const n = tiles.length;
 
   /* ============================================================
-     SCREEN SHARE MODE — big shared content + horizontal film strip
+     SCREEN SHARE MODE — inline styles to guarantee layout
      ============================================================ */
-  if (sharingId) {
-    const sharingTile = tiles.find((t) => t.socketId === sharingId);
+  const sharingTile = sharingId ? tiles.find((t) => t.socketId === sharingId) : null;
+
+  if (sharingTile) {
     const otherTiles = tiles.filter((t) => t.socketId !== sharingId);
 
-    if (sharingTile) {
-      return (
-        <div className="!flex !h-full !w-full !flex-col !gap-2 md:!gap-3">
-          {/* Main share — takes all remaining height */}
-          <div className="!min-h-0 !flex-1">
-            <VideoTile
-              {...sharingTile}
-              isActiveSpeaker={false}
-              className="!h-full !w-full"
-            />
-          </div>
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          width: '100%',
+          gap: 12,
+          minHeight: 0,
+        }}
+      >
+        {/* Main share — takes all remaining height */}
+        <div style={{ flex: 1, minHeight: 0, position: 'relative' }}>
+          <VideoTile
+            {...sharingTile}
+            isActiveSpeaker={false}
+            className="!h-full !w-full"
+          />
+        </div>
 
-          {/* Film strip — horizontal scroll if many */}
-          <div className="!flex !h-20 !shrink-0 !gap-2 !overflow-x-auto !pb-1 md:!h-28">
-            {otherTiles.map((t) => (
-              <div key={t.socketId} className="!aspect-video !h-full !shrink-0">
+        {/* Film strip — horizontal, fixed height, never wraps */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            gap: 8,
+            height: 112,
+            minHeight: 112,
+            maxHeight: 112,
+            overflowX: 'auto',
+            overflowY: 'hidden',
+          }}
+        >
+          {otherTiles.length === 0 ? (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                color: '#64748b',
+                fontSize: 12,
+              }}
+            >
+              No other participants
+            </div>
+          ) : (
+            otherTiles.map((t) => (
+              <div
+                key={t.socketId}
+                style={{
+                  height: '100%',
+                  aspectRatio: '16 / 9',
+                  flex: '0 0 auto',
+                  minWidth: 0,
+                }}
+              >
                 <VideoTile
                   {...t}
                   className="!h-full !w-full"
                   isActiveSpeaker={activeId === t.socketId}
                 />
               </div>
-            ))}
-            {otherTiles.length === 0 && (
-              <div className="!flex !h-full !w-full !items-center !justify-center !text-xs !text-slate-500">
-                No other participants
-              </div>
-            )}
-          </div>
+            ))
+          )}
         </div>
-      );
-    }
+      </div>
+    );
   }
 
   /* ============================================================
@@ -257,65 +295,78 @@ export default function VideoGrid({
      ============================================================ */
   if (n === 0) {
     return (
-      <div className="!flex !h-full !w-full !items-center !justify-center !text-sm !text-slate-500">
+      <div
+        style={{
+          display: 'flex',
+          height: '100%',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#64748b',
+          fontSize: 14,
+        }}
+      >
         Waiting for others to join…
       </div>
     );
   }
 
   /* ============================================================
-     SINGLE PARTICIPANT — centered, capped size (no stretching)
+     SINGLE PARTICIPANT — centered, capped
      ============================================================ */
   if (n === 1) {
     return (
-      <div className="!flex !h-full !w-full !items-center !justify-center">
-        <VideoTile
-          {...tiles[0]}
-          isActiveSpeaker={false}
-          className="!aspect-video !w-full !max-w-5xl !max-h-full"
-        />
+      <div
+        style={{
+          display: 'flex',
+          height: '100%',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div style={{ width: '100%', maxWidth: 960, aspectRatio: '16 / 9' }}>
+          <VideoTile
+            {...tiles[0]}
+            isActiveSpeaker={false}
+            className="!h-full !w-full"
+          />
+        </div>
       </div>
     );
   }
 
   /* ============================================================
-     MULTI PARTICIPANT GRID
-     – mobile first, then scaled per breakpoint
-     – grid-auto-rows fills vertical space evenly
+     MULTI PARTICIPANT GRID — explicit columns
      ============================================================ */
-  let cols = '!grid-cols-1';
-  if (n === 2) {
-    // 2 people: side-by-side on tablet+, stacked on phone
-    cols = '!grid-cols-1 sm:!grid-cols-2';
-  } else if (n === 3) {
-    // 3 people: stacked mobile → 2 cols tablet → 3 cols desktop
-    cols = '!grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-3';
-  } else if (n === 4) {
-    // 4 people: 2×2 everywhere (best for 4-person calls)
-    cols = '!grid-cols-2';
-  } else if (n <= 6) {
-    // 5–6 people: 2 cols mobile → 3 cols desktop
-    cols = '!grid-cols-2 lg:!grid-cols-3';
-  } else if (n <= 9) {
-    // 7–9 people: 2 cols mobile → 3 cols tablet+
-    cols = '!grid-cols-2 sm:!grid-cols-3';
-  } else {
-    // 10+: 2 / 3 / 4 columns
-    cols = '!grid-cols-2 sm:!grid-cols-3 lg:!grid-cols-4';
-  }
+  let colsCount = 1;
+  if (n === 2) colsCount = 2;
+  else if (n === 3) colsCount = 3;
+  else if (n === 4) colsCount = 2;
+  else if (n <= 6) colsCount = 3;
+  else if (n <= 9) colsCount = 3;
+  else colsCount = 4;
 
   return (
     <div
-      className={`!grid !h-full !w-full !gap-2 md:!gap-3 ${cols}`}
-      style={{ gridAutoRows: 'minmax(0, 1fr)' }}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${colsCount}, minmax(0, 1fr))`,
+        gridAutoRows: 'minmax(0, 1fr)',
+        gap: 12,
+        height: '100%',
+        width: '100%',
+        minHeight: 0,
+      }}
     >
       {tiles.map((t) => (
-        <VideoTile
-          key={t.socketId}
-          {...t}
-          className="!h-full !w-full !min-h-0"
-          isActiveSpeaker={activeId === t.socketId}
-        />
+        <div key={t.socketId} style={{ minHeight: 0, minWidth: 0 }}>
+          <VideoTile
+            {...t}
+            className="!h-full !w-full"
+            isActiveSpeaker={activeId === t.socketId}
+          />
+        </div>
       ))}
     </div>
   );

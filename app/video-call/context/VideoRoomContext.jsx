@@ -342,32 +342,109 @@ const enterRoomAsHost = useCallback(
     patch({ camOn: next });
     socketRef.current?.emit('toggle-camera', { camOn: next });
   }, [patch]);
+/* ---------------- SCREEN SHARE (clean implementation) ---------------- */
 
-  const startScreenShare = useCallback(async () => {
-    if (!navigator.mediaDevices?.getDisplayMedia) return;
-    try {
-      const display = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
-      screenStreamRef.current = display;
-      const screenTrack = display.getVideoTracks()[0];
-      setState((s) => ({ ...s, sharing: true }));
-      window.dispatchEvent(new CustomEvent('video-call:screen-track', { detail: screenTrack }));
-      socketRef.current?.emit('screen-share-started');
-      screenTrack.onended = () => {
-        window.dispatchEvent(new CustomEvent('video-call:screen-track', { detail: cameraTrackRef.current }));
-        socketRef.current?.emit('screen-share-stopped');
-        screenStreamRef.current = null;
-        setState((s) => ({ ...s, sharing: false }));
-      };
-    } catch (e) { console.warn('Screen share cancelled', e); }
-  }, []);
+/* ---------------- SCREEN SHARE (clean, no camera toggle) ---------------- */
 
-  const stopScreenShare = useCallback(() => {
-    screenStreamRef.current?.getTracks().forEach((t) => t.stop());
-    window.dispatchEvent(new CustomEvent('video-call:screen-track', { detail: cameraTrackRef.current }));
-    socketRef.current?.emit('screen-share-stopped');
-    screenStreamRef.current = null;
-    patch({ sharing: false });
-  }, [patch]);
+const stopScreenShareRef = useRef(null);
+
+const stopScreenShare = useCallback(() => {
+  if (!screenStreamRef.current) return;
+
+  // 1. stop the screen capture
+  screenStreamRef.current.getTracks().forEach((t) => t.stop());
+  screenStreamRef.current = null;
+
+  // 2. restore camera + audio from the currently live tracks
+  const cam = cameraTrackRef.current;
+  const camLive = cam && cam.readyState === 'live';
+
+  const audio = localStreamRef.current?.getAudioTracks()?.[0];
+  const audioLive = audio && audio.readyState === 'live';
+
+  const tracks = [];
+  if (camLive) tracks.push(cam);
+  if (audioLive) tracks.push(audio);
+
+  const restored = new MediaStream(tracks);
+  localStreamRef.current = restored;
+  setLocalStream(restored);   // ← useWebRTC replaces the outgoing video track
+
+  // 3. only touch the `sharing` flag — camOn stays whatever it was
+  setState((s) => ({
+    ...s,
+    sharing: false,
+    participants: s.participants.map((p) =>
+      p.socketId === s.selfId ? { ...p, sharing: false } : p
+    ),
+  }));
+
+  socketRef.current?.emit('screen-share-stopped');
+}, []);
+
+useEffect(() => {
+  stopScreenShareRef.current = stopScreenShare;
+}, [stopScreenShare]);
+
+const startScreenShare = useCallback(async () => {
+  if (!navigator.mediaDevices?.getDisplayMedia) return;
+  if (screenStreamRef.current) return;
+
+  let display;
+  try {
+    display = await navigator.mediaDevices.getDisplayMedia({
+      video: { frameRate: 30 },
+      audio: false,
+    });
+  } catch (e) {
+    console.warn('Screen share cancelled', e);
+    return;
+  }
+
+  const track = display.getVideoTracks()[0];
+  const settings = track.getSettings();
+
+  // ✅ HARD BLOCK: user selected "Share this tab"
+  if (settings.displaySurface === 'browser') {
+    track.stop();
+    alert(
+      '❌ You selected "Share this tab".\n\n' +
+      'This will create an infinite mirror because the video call is inside this tab.\n\n' +
+      'Please try again and choose:\n' +
+      '  • "Window" → pick any window EXCEPT this one\n' +
+      '  • OR "Entire Screen"'
+    );
+    return;
+  }
+
+  // Remember camera track so we can restore after
+  const cam = localStreamRef.current?.getVideoTracks()?.[0] || null;
+  if (cam) cameraTrackRef.current = cam;
+
+  // Build new outgoing stream: screen video + existing audio
+  const audio = localStreamRef.current?.getAudioTracks()?.[0];
+  const tracks = [track];
+  if (audio && audio.readyState === 'live') tracks.push(audio);
+
+  const newStream = new MediaStream(tracks);
+  screenStreamRef.current = display;
+  localStreamRef.current = newStream;
+  setLocalStream(newStream);
+
+  setState((s) => ({
+    ...s,
+    sharing: true,
+    participants: s.participants.map((p) =>
+      p.socketId === s.selfId ? { ...p, sharing: true } : p
+    ),
+  }));
+
+  socketRef.current?.emit('screen-share-started');
+
+  track.onended = () => {
+    stopScreenShareRef.current?.();
+  };
+}, []);
 
   const sendChat = useCallback((text) => {
     socketRef.current?.emit('chat-message', { text });

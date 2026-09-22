@@ -177,19 +177,7 @@ export function useWebRTC({ socket, localStream, onRemoteStream, onPeerRemoved }
     });
   }, [localStream]);
 
-  /* ---------- screen-share track swap ---------- */
-  useEffect(() => {
-    const handler = (e) => {
-      const newTrack = e.detail;
-      if (!newTrack) return;
-      peersRef.current.forEach((pc) => {
-        const sender = pc.getSenders().find((s) => s.track?.kind === 'video');
-        if (sender) sender.replaceTrack(newTrack);
-      });
-    };
-    window.addEventListener('video-call:screen-track', handler);
-    return () => window.removeEventListener('video-call:screen-track', handler);
-  }, []);
+ /* ---------- screen-share track swap ---------- */
 
   useEffect(() => () => closeAll(), [closeAll]);
 
