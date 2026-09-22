@@ -61,31 +61,18 @@ const videoMeetingSchema = new mongoose.Schema(
 videoMeetingSchema.index({ startTime: 1, status: 1 });
 
 /** Computed joinability — single source of truth for both API and socket. */
-videoMeetingSchema.methods.getJoinState = function (now = new Date()) {
+videoMeetingSchema.methods.getJoinState = function () {
   if (this.status === 'cancelled') {
     return { joinable: false, code: 'CANCELLED', message: 'This meeting has been cancelled.' };
   }
-  if (this.status === 'completed' || this.status === 'expired') {
+  if (this.status === 'completed') {
     return { joinable: false, code: 'ENDED', message: 'Sorry, this meeting has ended.' };
-  }
-  if (now > this.endTime) {
-    return { joinable: false, code: 'EXPIRED', message: 'This meeting has expired.' };
   }
   if (this.locked) {
     return { joinable: false, code: 'LOCKED', message: 'This meeting is locked by the host.' };
   }
-  if (now < new Date(this.startTime.getTime() - 15 * 60 * 1000)) {
-    return {
-      joinable: false,
-      code: 'NOT_STARTED',
-      message: `Meeting starts at ${this.startTime.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-      })}. You may enter the waiting room 15 minutes before.`,
-      canWait: false,
-      startTime: this.startTime,
-    };
-  }
+
+  // ✅ Always joinable. No start-time check. No end-time check.
   return { joinable: true, code: 'OK', message: 'OK', canWait: true };
 };
 
