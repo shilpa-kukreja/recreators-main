@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { useWebRTC } from '../hooks/useWebRTC';
 
 const VideoRoomContext = createContext(null);
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://recreators-main.onrender.com';
 
 const initialRoomState = {
   meeting: null,

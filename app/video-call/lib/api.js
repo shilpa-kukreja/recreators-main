@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://recreators-main.onrender.com';
 
 async function request(path, { method = 'GET', body, token } = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
