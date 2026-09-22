@@ -16,41 +16,24 @@ export default function VideoTile({
 }) {
   const videoRef = useRef(null);
 
-  // Attach stream — always re-attach if srcObject differs
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-
     if (el.srcObject !== stream) el.srcObject = stream || null;
     if (!stream) return;
 
-    let cancelled = false;
     const tryPlay = async () => {
-      if (cancelled) return;
       try { await el.play(); }
       catch {
         el.muted = true;
         try { await el.play(); } catch (e2) { console.error('play failed:', e2); }
       }
     };
-    const t = setTimeout(tryPlay, 50);
-    const onLoaded = () => tryPlay();
-    el.addEventListener('loadedmetadata', onLoaded);
+    const t = setTimeout(tryPlay, 100);
+    return () => clearTimeout(t);
+  }, [stream, camOn]);  // ← key change: rerun when camOn toggles too
 
-    return () => {
-      cancelled = true;
-      clearTimeout(t);
-      el.removeEventListener('loadedmetadata', onLoaded);
-    };
-  }, [stream]);
-
-  const initials =
-    (name || '?')
-      .split(' ')
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((n) => n[0]?.toUpperCase())
-      .join('') || '?';
+  const initials = (name || '?').split(' ').filter(Boolean).slice(0, 2).map(n => n[0]?.toUpperCase()).join('') || '?';
 
   return (
     <div
@@ -58,47 +41,38 @@ export default function VideoTile({
         ${isActiveSpeaker ? 'ring-2 ring-emerald-400' : 'ring-white/10'} ${className}`}
       style={{ position: 'relative', width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
     >
-      {/* ✅ Video element ALWAYS rendered when we have a stream — never unmounted,
-          so srcObject stays attached when toggling camera off/on */}
-      {stream && (
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted={isLocal}
-          style={{
-            width: '100%',
-            height: '100%',
-            // screen share uses contain so the whole screen is visible
-            objectFit: sharing ? 'contain' : 'cover',
-            display: 'block',
-            transform: isLocal && !sharing ? 'scaleX(-1)' : 'none',
-            background: sharing ? '#000' : 'transparent',
-          }}
-        />
-      )}
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        muted={isLocal}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: sharing ? 'contain' : 'cover',
+          display: 'block',
+          transform: isLocal && !sharing ? 'scaleX(-1)' : 'none',
+          background: sharing ? '#000' : 'transparent',
+          opacity: stream && camOn !== false ? 1 : 0,     // ← fade out
+          position: 'absolute',
+          inset: 0,
+        }}
+      />
 
-      {/* ✅ Placeholder overlays on top when camera is off OR no stream yet */}
       {(!stream || camOn === false) && (
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 12,
-            background: 'linear-gradient(135deg, #1e293b, #0f172a)',
+            position: 'absolute', inset: 0,
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            gap: 12, background: 'linear-gradient(135deg, #1e293b, #0f172a)',
           }}
         >
-          <div
-            style={{
-              width: 72, height: 72, borderRadius: '50%',
-              background: '#334155', display: 'flex', alignItems: 'center',
-              justifyContent: 'center', fontSize: 22, fontWeight: 600, color: '#e2e8f0',
-            }}
-          >
+          <div style={{
+            width: 72, height: 72, borderRadius: '50%',
+            background: '#334155', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', fontSize: 22, fontWeight: 600, color: '#e2e8f0',
+          }}>
             {initials}
           </div>
           <p style={{ fontSize: 13, color: '#94a3b8' }}>
@@ -107,7 +81,6 @@ export default function VideoTile({
         </div>
       )}
 
-      {/* Footer bar */}
       <div
         style={{
           position: 'absolute', left: 0, right: 0, bottom: 0,
@@ -122,12 +95,12 @@ export default function VideoTile({
             {isLocal ? `${name} (You)` : name}
           </span>
           {isHost && (
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, borderRadius: 999, background: 'rgba(245,158,11,0.2)', color: '#fcd34d', padding: '2px 8px', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, borderRadius: 999, background: 'rgba(245,158,11,0.2)', color: '#fcd34d', padding: '2px 8px', fontSize: 10, fontWeight: 600, textTransform: 'uppercase' }}>
               <Crown size={10} /> Host
             </span>
           )}
           {sharing && (
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, borderRadius: 999, background: 'rgba(14,165,233,0.2)', color: '#7dd3fc', padding: '2px 8px', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, borderRadius: 999, background: 'rgba(14,165,233,0.2)', color: '#7dd3fc', padding: '2px 8px', fontSize: 10, fontWeight: 600, textTransform: 'uppercase' }}>
               <MonitorUp size={10} /> Sharing
             </span>
           )}
