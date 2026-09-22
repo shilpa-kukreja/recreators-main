@@ -33,7 +33,7 @@ app.use(
     origin: [
       "https://08z4s4jn-3000.inc1.devtunnels.ms",
       "http://localhost:3000",
-      "https://recreators-main.onrender.com",
+      "https://recreators-main.vercel.app",
     ],
   })
 );
