@@ -124,6 +124,7 @@
 // };
 
 
+
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -176,6 +177,23 @@ function useActiveSpeaker(streams) {
   return activeId;
 }
 
+/** Track viewport width so we can pick the right column count. */
+function useViewport() {
+  const [vp, setVp] = useState('desktop');
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setVp('mobile');
+      else if (w < 1024) setVp('tablet');
+      else setVp('desktop');
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return vp;
+}
+
 export default function VideoGrid({
   participants = [],
   remoteStreams = {},
@@ -184,6 +202,7 @@ export default function VideoGrid({
   sharingId,
 }) {
   const activeId = useActiveSpeaker(remoteStreams);
+  const viewport = useViewport();
 
   /* ---------- dedupe by socketId, self first ---------- */
   const unique = useMemo(() => {
@@ -212,12 +231,13 @@ export default function VideoGrid({
   const n = tiles.length;
 
   /* ============================================================
-     SCREEN SHARE MODE — inline styles to guarantee layout
+     SCREEN SHARE MODE — main share + horizontal film strip
      ============================================================ */
   const sharingTile = sharingId ? tiles.find((t) => t.socketId === sharingId) : null;
 
   if (sharingTile) {
     const otherTiles = tiles.filter((t) => t.socketId !== sharingId);
+    const stripHeight = viewport === 'mobile' ? 88 : 120;
 
     return (
       <div
@@ -226,12 +246,12 @@ export default function VideoGrid({
           flexDirection: 'column',
           height: '100%',
           width: '100%',
-          gap: 12,
+          gap: 10,
           minHeight: 0,
         }}
       >
-        {/* Main share — takes all remaining height */}
-        <div style={{ flex: 1, minHeight: 0, position: 'relative' }}>
+        {/* Main share — takes all remaining space */}
+        <div style={{ flex: 1, minHeight: 0 }}>
           <VideoTile
             {...sharingTile}
             isActiveSpeaker={false}
@@ -239,16 +259,16 @@ export default function VideoGrid({
           />
         </div>
 
-        {/* Film strip — horizontal, fixed height, never wraps */}
+        {/* Horizontal film strip */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'nowrap',
             gap: 8,
-            height: 112,
-            minHeight: 112,
-            maxHeight: 112,
+            height: stripHeight,
+            minHeight: stripHeight,
+            maxHeight: stripHeight,
             overflowX: 'auto',
             overflowY: 'hidden',
           }}
@@ -274,7 +294,6 @@ export default function VideoGrid({
                   height: '100%',
                   aspectRatio: '16 / 9',
                   flex: '0 0 auto',
-                  minWidth: 0,
                 }}
               >
                 <VideoTile
@@ -312,7 +331,7 @@ export default function VideoGrid({
   }
 
   /* ============================================================
-     SINGLE PARTICIPANT — centered, capped
+     SINGLE PARTICIPANT — centered, capped aspect
      ============================================================ */
   if (n === 1) {
     return (
@@ -337,23 +356,40 @@ export default function VideoGrid({
   }
 
   /* ============================================================
-     MULTI PARTICIPANT GRID — explicit columns
+     RESPONSIVE COLUMN COUNT
      ============================================================ */
-  let colsCount = 1;
-  if (n === 2) colsCount = 2;
-  else if (n === 3) colsCount = 3;
-  else if (n === 4) colsCount = 2;
-  else if (n <= 6) colsCount = 3;
-  else if (n <= 9) colsCount = 3;
-  else colsCount = 4;
+  let cols = 1;
+
+  if (viewport === 'mobile') {
+    // Mobile: stack or 2-col for larger groups
+    cols = n <= 1 ? 1 : 2;
+  } else if (viewport === 'tablet') {
+    if (n === 1) cols = 1;
+    else if (n === 2) cols = 2;
+    else if (n <= 4) cols = 2;
+    else cols = 3;
+  } else {
+    // Desktop
+    if (n === 1) cols = 1;
+    else if (n === 2) cols = 2;
+    else if (n === 3) cols = 2; // 2x2 grid, cleaner than 3 skinny tiles
+    else if (n === 4) cols = 2;
+    else if (n <= 6) cols = 3;
+    else if (n <= 9) cols = 3;
+    else cols = 4;
+  }
+
+  // On mobile with 3 participants and 2 cols, the last tile looks alone.
+  // Flip to 1 col so they all stack nicely.
+  if (viewport === 'mobile' && n === 3) cols = 1;
 
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${colsCount}, minmax(0, 1fr))`,
+        gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
         gridAutoRows: 'minmax(0, 1fr)',
-        gap: 12,
+        gap: viewport === 'mobile' ? 8 : 12,
         height: '100%',
         width: '100%',
         minHeight: 0,

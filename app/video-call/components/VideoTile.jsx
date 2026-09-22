@@ -16,6 +16,7 @@ export default function VideoTile({
 }) {
   const videoRef = useRef(null);
 
+  // Attach stream — always re-attach if srcObject differs
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
@@ -57,7 +58,9 @@ export default function VideoTile({
         ${isActiveSpeaker ? 'ring-2 ring-emerald-400' : 'ring-white/10'} ${className}`}
       style={{ position: 'relative', width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
     >
-      {stream && camOn !== false ? (
+      {/* ✅ Video element ALWAYS rendered when we have a stream — never unmounted,
+          so srcObject stays attached when toggling camera off/on */}
+      {stream && (
         <video
           ref={videoRef}
           autoPlay
@@ -66,16 +69,21 @@ export default function VideoTile({
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            // screen share uses contain so the whole screen is visible
+            objectFit: sharing ? 'contain' : 'cover',
             display: 'block',
             transform: isLocal && !sharing ? 'scaleX(-1)' : 'none',
+            background: sharing ? '#000' : 'transparent',
           }}
         />
-      ) : (
+      )}
+
+      {/* ✅ Placeholder overlays on top when camera is off OR no stream yet */}
+      {(!stream || camOn === false) && (
         <div
           style={{
-            width: '100%',
-            height: '100%',
+            position: 'absolute',
+            inset: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -99,7 +107,7 @@ export default function VideoTile({
         </div>
       )}
 
-      {/* footer bar */}
+      {/* Footer bar */}
       <div
         style={{
           position: 'absolute', left: 0, right: 0, bottom: 0,

@@ -117,15 +117,7 @@ export default function VideoCallRoom() {
 
   return (
     <div className="!flex !h-screen !flex-col !bg-[#0b0f19]">
-      {/* 🔍 TEMP DEBUG — remove later */}
-      <div className="!fixed !bottom-2 !right-2 !z-50 !max-w-xs !rounded-lg !bg-black/80 !p-3 !font-mono !text-[10px] !text-emerald-300">
-        <div>status: {room.callStatus}</div>
-        <div>socket: {room.socket ? (room.socket.connected ? '✅' : '❌') : '❌ null'}</div>
-        <div>selfId: {room.selfId?.slice(-6) || '—'}</div>
-        <div>participants: {room.participants.length}</div>
-        <div>remoteStreams: {Object.keys(room.remoteStreams).length}</div>
-        <div>local: {room.localStream?.getTracks().length || 0} tracks</div>
-      </div>
+    
       {/* Header */}
       <header className="!flex !shrink-0 !items-center !justify-between !gap-4 !border-b !border-white/10 !px-4 !py-3 md:!px-6">
         <div className="!flex !min-w-0 !items-center !gap-3">
