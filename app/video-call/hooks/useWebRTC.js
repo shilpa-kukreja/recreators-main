@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 function buildIceConfig() {
   const username = process.env.NEXT_PUBLIC_TURN_USERNAME;
   const credential = process.env.NEXT_PUBLIC_TURN_PASSWORD;
+  console.log(process.env.NEXT_PUBLIC_TURN_USERNAME)
+  console.log(process.env.NEXT_PUBLIC_TURN_PASSWORD)
 
   const iceServers = [
     { urls: 'stun:stun.l.google.com:19302' },
@@ -16,6 +18,8 @@ function buildIceConfig() {
 
   return { iceServers, iceCandidatePoolSize: 10 };
 }
+
+
 
 export function useWebRTC({ socket, localStream, onRemoteStream, onPeerRemoved }) {
   const peersRef = useRef(new Map());
