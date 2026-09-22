@@ -2,18 +2,29 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 function buildIceConfig() {
-  const username = process.env.NEXT_PUBLIC_TURN_USERNAME;
-  const credential = process.env.NEXT_PUBLIC_TURN_PASSWORD;
-  console.log(process.env.NEXT_PUBLIC_TURN_USERNAME)
-  console.log(process.env.NEXT_PUBLIC_TURN_PASSWORD)
-
   const iceServers = [
     { urls: 'stun:stun.l.google.com:19302' },
     { urls: 'stun:stun.relay.metered.ca:80' },
-    { urls: 'turn:global.relay.metered.ca:80', username, credential },
-    { urls: 'turn:global.relay.metered.ca:80?transport=tcp', username, credential },
-    { urls: 'turn:global.relay.metered.ca:443', username, credential },
-    { urls: 'turns:global.relay.metered.ca:443?transport=tcp', username, credential },
+    {
+      urls: 'turn:global.relay.metered.ca:80',
+      username: '72b25569a9f4216bdabf262f',
+      credential: 'Q2fiT/3ItbLoNIum',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:80?transport=tcp',
+      username: '72b25569a9f4216bdabf262f',
+      credential: 'Q2fiT/3ItbLoNIum',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:443',
+      username: '72b25569a9f4216bdabf262f',
+      credential: 'Q2fiT/3ItbLoNIum',
+    },
+    {
+      urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+      username: '72b25569a9f4216bdabf262f',
+      credential: 'Q2fiT/3ItbLoNIum',
+    },
   ];
 
   return { iceServers, iceCandidatePoolSize: 10 };
