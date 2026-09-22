@@ -2,16 +2,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 function buildIceConfig() {
+  const username = process.env.NEXT_PUBLIC_TURN_USERNAME;
+  const credential = process.env.NEXT_PUBLIC_TURN_PASSWORD;
+
   const iceServers = [
-    { urls: process.env.NEXT_PUBLIC_STUN_SERVER || 'stun:stun.l.google.com:19302' },
+    { urls: 'stun:stun.l.google.com:19302' },
+    { urls: 'stun:stun.relay.metered.ca:80' },
+    { urls: 'turn:global.relay.metered.ca:80', username, credential },
+    { urls: 'turn:global.relay.metered.ca:80?transport=tcp', username, credential },
+    { urls: 'turn:global.relay.metered.ca:443', username, credential },
+    { urls: 'turns:global.relay.metered.ca:443?transport=tcp', username, credential },
   ];
-  if (process.env.NEXT_PUBLIC_TURN_SERVER) {
-    iceServers.push({
-      urls: process.env.NEXT_PUBLIC_TURN_SERVER,
-      username: process.env.NEXT_PUBLIC_TURN_USERNAME,
-      credential: process.env.NEXT_PUBLIC_TURN_PASSWORD,
-    });
-  }
+
   return { iceServers, iceCandidatePoolSize: 10 };
 }
 
