@@ -2,11 +2,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Video, Plus, List } from 'lucide-react';
+
 import {
   Users,
   CreditCard,
+   Video,
   DollarSign,
+  List,
   Mail,
   FileText,
   TrendingUp,
