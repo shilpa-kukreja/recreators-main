@@ -25,6 +25,12 @@ const nextConfig = {
         hostname: "recreatorsdesign.com",
         pathname: "/**", // allow all images from your domain
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**', // allow any path under this domain
+      },
     ],
   },
 };

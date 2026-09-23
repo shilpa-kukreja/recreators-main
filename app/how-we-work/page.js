@@ -501,57 +501,116 @@ Every project ends with more than a file handoff               </p>
 
           {/* CTA Section */}
           <motion.section
-            id="contact"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="!bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 !rounded-3xl !p-10 md:!p-12 !shadow-xl !overflow-hidden !relative"
-          >
-            <div className="!absolute -!right-10 -!top-10 !w-40 !h-40 !bg-white/10 !rounded-full"></div>
-            <div className="!absolute -!left-10 -!bottom-10 !w-40 !h-40 !bg-white/10 !rounded-full"></div>
+  id="contact"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="!relative !overflow-hidden !rounded-2xl !px-6 !py-10 lg:!py-12"
+  style={{
+    "--brand": "#FF6B35",
+    background: "#0A0A0F",
+  }}
+>
+  {/* Brand glow — matches hero/CTA */}
+  <div
+    className="!pointer-events-none !absolute !left-1/2 !top-1/2 !h-72 !w-72 !-translate-x-1/2 !-translate-y-1/2 !rounded-full !opacity-20 !blur-[120px]"
+    style={{ background: "var(--brand)" }}
+  />
 
-            <div className="!flex !flex-col md:!flex-row !items-center !justify-between !gap-8 !relative !z-10">
-              <div className="!text-white !max-w-md">
-                <h4 className="!text-3xl !font-bold !mb-4">
-                  Curious What This Looks Like for Your Brand?
-                </h4>
-                <p className="!text-indigo-100">
-                  Tell us where you're stuck, and we'll show you exactly how we'd approach it- no obligation, no fluff.
-                </p>
-              </div>
+  {/* Grid pattern */}
+  <div
+    className="!pointer-events-none !absolute !inset-0 !opacity-[0.04]"
+    style={{
+      backgroundImage:
+        "linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px)",
+      backgroundSize: "56px 56px",
+    }}
+  />
 
-              <form
-                onSubmit={handleSubmit}
-                className="!flex !flex-col sm:!flex-row !gap-4 !w-full md:!w-auto"
+  {/* Content */}
+  <div className="!relative !z-10 !mx-auto !flex !max-w-5xl !flex-col !items-center !justify-between !gap-6 md:!flex-row md:!gap-8">
+    {/* Left: Copy */}
+    <div className="!max-w-md !text-center md:!text-left">
+      {/* Eyebrow */}
+     
+
+      <h4 className="!text-[20px] !font-bold !leading-tight !tracking-tight !text-white sm:!text-[24px] lg:!text-[28px]">
+        Curious what this looks like{" "}
+        <span style={{ color: "var(--brand)" }}>
+          for your brand?
+        </span>
+      </h4>
+
+      <p className="!mt-3 !text-[12.5px] !leading-relaxed !text-white/55 sm:!text-[13px]">
+        Tell us where you're stuck, and we'll show you exactly how we'd
+        approach it — no obligation, no fluff.
+      </p>
+    </div>
+
+    {/* Right: Form */}
+    <div className="!w-full !max-w-md">
+      <form
+        onSubmit={handleSubmit}
+        className="!flex !flex-col !gap-2.5 sm:!flex-row"
+      >
+        <input
+          type="email"
+          required
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="!flex-1 !rounded-full !border !border-white/15 !bg-white/[0.04] !px-4 !py-2.5 !text-[12.5px] !text-white !outline-none !backdrop-blur !transition-all placeholder:!text-white/40 focus:!border-[var(--brand)] focus:!bg-white/[0.06]"
+        />
+
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          type="submit"
+          disabled={loading}
+          className="!inline-flex !items-center !justify-center !gap-1.5 !rounded-full !px-5 !py-2.5 !text-[12.5px] !font-bold !text-black !transition-transform disabled:!cursor-not-allowed disabled:!opacity-60"
+          style={{
+            background: "var(--brand)",
+           
+          }}
+        >
+          {loading ? (
+            <>
+              <span className="!h-3.5 !w-3.5 !animate-spin !rounded-full !border-2 !border-black/30 !border-t-black" />
+              Subscribing...
+            </>
+          ) : (
+            <>
+              Schedule Your Call
+              <svg
+                className="!h-3.5 !w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
               >
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="!flex-1 !px-5 !py-3 !rounded-xl !border !border-white/20 !bg-white/10 !text-white placeholder:!text-indigo-200 focus:!ring-2 focus:!ring-white/30 !outline-none"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14M13 5l7 7-7 7"
                 />
+              </svg>
+            </>
+          )}
+        </motion.button>
+      </form>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={loading}
-                  className="!inline-flex !items-center !justify-center !gap-2 !bg-white !text-indigo-600 !font-medium !px-6 !py-3 !rounded-xl hover:!shadow-lg !transition-shadow disabled:!opacity-50"
-                >
-                  {loading ? "Subscribing..." : "Schedule your Call"}
-                </motion.button>
-              </form>
-
-              {message && (
-                <p className="!text-white !mt-4 !text-sm !font-medium">
-                  {message}
-                </p>
-              )}
-            </div>
-          </motion.section>
+      {message && (
+        <p
+          className="!mt-3 !text-[11.5px] !font-medium"
+          style={{ color: "var(--brand)" }}
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  </div>
+</motion.section>
         </section>
       </main>
     </RiddaLayout>

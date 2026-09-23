@@ -23,7 +23,7 @@ function PageShell({ children }) {
               <Video size={16} />
             </div>
           )}
-          <span className="!font-semibold !tracking-tight !text-white">{COMPANY}</span>
+          {/* <span className="!font-semibold !tracking-tight !text-white">{COMPANY}</span> */}
         </div>
         <span className="!text-xs !text-slate-500">Secure video consultation</span>
       </header>

@@ -33,6 +33,14 @@ const menuItems = [
     icon: FiBarChart2,
   },
   { 
+    name: "Video Meetings", 
+    icon: FiVideo,
+    submenu: [
+      { name: "All Meetings", href: "/admin/video-calls", icon: FiList },
+      { name: "Create Meeting", href: "/admin/video-calls/create", icon: FiPlus }
+    ]
+  },
+  { 
     name: "Portfolio", 
     icon: FiBox,
     submenu: [
@@ -64,7 +72,7 @@ const menuItems = [
       { name: "Add Carrer", href: "/admin/add-carrer", icon: FiPlus }
     ]
   },
- { name: "AdminCarrerForm", href: "/admin/admin-career-form-list", icon: FiUser },
+  { name: "AdminCarrerForm", href: "/admin/admin-career-form-list", icon: FiUser },
   {
     name: "Blogs",
     icon: FiBook,
@@ -96,7 +104,10 @@ export default function Sidebar() {
     
     menuItems.forEach(item => {
       if (item.submenu) {
-        const isActive = item.submenu.some(subItem => pathname === subItem.href);
+        // Match exact or prefix (for nested routes like /video-calls/VID-XXX/room)
+        const isActive = item.submenu.some(subItem =>
+          pathname === subItem.href || pathname.startsWith(subItem.href + '/')
+        );
         if (isActive) {
           newOpenSubmenus[item.name] = true;
         }
@@ -143,9 +154,11 @@ export default function Sidebar() {
           const hasSubmenu = item.submenu;
           const isSubmenuOpen = openSubmenus[item.name];
           
-          // Check if any submenu item is active
+          // Check if any submenu item is active (exact OR prefix match)
           const isSubmenuItemActive = hasSubmenu && 
-            item.submenu.some(subItem => pathname === subItem.href);
+            item.submenu.some(subItem =>
+              pathname === subItem.href || pathname.startsWith(subItem.href + '/')
+            );
 
           return (
             <div key={item.name}>
@@ -182,7 +195,8 @@ export default function Sidebar() {
                     <div className="!ml-4 !pl-6 !border-l !border-gray-700 !space-y-1 !mt-1">
                       {item.submenu.map((subItem) => {
                         const SubIcon = subItem.icon;
-                        const isActive = pathname === subItem.href;
+                        const isActive = pathname === subItem.href ||
+                          pathname.startsWith(subItem.href + '/');
                         
                         return (
                           <Link

@@ -894,17 +894,14 @@
 
 
 
-
 "use client";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
-  Briefcase, Users, Target, Clock, MapPin, Calendar,
-  Send, FileText, ArrowRight, Heart, Award, Star,
-  Zap, ChevronRight, CheckCircle, Linkedin, Twitter, Instagram,
-  Building2, Rocket, Globe, Shield, Coffee, Palette,
-  TrendingUp, BookOpen, Video, MessageCircle
+  Briefcase, Users, Target, Clock, MapPin, Send, FileText,
+  ArrowRight, Heart, Award, Zap, Linkedin, Twitter, Instagram,
+  Rocket, Globe, Shield, BookOpen, TrendingUp, MessageCircle,
 } from "lucide-react";
 import { toast } from "react-toastify";
 
@@ -926,55 +923,29 @@ export default function CareerPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const benefits = [
-    {
-      title: "Competitive Salary",
-      desc: "Industry-leading compensation with performance bonuses and regular reviews",
-      icon: TrendingUp,
-      color: "from-green-500 to-emerald-600"
-    },
-    {
-      title: "Flexible Hours",
-      desc: "Work when you're most productive with our results-oriented flex-time policy",
-      icon: Clock,
-      color: "from-blue-500 to-cyan-600"
-    },
-    {
-      title: "Remote First",
-      desc: "Work from anywhere with our remote-first culture and co-working allowances",
-      icon: Globe,
-      color: "from-purple-500 to-indigo-600"
-    },
-    {
-      title: "Health & Wellness",
-      desc: "Comprehensive medical, dental, vision, and mental health coverage",
-      icon: Shield,
-      color: "from-red-500 to-pink-600"
-    },
-    {
-      title: "Learning Budget",
-      desc: "$3,000 annual stipend for courses, conferences, and professional development",
-      icon: BookOpen,
-      color: "from-orange-500 to-amber-600"
-    },
-    {
-      title: "Team Retreats",
-      desc: "All-expenses-paid annual company retreats in inspiring global locations",
-      icon: Rocket,
-      color: "from-violet-500 to-purple-600"
-    },
+    { title: "Competitive Salary", desc: "Industry-leading pay with bonuses.", icon: TrendingUp },
+    { title: "Flexible Hours", desc: "Work when you're most productive.", icon: Clock },
+    { title: "Remote First", desc: "Work from anywhere, async culture.", icon: Globe },
+    { title: "Health & Wellness", desc: "Medical, dental, vision & mental health.", icon: Shield },
+    { title: "Learning Budget", desc: "$3,000/year for courses & conferences.", icon: BookOpen },
+    { title: "Team Retreats", desc: "Annual paid retreats, global locations.", icon: Rocket },
   ];
 
-  const stats = [
-    { value: "50+", label: "Team Members", icon: Users, color: "text-blue-500" },
-    { value: "15", label: "Countries", icon: Globe, color: "text-green-500" },
-    { value: "200+", label: "Clients", icon: Building2, color: "text-purple-500" },
-    { value: "98%", label: "Client Satisfaction", icon: Star, color: "text-amber-500" },
+  const culture = [
+    { icon: Users, title: "Collaborative Excellence", desc: "Work with seasoned creatives in a culture of mentorship." },
+    { icon: Target, title: "Impact-Driven Results", desc: "Lead projects with strategies focused on outcomes." },
+    { icon: Award, title: "Uncompromising Quality", desc: "Work that looks exceptional and performs reliably." },
+    { icon: Zap, title: "Bold Innovation", desc: "Prototype ideas, test concepts, push conventions." },
+    { icon: Heart, title: "People First", desc: "Your well-being and growth are at our heart." },
+    { icon: TrendingUp, title: "Continuous Growth", desc: "Personalized paths and mentorship for your career." },
   ];
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/carrer/careers`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/carrer/careers`
+        );
         const data = await res.json();
         setJobs(data);
       } catch (err) {
@@ -996,7 +967,7 @@ export default function CareerPage() {
     setFormData({ ...formData, position: jobTitle });
     document.getElementById("application-form").scrollIntoView({
       behavior: "smooth",
-      block: "start"
+      block: "start",
     });
   };
 
@@ -1011,25 +982,18 @@ export default function CareerPage() {
       formPayload.append("phone", formData.phone);
       formPayload.append("position", formData.position);
       formPayload.append("coverLetter", formData.coverLetter);
-      if (formData.resume) {
-        formPayload.append("resume", formData.resume);
-      }
+      if (formData.resume) formPayload.append("resume", formData.resume);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/carrer/carrer-forms`, {
-        method: "POST",
-        body: formPayload,
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/carrer/carrer-forms`,
+        { method: "POST", body: formPayload }
+      );
 
-      if (!response.ok) {
-        throw new Error("Failed to submit the application");
-      }
+      if (!response.ok) throw new Error("Failed to submit the application");
 
-      const result = await response.json();
-
-      // Success notification
+      await response.json();
       toast.success("🎉 Application submitted successfully! We'll be in touch soon.");
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -1038,7 +1002,6 @@ export default function CareerPage() {
         coverLetter: "",
         resume: null,
       });
-
     } catch (error) {
       console.error(error);
       toast.error("❌ Something went wrong. Please try again.");
@@ -1047,336 +1010,321 @@ export default function CareerPage() {
     }
   };
 
-  // Animation variants
   const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
   };
 
   const staggerContainer = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const scaleIn = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.97 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+      transition: { duration: 0.45, ease: "easeOut" },
+    },
   };
 
   return (
     <RiddaLayout>
       <PageBanner pageTitle="Career" pageName="Join Our Team" />
 
-      <div className="!bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
-        {/* Enhanced Hero Section */}
-        <section className="!relative !bg-white !text-white !py-16 !px-6 !text-center !overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="!absolute !inset-0 !overflow-hidden">
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.1 }}
-              transition={{ duration: 1.5 }}
-              className="!absolute -top-48 -left-48 !w-96 !h-96 !bg-white !rounded-full !blur-3xl"
-            />
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.15 }}
-              transition={{ duration: 1.5, delay: 0.3 }}
-              className="!absolute !top-1/3 -right-24 !w-72 !h-72 !bg-purple-500 !rounded-full !blur-3xl"
-            />
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.1 }}
-              transition={{ duration: 1.5, delay: 0.6 }}
-              className="!absolute -bottom-32 !left-1/4 !w-64 !h-64 !bg-blue-500 !rounded-full !blur-3xl"
-            />
-          </div>
+      {/* 🎨 CHANGE THIS HEX FOR YOUR BRAND COLOR */}
+      <div
+        className="!bg-white !text-neutral-900"
+        style={{ "--brand": "#FF6B35" }}
+      >
+        {/* ═══════════════════════════════════════ */}
+        {/* HERO — dark bg (matches Final CTA)     */}
+        {/* ═══════════════════════════════════════ */}
+        <section
+          className="!relative !overflow-hidden !px-6 !py-12 lg:!py-16"
+          style={{ background: "#0A0A0F" }}
+        >
+          {/* Same glow as Final CTA */}
+          <div
+            className="!pointer-events-none !absolute !left-1/2 !top-1/2 !h-72 !w-72 !-translate-x-1/2 !-translate-y-1/2 !rounded-full !opacity-20 !blur-[120px]"
+            style={{ background: "var(--brand)" }}
+          />
 
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="!relative !z-10 !max-w-6xl !mx-auto"
+            className="!relative !z-10 !mx-auto !max-w-3xl !text-center"
           >
-            <motion.div
+            {/* Eyebrow */}
+            {/* <motion.div
               variants={fadeInUp}
-              className="!inline-flex !items-center !gap-3 !bg-gray-900/50 !backdrop-blur-md !px-6 !py-3 !rounded-2xl !text-sm !mb-4 !border !border-white/20"
+              className="!mb-4 !inline-flex !items-center !gap-1.5 !rounded-full !border !px-2.5 !py-1 !text-[10px] !font-bold !uppercase !tracking-widest"
+              style={{
+                borderColor: "color-mix(in srgb, var(--brand) 40%, transparent)",
+                background: "color-mix(in srgb, var(--brand) 12%, transparent)",
+                color: "var(--brand)",
+              }}
             >
-              <Zap className="!w-5 !h-5 !text-amber-300 !animate-pulse" />
-              <span className="!font-medium !text-black">We're Hiring</span>
-              <div className="!w-2 !h-2 !bg-amber-300 !rounded-full !animate-ping" />
-            </motion.div>
+              <span
+                className="!h-1 !w-1 !animate-pulse !rounded-full"
+                style={{ background: "var(--brand)" }}
+              />
+              We're Hiring
+            </motion.div> */}
 
+            {/* Headline */}
             <motion.h1
               variants={fadeInUp}
-              className="!text-3xl md:!text-4xl lg:!text-7xl !font-black !mb-4 !leading-tight !tracking-tight"
+              className="!text-[26px] !font-bold !leading-[1.1] !tracking-tight !text-white sm:!text-[36px] lg:!text-[44px]"
             >
-              Build Brands.  
-              <span className="!text-transparent !bg-clip-text !bg-black !animate-gradient">
-               {" "}  Not Just a Resume.
+              Build brands.{" "}
+              <span style={{ color: "var(--brand)" }}>
+                Not just a resume.
               </span>
             </motion.h1>
 
+            {/* Sub */}
             <motion.p
               variants={fadeInUp}
-              className="!text-lg md:!text-xl !max-w-3xl !mx-auto !text-gray-400 !leading-relaxed !font-light !mb-6"
+              className="!mx-auto !mt-4 !max-w-md !text-[13px] !leading-relaxed !text-white/55 sm:!text-sm"
             >
-              Join our elite team of strategists, designers, and technologists who are redefining digital creativity and business growth.
+              Join our elite team of strategists, designers & technologists
+              redefining digital creativity.
             </motion.p>
 
-            <motion.div
-              variants={fadeInUp}
-              className="!flex !flex-col sm:!flex-row !gap-4 !justify-center !items-center"
-            >
-              <motion.a
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+            {/* CTA */}
+            {/* <motion.div variants={fadeInUp} className="!mt-6">
+              <a
                 href="#openings"
-                className="!group !inline-flex !items-center !gap-4 !bg-gradient-to-r from-gray-800 to-black !text-white  !font-semibold !px-10 !py-5 !rounded-md !shadow-xl hover:!shadow-amber-500/25 !transition-all !duration-300"
+                className="!group !inline-flex !items-center !gap-2 !rounded-full !px-5 !py-2.5 !text-[12.5px] !font-bold !text-black !transition-transform hover:!scale-[1.03]"
+                style={{
+                  background: "var(--brand)",
+                  boxShadow:
+                    "0 0 30px color-mix(in srgb, var(--brand) 50%, transparent)",
+                }}
               >
-                <span> Explore Open Roles</span>
-                <ArrowRight className="!w-5 !h-5 group-hover:!translate-x-1 !transition-transform" />
-              </motion.a>
-
-              {/* <motion.a
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                href="#culture"
-                className="!group !inline-flex !items-center !gap-3 !bg-transparent !border-2 !border-gray-900 !text-gray-900 !font-semibold !px-10 !py-5 !rounded-2xl !backdrop-blur-sm hover:!bg-white/10 hover:!border-white/50 !transition-all !duration-300"
-              >
-                <Video className="!w-5 !h-5" />
-                <span>Meet Our Team</span>
-              </motion.a> */}
-            </motion.div>
+                Explore Open Roles
+                <ArrowRight className="!h-3.5 !w-3.5 !transition-transform group-hover:!translate-x-0.5" />
+              </a>
+            </motion.div> */}
           </motion.div>
         </section>
 
-        {/* Enhanced Stats Section */}
-        {/* <section className="!py-20 !bg-white/80 !backdrop-blur-sm">
-          <div className="!max-w-7xl !mx-auto !px-6">
+        {/* ═══════════════════════════════════════ */}
+        {/* CULTURE                                 */}
+        {/* ═══════════════════════════════════════ */}
+        <section id="culture" className="!bg-white !px-6 !py-10 lg:!py-14">
+          <div className="!mx-auto !max-w-7xl">
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              variants={staggerContainer}
-              viewport={{ once: true }}
-              className="!grid !grid-cols-2 lg:grid-cols-4 !gap-8"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="!group !text-center !p-8 !rounded-3xl !bg-gradient-to-br from-white to-gray-50/50 !shadow-lg hover:!shadow-2xl !transition-all !duration-500 !border !border-gray-100 hover:!border-gray-200"
-                >
-                  <div className={`!inline-flex !items-center !justify-center !w-16 !h-16 !rounded-2xl !bg-gradient-to-br from-gray-50 to-white !shadow-sm !mb-6 group-hover:!shadow-md !transition-shadow ${stat.color}`}>
-                    <stat.icon className="w-8 h-8" />
-                  </div>
-                  <div className="!text-4xl lg:!text-5xl !font-bold !mb-3 !bg-gradient-to-r from-gray-900 to-gray-700 !bg-clip-text !text-transparent">
-                    {stat.value}
-                  </div>
-                  <div className="!text-gray-600 !font-medium">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section> */}
-
-        {/* Enhanced Culture Section */}
-        <section id="culture" className="!py-12 !px-6 !max-w-7xl !mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="!text-center !mb-20"
-          >
-            <div className="!inline-flex !items-center !gap-2 !text-sm !font-medium !text-gray-500 !uppercase !tracking-wider !mb-4">
-              <div className="w-12 h-px bg-gray-300" />
-              Our Culture
-              <div className="w-12 h-px bg-gray-300" />
-            </div>
-            <h2 className="!text-4xl md:!text-5xl !font-bold !mb-6 !bg-gradient-to-r from-gray-900 to-indigo-900 !bg-clip-text !text-transparent">
-              Where Excellence Meets Innovation
-            </h2>
-            <p className="!text-xl !text-gray-600 !max-w-3xl !mx-auto !leading-relaxed">
-              A studio where bold ideas, meticulous craft, and measurable results come together every day.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="!grid !gap-8 md:!grid-cols-2 lg:!grid-cols-3"
-          >
-            {[
-              {
-                icon: Users,
-                title: "Collaborative Excellence",
-                desc: "Work alongside seasoned creatives in a culture of mentorship, shared ownership, and real teamwork.",
-                color: "from-blue-500 to-cyan-500"
-              },
-              {
-                icon: Target,
-                title: "Impact-Driven Results",
-                desc: " Lead projects that move the needle with strategies and designs focused on measurable business outcomes.",
-                color: "from-rose-500 to-pink-500"
-              },
-              {
-                icon: Award,
-                title: "Uncompromising Quality",
-                desc: "We set the bar for craft and execution, delivering work that looks exceptional and performs reliably.",
-                color: "from-amber-500 to-orange-500"
-              },
-              {
-                icon: Zap,
-                title: "Bold Innovation",
-                desc: "Prototype new ideas, test brave concepts, and push conventions to create standout brand moments.",
-                color: "from-purple-500 to-indigo-500"
-              },
-              {
-                icon: Heart,
-                title: "People First",
-                desc: "Your well-being and growth are at the heart of everything we do.",
-                color: "from-pink-500 to-rose-500"
-              },
-              {
-                icon: TrendingUp,
-                title: "Continuous Growth",
-                desc: "Accelerate your career with personalized development paths and mentorship.",
-                color: "from-green-500 to-emerald-500"
-              },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={scaleIn}
-                className="!group !relative !bg-white !p-4 !rounded-xl !shadow-md hover:!shadow-xl !transition-all !duration-500 !border !border-gray-100 hover:!border-transparent !overflow-hidden"
-              >
-                <div className="!absolute !inset-0 !bg-gradient-to-br from-white to-gray-50 !opacity-0 group-hover:!opacity-100 !transition-opacity !duration-500" />
-                <div className="!relative !z-10">
-                  <div className={`!inline-flex !items-center !justify-center !w-16 !h-16 !rounded-2xl !bg-gradient-to-br ${item.color} !text-white !shadow-lg !mb-6 group-hover:!scale-110 !transition-transform !duration-300`}>
-                    <item.icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="!text-2xl !font-bold !text-gray-900 !mb-2 group-hover:!text-gray-800 !transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="!text-gray-600 !leading-relaxed !text-lg">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Enhanced Benefits Section */}
-        <section className="!py-12 !bg-gradient-to-br from-gray-50 via-blue-50/50 to-indigo-50/30">
-          <div className="!max-w-7xl !mx-auto !px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="!text-center !mb-20"
+              className="!mb-8 !text-center"
             >
-              <div className="!inline-flex !items-center !gap-2 !text-sm !font-medium !text-gray-500 !uppercase !tracking-wider !mb-4">
-                <div className="!w-12 !h-px !bg-gray-300" />
-                Why Join Us
-                <div className="!w-12 !h-px !bg-gray-300" />
+              <div className="!mb-2.5 !flex !items-center !justify-center !gap-2.5">
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
+                <span
+                  className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
+                  style={{ color: "var(--brand)" }}
+                >
+                  Our Culture
+                </span>
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
               </div>
-              <h2 className="!text-4xl md:!text-5xl !font-bold !mb-6 !bg-gradient-to-r from-gray-900 to-indigo-900 !bg-clip-text !text-transparent">
-                Work With Visionaries, Grow Beyond Limits
+
+              <h2 className="!text-[20px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[26px]">
+                Where excellence meets{" "}
+                <span style={{ color: "var(--brand)" }}>innovation.</span>
               </h2>
-              <p className="!text-xl !text-gray-600 !max-w-3xl !mx-auto !leading-relaxed">
-                Join a team that values creativity, innovation, and impact — where your ideas shape brands and your work inspires change.
+
+              <p className="!mx-auto !mt-2 !max-w-md !text-[12px] !leading-relaxed !text-neutral-500">
+                Bold ideas, meticulous craft, and measurable results — every day.
               </p>
             </motion.div>
 
-            <div className="!grid !gap-8 md:!grid-cols-2 lg:!grid-cols-3">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="!grid !gap-3 sm:!grid-cols-2 lg:!grid-cols-3"
+            >
+              {culture.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={scaleIn}
+                  className="!group !relative !overflow-hidden !rounded-xl !border !border-neutral-200 !bg-white !p-4 !transition-all !duration-300 hover:!-translate-y-1 hover:!border-[var(--brand)] hover:!shadow-md"
+                >
+                  <div
+                    className="!mb-3 !flex !h-8 !w-8 !items-center !justify-center !rounded-lg !text-white !transition-transform group-hover:!scale-110"
+                    style={{ background: "var(--brand)" }}
+                  >
+                    <item.icon size={15} />
+                  </div>
+                  <h3 className="!text-[12.5px] !font-bold !text-neutral-900">
+                    {item.title}
+                  </h3>
+                  <p className="!mt-1 !text-[11px] !leading-relaxed !text-neutral-500">
+                    {item.desc}
+                  </p>
+                  <div
+                    className="!absolute !bottom-0 !left-0 !h-[2px] !w-0 !transition-all !duration-500 group-hover:!w-full"
+                    style={{ background: "var(--brand)" }}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════ */}
+        {/* BENEFITS                                */}
+        {/* ═══════════════════════════════════════ */}
+        <section className="!bg-neutral-50 !px-6 !py-10 lg:!py-14">
+          <div className="!mx-auto !max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="!mb-8 !text-center"
+            >
+              <div className="!mb-2.5 !flex !items-center !justify-center !gap-2.5">
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
+                <span
+                  className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
+                  style={{ color: "var(--brand)" }}
+                >
+                  Why Join Us
+                </span>
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
+              </div>
+
+              <h2 className="!text-[20px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[26px]">
+                Work with visionaries.{" "}
+                <span style={{ color: "var(--brand)" }}>
+                  Grow beyond limits.
+                </span>
+              </h2>
+
+              <p className="!mx-auto !mt-2 !max-w-md !text-[12px] !leading-relaxed !text-neutral-500">
+                Creativity, innovation, and impact — where your work inspires change.
+              </p>
+            </motion.div>
+
+            <div className="!grid !gap-3 sm:!grid-cols-2 lg:!grid-cols-3">
               {benefits.map((benefit, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: idx * 0.06 }}
                   viewport={{ once: true }}
-                  className="!group !relative !bg-white !p-4 !rounded-xl !shadow-lg hover:!shadow-xl !transition-all !duration-500 !border !border-gray-100 hover:!border-transparent !overflow-hidden"
+                  className="!group !relative !overflow-hidden !rounded-xl !border !border-neutral-200 !bg-white !p-4 !transition-all !duration-300 hover:!-translate-y-1 hover:!border-[var(--brand)] hover:!shadow-md"
                 >
-                  <div className={`!absolute !inset-0 !bg-gradient-to-br ${benefit.color} !opacity-0 group-hover:!opacity-5 !transition-opacity !duration-500`} />
-                  <div className="!relative !z-10">
-                    <div className={`!inline-flex !items-center !justify-center !w-14 !h-14 !rounded-2xl !bg-gradient-to-br ${benefit.color} !text-white !shadow-lg !mb-6 group-hover:!scale-110 !transition-transform !duration-300`}>
-                      <benefit.icon className="w-7 h-7" />
-                    </div>
-                    <h3 className="!text-xl !font-bold !text-gray-900 !mb-3 group-hover:!text-gray-800 !transition-colors">
-                      {benefit.title}
-                    </h3>
-                    <p className="!text-gray-600 !leading-relaxed">
-                      {benefit.desc}
-                    </p>
+                  <div
+                    className="!mb-3 !flex !h-8 !w-8 !items-center !justify-center !rounded-lg !text-white !transition-transform group-hover:!scale-110"
+                    style={{ background: "var(--brand)" }}
+                  >
+                    <benefit.icon size={15} />
                   </div>
+                  <h3 className="!text-[12.5px] !font-bold !text-neutral-900">
+                    {benefit.title}
+                  </h3>
+                  <p className="!mt-1 !text-[11px] !leading-relaxed !text-neutral-500">
+                    {benefit.desc}
+                  </p>
+                  <div
+                    className="!absolute !bottom-0 !left-0 !h-[2px] !w-0 !transition-all !duration-500 group-hover:!w-full"
+                    style={{ background: "var(--brand)" }}
+                  />
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Enhanced Job Openings Section */}
-        <section id="openings" className="!py-12 !px-6 !bg-white">
-          <div className="!max-w-7xl !mx-auto">
+        {/* ═══════════════════════════════════════ */}
+        {/* OPEN POSITIONS                          */}
+        {/* ═══════════════════════════════════════ */}
+        <section id="openings" className="!bg-white !px-6 !py-10 lg:!py-14">
+          <div className="!mx-auto !max-w-7xl">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="!text-center !mb-20"
+              className="!mb-8 !text-center"
             >
-              <div className="!inline-flex !items-center !gap-2 !text-sm !font-medium !text-gray-500 !uppercase !tracking-wider !mb-4">
-                <div className="!w-12 !h-px !bg-gray-300" />
-                Open Positions
-                <div className="!w-12 !h-px !bg-gray-300" />
+              <div className="!mb-2.5 !flex !items-center !justify-center !gap-2.5">
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
+                <span
+                  className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
+                  style={{ color: "var(--brand)" }}
+                >
+                  Open Positions
+                </span>
+                <span
+                  className="!h-[2px] !w-6 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
               </div>
-              <h2 className="!text-5xl md:!text-6xl !font-bold !mb-4 !bg-gradient-to-r from-gray-900 to-indigo-900 !bg-clip-text !text-transparent">
-                Your Next Career Move
+
+              <h2 className="!text-[22px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[28px]">
+                Your next career move{" "}
+                <span style={{ color: "var(--brand)" }}>starts here.</span>
               </h2>
-              <p className="!text-xl !text-gray-600 !max-w-3xl !mx-auto !leading-relaxed">
-                Discover opportunities that match your skills and ambitions.
-                Help us build the future of digital innovation.
+
+              <p className="!mx-auto !mt-2 !max-w-md !text-[12px] !leading-relaxed !text-neutral-500">
+                Opportunities that match your skills and ambitions.
               </p>
             </motion.div>
 
             {loading ? (
-              <div className="!flex !justify-center !items-center !py-10">
-                <div className="!animate-spin !rounded-full !h-16 !w-16 !border-4 !border-indigo-600 !border-t-transparent"></div>
+              <div className="!flex !justify-center !py-12">
+                <div
+                  className="!h-10 !w-10 !animate-spin !rounded-full !border-4 !border-t-transparent"
+                  style={{
+                    borderColor:
+                      "color-mix(in srgb, var(--brand) 20%, transparent)",
+                    borderTopColor: "var(--brand)",
+                  }}
+                />
               </div>
             ) : jobs.length === 0 ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="!text-center !py-20"
+                className="!rounded-2xl !border !border-dashed !border-neutral-200 !bg-neutral-50 !py-12 !text-center"
               >
-                <Briefcase className="!w-24 !h-24 !text-gray-300 !mx-auto !mb-6" />
-                <h3 className="!text-2xl !font-bold !text-gray-600 !mb-4">No Current Openings</h3>
-                <p className="!text-gray-500 !max-w-md !mx-auto">
-                  We're not hiring at the moment, but check back soon for new opportunities!
+                <Briefcase className="!mx-auto !mb-3 !h-10 !w-10 !text-neutral-300" />
+                <h3 className="!text-[14px] !font-bold !text-neutral-700">
+                  No current openings
+                </h3>
+                <p className="!mx-auto !mt-1 !max-w-sm !text-[12px] !text-neutral-500">
+                  Check back soon for new opportunities.
                 </p>
               </motion.div>
             ) : (
@@ -1385,96 +1333,125 @@ export default function CareerPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="!grid !gap-8 md:!grid-cols-2 lg:!grid-cols-3"
+                className="!grid !gap-4 sm:!grid-cols-2 lg:!grid-cols-3"
               >
-                {jobs.map((job, idx) => (
+                {jobs.map((job) => (
                   <motion.div
                     key={job._id}
                     variants={scaleIn}
-                    className="!group !relative !bg-gradient-to-br from-white to-gray-50/50 !p-8 !rounded-3xl !shadow-xl hover:!shadow-2xl !transition-all !duration-500 !border !border-gray-100 hover:!border-transparent !overflow-hidden"
+                    className="!group !relative !flex !flex-col !overflow-hidden !rounded-2xl !border !border-neutral-200 !bg-white !p-4 !shadow-sm !transition-all !duration-300 hover:!-translate-y-1.5 hover:!border-[var(--brand)] hover:!shadow-lg"
                   >
-                    <div className="!absolute !border !border-gray-400  !inset-0 !bg-gradient-to-br from-indigo-500/5 to-purple-500/5 !opacity-0 group-hover:!opacity-100 !transition-opacity !duration-500" />
-                    <div className="!relative !z-10 ">
-                      <div className="!flex !items-start !justify-between !mb-6">
-                        <h3 className="!text-2xl !font-bold !text-gray-900 group-hover:!text-gray-800 !transition-colors !flex-1">
-                          {job.title}
-                        </h3>
-                        <motion.div
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          className="!w-12 !h-12 !bg-gradient-to-br from-yellow-400 to-yellow-600 !rounded-2xl !flex !items-center !justify-center !shadow-lg"
-                        >
-                          <Briefcase className="!w-6 !h-6 !text-white" />
-                        </motion.div>
-                      </div>
+                    {/* Top accent */}
+                    <div
+                      className="!absolute !left-0 !top-0 !h-[3px] !w-full !opacity-0 !transition-opacity !duration-300 group-hover:!opacity-100"
+                      style={{ background: "var(--brand)" }}
+                    />
 
-                      <div
-                        className="!text-gray-600 !mb-6 !leading-relaxed !prose !prose-lg !max-w-none"
-                        dangerouslySetInnerHTML={{ __html: job.description }}
-                      />
-
-                      <div className="!space-y-4 !mb-6">
-                        <div className="!flex !items-center !gap-4 !text-sm !text-gray-500">
-                          <div className="!flex !items-center !gap-2">
-                            <MapPin className="!w-4 !h-4" />
-                            <span className="!font-medium">{job.location}</span>
-                          </div>
-                          <div className="!flex !items-center !gap-2">
-                            <Calendar className="!w-4 !h-4" />
-                            <span className="!font-medium">{job.type}</span>
-                          </div>
-                        </div>
-
-                        {job.salary && (
-                          <div className="!flex !items-center !gap-2 !text-sm">
-                            <div className="!w-2 !h-2 !bg-green-500 !rounded-full" />
-                            <span className="!text-gray-600">
-                              <span className="!font-semibold !text-gray-900">Salary:</span> {job.salary}
-                            </span>
-                          </div>
-                        )}
-
-                        {job.experience && (
-                          <div className="!flex !items-center !gap-2 !text-sm">
-                            <div className="!w-2 !h-2 !bg-blue-500 !rounded-full" />
-                            <span className="!text-gray-600">
-                              <span className="!font-semibold !text-gray-900">Experience:</span> {job.experience}
-                            </span>
-                          </div>
-                        )}
-
-                        {job.applicationDeadline && (
-                          <div className="!flex !items-center !gap-2 !text-sm">
-                            <div className="!w-2 !h-2 !bg-amber-500 !rounded-full" />
-                            <span className="!text-gray-600">
-                              <span className="!font-semibold !text-gray-900">Apply by:</span>{" "}
-                              {new Date(job.applicationDeadline).toLocaleDateString()}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-
-                      {job.tags && job.tags.length > 0 && (
-                        <div className="!flex !flex-wrap !gap-2 !mb-6">
-                          {job.tags.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="!px-3 !py-1 !bg-indigo-100 !text-indigo-700 !text-xs !font-medium !rounded-full !border !border-indigo-200"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => handleApplyClick(job.title)}
-                        className="!w-full !bg-black !border !border-gray-500 !text-white !py-4 !px-6 !rounded-2xl !shadow-lg hover:!shadow-xl !transition-all !duration-300 !flex !items-center !justify-center !gap-3 !font-semibold group/btn"
+                    {/* Header: icon + deadline */}
+                    <div className="!mb-3 !flex !items-start !justify-between">
+                      {/* <div
+                        className="!flex !h-9 !w-9 !items-center !justify-center !rounded-lg !text-white"
+                        style={{
+                          background: "var(--brand)",
+                          boxShadow:
+                            "0 0 20px color-mix(in srgb, var(--brand) 40%, transparent)",
+                        }}
                       >
-                        <span>Apply Now</span>
-                        <ArrowRight className="!w-5 !h-5 group-hover/btn:!translate-x-1 !transition-transform" />
-                      </motion.button>
+                        <Briefcase size={15} />
+                      </div> */}
+
+                      {job.applicationDeadline && (
+                        <span
+                          className="!rounded-full !px-2 !py-0.5 !text-[9px] !font-bold !uppercase !tracking-wider"
+                          style={{
+                            background:
+                              "color-mix(in srgb, var(--brand) 12%, transparent)",
+                            color: "var(--brand)",
+                          }}
+                        >
+                          By{" "}
+                          {new Date(job.applicationDeadline).toLocaleDateString(
+                            undefined,
+                            { month: "short", day: "numeric" }
+                          )}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="!text-[14px] !font-bold !leading-snug !text-neutral-900 transition-colors group-hover:!text-[var(--brand)]">
+                      {job.title}
+                    </h3>
+
+                    {/* Meta */}
+                    <div className="!mt-2 !flex !flex-wrap !items-center !gap-x-3 !gap-y-1 !text-[10.5px] !text-neutral-500">
+                      {job.location && (
+                        <span className="!flex !items-center !gap-1">
+                          <MapPin size={11} className="!opacity-60" />
+                          {job.location}
+                        </span>
+                      )}
+                      {job.type && (
+                        <span className="!flex !items-center !gap-1">
+                          <Clock size={11} className="!opacity-60" />
+                          {job.type}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Description */}
+                    <div
+                      className="!mt-2.5 !line-clamp-2 !text-[11.5px] !leading-relaxed !text-neutral-500"
+                      dangerouslySetInnerHTML={{ __html: job.description }}
+                    />
+
+                    {/* Salary/Experience */}
+                    {(job.salary || job.experience) && (
+                      <div className="!mt-3 !flex !flex-wrap !gap-1.5">
+                        {job.salary && (
+                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[10px] !font-bold !text-neutral-700">
+                            💰 {job.salary}
+                          </span>
+                        )}
+                        {job.experience && (
+                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[10px] !font-bold !text-neutral-700">
+                            ⚡ {job.experience}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Tags */}
+                    {job.tags && job.tags.length > 0 && (
+                      <div className="!mt-3 !flex !flex-wrap !gap-1">
+                        {job.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="!rounded-full !border !border-neutral-200 !bg-white !px-2 !py-0.5 !text-[9px] !font-semibold !text-neutral-600"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {/* {job.tags.length > 2 && (
+                          <span className="!rounded-full !bg-neutral-100 !px-2 !py-0.5 !text-[9px] !font-semibold !text-neutral-500">
+                            +{job.tags.length - 2}
+                          </span>
+                        )} */}
+                      </div>
+                    )}
+
+                    {/* Button */}
+                    <div className="!mt-auto !pt-4">
+                      <button
+                        onClick={() => handleApplyClick(job.title)}
+                        className="!group/btn !flex !w-full !items-center !justify-center !gap-1.5 !rounded-lg !border !border-neutral-200 !bg-neutral-50 !py-2 !text-[11.5px] !font-bold !text-neutral-900 !transition-all hover:!border-[var(--brand)] hover:!bg-[var(--brand)] hover:!text-black"
+                      >
+                        Apply now
+                        <ArrowRight
+                          size={13}
+                          className="!transition-transform group-hover/btn:!translate-x-1"
+                        />
+                      </button>
                     </div>
                   </motion.div>
                 ))}
@@ -1483,242 +1460,280 @@ export default function CareerPage() {
           </div>
         </section>
 
-        {/* Enhanced Application Form */}
-        <section id="application-form" className="!py-24 !bg-gradient-to-br from-gray-50 via-indigo-50/30 to-purple-50/30">
+        {/* ═══════════════════════════════════════ */}
+        {/* APPLICATION FORM                        */}
+        {/* ═══════════════════════════════════════ */}
+        <section
+          id="application-form"
+          className="!bg-neutral-50 !px-6 !py-10 lg:!py-12"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="!max-w-4xl !mx-auto !bg-white !shadow-2xl !rounded-3xl !p-8 md:!p-12 !border !border-gray-100"
+            className="!mx-auto !max-w-3xl !overflow-hidden !rounded-2xl !border !border-neutral-200 !bg-white !p-5 !shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] sm:!p-7"
           >
-            <div className="!text-center !mb-12">
-              <div className="!inline-flex !items-center !gap-2 !text-sm !font-medium !text-gray-500 !uppercase !tracking-wider !mb-4">
-                <div className="w-8 h-px bg-gray-300" />
-                Apply Now
-                <div className="!w-8 !h-px !bg-gray-300" />
+            {/* Header */}
+            <div className="!mb-6 !text-center">
+              <div className="!mb-2.5 !flex !items-center !justify-center !gap-2.5">
+                <span
+                  className="!h-[2px] !w-5 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
+                <span
+                  className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
+                  style={{ color: "var(--brand)" }}
+                >
+                  Apply Now
+                </span>
+                <span
+                  className="!h-[2px] !w-5 !rounded-full"
+                  style={{ background: "var(--brand)" }}
+                />
               </div>
-              <h2 className="!text-4xl !font-bold !mb-4 !text-gray-900">
+
+              <h2 className="!text-[18px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[22px]">
                 Apply for{" "}
-                <span className="!bg-gradient-to-r from-yellow-400 to-yellow-600 !bg-clip-text !text-transparent">
-                  {selectedJob || "Your Dream Role"}
+                <span style={{ color: "var(--brand)" }}>
+                  {selectedJob || "your dream role"}
                 </span>
               </h2>
-              <p className="!text-gray-600 !text-lg !max-w-lg !mx-auto">
-                Ready to take the next step in your career? We're excited to learn about you!
-              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="!space-y-4">
-              <div className="!grid !gap-8 md:!grid-cols-2">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="!block !text-gray-700 !mb-3 !font-semibold">Full Name *</label>
+              {/* Row 1 */}
+              <div className="!grid !gap-3 sm:!grid-cols-2">
+                <div>
+                  <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                    Full Name *
+                  </label>
                   <input
                     type="text"
                     name="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="!w-full !border-2 !border-gray-200 !rounded-2xl !px-5 !py-4 focus:!ring-2 focus:!ring-indigo-500 focus:!border-transparent !outline-none !transition-all !duration-300 !bg-gray-50/50 focus:!bg-white"
                     placeholder="Your full name"
+                    className="!w-full !rounded-lg !border !border-neutral-200 !bg-neutral-50 !px-3 !py-2.5 !text-[12.5px] !text-neutral-900 !outline-none !transition-all placeholder:!text-neutral-400 focus:!border-[var(--brand)] focus:!bg-white"
                   />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="!block !text-gray-700 !mb-3 !font-semibold">Email *</label>
+                </div>
+                <div>
+                  <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                    Email *
+                  </label>
                   <input
                     type="email"
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="!w-full !border-2 !border-gray-200 !rounded-2xl !px-5 !py-4 focus:!ring-2 focus:!ring-indigo-500 focus:!border-transparent !outline-none !transition-all !duration-300 !bg-gray-50/50 focus:!bg-white"
-                    placeholder="your.email@example.com"
+                    placeholder="you@example.com"
+                    className="!w-full !rounded-lg !border !border-neutral-200 !bg-neutral-50 !px-3 !py-2.5 !text-[12.5px] !text-neutral-900 !outline-none !transition-all placeholder:!text-neutral-400 focus:!border-[var(--brand)] focus:!bg-white"
                   />
-                </motion.div>
+                </div>
               </div>
 
-              <div className="!grid !gap-8 md:!grid-cols-2">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="!block !text-gray-700 !mb-3 !font-semibold">Phone *</label>
+              {/* Row 2 */}
+              <div className="!grid !gap-3 sm:!grid-cols-2">
+                <div>
+                  <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                    Phone *
+                  </label>
                   <input
                     type="tel"
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="!w-full !border-2 !border-gray-200 !rounded-2xl !px-5 !py-4 focus:!ring-2 focus:!ring-indigo-500 focus:!border-transparent !outline-none !transition-all !duration-300 !bg-gray-50/50 focus:!bg-white"
                     placeholder="+1 (234) 567-8900"
+                    className="!w-full !rounded-lg !border !border-neutral-200 !bg-neutral-50 !px-3 !py-2.5 !text-[12.5px] !text-neutral-900 !outline-none !transition-all placeholder:!text-neutral-400 focus:!border-[var(--brand)] focus:!bg-white"
                   />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <label className="!block !text-gray-700 !mb-3 !font-semibold">Position *</label>
+                </div>
+                <div>
+                  <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                    Position *
+                  </label>
                   <input
                     type="text"
                     name="position"
                     readOnly
                     value={formData.position}
-                    placeholder="Select a position above"
-                    className="!w-full !border-2 !border-gray-200 !bg-gray-100 !rounded-2xl !px-5 !py-4 !text-gray-600"
+                    placeholder="Select above"
+                    className="!w-full !cursor-not-allowed !rounded-lg !border !border-neutral-200 !bg-neutral-100 !px-3 !py-2.5 !text-[12.5px] !text-neutral-600 !outline-none"
                   />
-                </motion.div>
+                </div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <label className="!block !text-gray-700 !mb-3 !font-semibold">Cover Letter</label>
+              {/* Cover Letter */}
+              <div>
+                <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                  Cover Letter
+                </label>
                 <textarea
                   name="coverLetter"
-                  rows="6"
+                  rows="3"
                   value={formData.coverLetter}
                   onChange={handleChange}
-                  className="!w-full !border-2 !border-gray-200 !rounded-2xl !px-5 !py-4 focus:!ring-2 focus:!ring-indigo-500 focus:!border-transparent !outline-none !transition-all !duration-300 !bg-gray-50/50 focus:!bg-white !resize-none"
-                  placeholder="Tell us about your experience, why you're interested in this role, and what makes you the perfect candidate..."
+                  placeholder="Tell us about your experience & why you're a great fit..."
+                  className="!w-full !resize-none !rounded-lg !border !border-neutral-200 !bg-neutral-50 !px-3 !py-2.5 !text-[12.5px] !text-neutral-900 !outline-none !transition-all placeholder:!text-neutral-400 focus:!border-[var(--brand)] focus:!bg-white"
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <label className="!block !text-gray-700 !mb-3 !font-semibold">Resume (PDF/DOC) *</label>
-                <div className="!flex !items-center !justify-center !w-full">
-                  <label className="!flex !flex-col !items-center !justify-center !w-full !h-40 !border-2 !border-dashed !border-gray-300 !rounded-2xl !cursor-pointer !bg-gray-50/50 hover:!bg-gray-100 !transition-all !duration-300 group/upload">
-                    <div className="!flex !flex-col !items-center !justify-center !pt-5 !pb-6">
-                      <FileText className="!w-12 !h-12 !mb-4 !text-gray-400 group-hover/upload:!text-indigo-500 !transition-colors" />
-                      <p className="!mb-2 !text-lg !text-gray-500 group-hover/upload:!text-gray-600">
-                        {formData.resume ? formData.resume.name : "Click to upload or drag and drop"}
-                      </p>
-                      <p className="!text-sm !text-gray-400 group-hover/upload:!text-gray-500">
-                        PDF, DOC, DOCX (MAX. 10MB)
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      name="resume"
-                      accept=".pdf,.doc,.docx"
-                      required
-                      onChange={handleChange}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
-              </motion.div>
+              {/* Resume */}
+              <div>
+                <label className="!mb-1.5 !block !text-[10px] !font-bold !uppercase !tracking-wider !text-neutral-500">
+                  Resume (PDF / DOC) *
+                </label>
+                <label className="!group/upload !flex !cursor-pointer !flex-col !items-center !justify-center !rounded-lg !border-2 !border-dashed !border-neutral-200 !bg-neutral-50 !py-6 !transition-all hover:!border-[var(--brand)] hover:!bg-white">
+                  <FileText
+                    size={24}
+                    className="!mb-2 !text-neutral-400 transition-colors group-hover/upload:!text-[var(--brand)]"
+                  />
+                  <p className="!text-[11.5px] !font-medium !text-neutral-600">
+                    {formData.resume
+                      ? formData.resume.name
+                      : "Click to upload or drag & drop"}
+                  </p>
+                  <p className="!mt-0.5 !text-[9.5px] !text-neutral-400">
+                    PDF, DOC, DOCX · Max 10MB
+                  </p>
+                  <input
+                    type="file"
+                    name="resume"
+                    accept=".pdf,.doc,.docx"
+                    required
+                    onChange={handleChange}
+                    className="hidden"
+                  />
+                </label>
+              </div>
 
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+              {/* Submit */}
+              <button
                 type="submit"
                 disabled={isSubmitting}
-                className="!w-full !bg-gradient-to-r from-gray-700  to-gray-900 !text-white !py-5 !rounded-2xl !shadow-xl hover:!shadow-2xl !transition-all !duration-300 !flex !items-center !justify-center !gap-3 !font-semibold disabled:!opacity-50 disabled:!cursor-not-allowed"
+                className="!group !flex !w-full !items-center !justify-center !gap-2 !rounded-lg !py-3 !text-[12.5px] !font-bold !text-black !transition-transform hover:!scale-[1.01] disabled:!cursor-not-allowed disabled:!opacity-60"
+                style={{
+                  background: "var(--brand)",
+                  boxShadow:
+                    "0 0 30px color-mix(in srgb, var(--brand) 40%, transparent)",
+                }}
               >
                 {isSubmitting ? (
                   <>
-                    <div className="!animate-spin !rounded-full !h-6 !w-6 !border-2 !border-white !border-t-transparent" />
-                    <span>Submitting...</span>
+                    <span className="!h-3.5 !w-3.5 !animate-spin !rounded-full !border-2 !border-black/30 !border-t-black" />
+                    Submitting...
                   </>
                 ) : (
                   <>
-                    <span>Submit Application</span>
-                    <Send className="!w-5 !h-5" />
+                    Submit Application
+                    <Send
+                      size={13}
+                      className="!transition-transform group-hover:!translate-x-0.5"
+                    />
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
           </motion.div>
         </section>
 
-        {/* Enhanced Footer CTA */}
-        <section className="!py-20  !bg-gray-600 !text-gray-900">
-          <div className="!max-w-5xl !mx-auto !px-6 !text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+        {/* ═══════════════════════════════════════ */}
+        {/* FINAL CTA — same bg as Hero             */}
+        {/* ═══════════════════════════════════════ */}
+        <section
+          className="!relative !overflow-hidden !px-6 !py-12 lg:!py-16"
+          style={{ background: "#0A0A0F" }}
+        >
+          {/* Same glow as Hero */}
+          <div
+            className="!pointer-events-none !absolute !left-1/2 !top-1/2 !h-72 !w-72 !-translate-x-1/2 !-translate-y-1/2 !rounded-full !opacity-20 !blur-[120px]"
+            style={{ background: "var(--brand)" }}
+          />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            viewport={{ once: true }}
+            className="!relative !z-10 !mx-auto !max-w-2xl !text-center"
+          >
+            {/* Eyebrow */}
+            {/* <div
+              className="!mb-3 !inline-flex !items-center !gap-1.5 !rounded-full !border !px-2.5 !py-1 !text-[10px] !font-bold !uppercase !tracking-widest"
+              style={{
+                borderColor: "color-mix(in srgb, var(--brand) 40%, transparent)",
+                background: "color-mix(in srgb, var(--brand) 12%, transparent)",
+                color: "var(--brand)",
+              }}
             >
-              <h2 className="!text-4xl md:!text-5xl !font-bold !mb-3 ">
-                Ready to Make an Impact?
-              </h2>
-              <p className="!text-xl !text-white !max-w-2xl !mx-auto !mb-10 !leading-relaxed">
-                Join us in shaping the future of digital innovation.
-                Let's build something extraordinary together.
+              <span
+                className="!h-1 !w-1 !animate-pulse !rounded-full"
+                style={{ background: "var(--brand)" }}
+              />
+              Let's Talk
+            </div> */}
+
+            {/* Headline */}
+            <h2 className="!text-[22px] !font-bold !leading-tight !tracking-tight !text-white sm:!text-[28px] lg:!text-[32px]">
+              Ready to make an{" "}
+              <span style={{ color: "var(--brand)" }}>impact?</span>
+            </h2>
+
+            <p className="!mx-auto !mt-3 !max-w-md !text-[12.5px] !leading-relaxed !text-white/55 sm:!text-[13px]">
+              Join us in shaping the future of digital innovation. Let's build
+              something extraordinary.
+            </p>
+
+            {/* CTAs */}
+            <div className="!mt-6 !flex !flex-wrap !justify-center !gap-2.5">
+              <a
+                href="mailto:careers@yourcompany.com"
+                className="!group !inline-flex !items-center !gap-1.5 !rounded-full !px-5 !py-2.5 !text-[12px] !font-bold !text-black !transition-transform hover:!scale-[1.03]"
+                style={{
+                  background: "var(--brand)",
+                  
+                }}
+              >
+                <MessageCircle size={14} />
+                Contact Our Team
+              </a>
+
+              <a
+                href="#openings"
+                className="!group !inline-flex !items-center !gap-1.5 !rounded-full !border !border-white/15 !bg-white/[0.04] !px-5 !py-2.5 !text-[12px] !font-semibold !text-white !backdrop-blur !transition-all hover:!border-white/30 hover:!bg-white/[0.08]"
+              >
+                View Open Roles
+                <ArrowRight
+                  size={14}
+                  className="!transition-transform group-hover:!translate-x-0.5"
+                />
+              </a>
+            </div>
+
+            {/* Social */}
+            {/* <div className="!mt-7 !border-t !border-white/10 !pt-5">
+              <p className="!mb-3 !text-[9.5px] !font-bold !uppercase !tracking-widest !text-white/40">
+                Follow our journey
               </p>
-
-              <div className="!flex !flex-col sm:!flex-row !gap-4 !justify-center !items-center !mb-10">
-                <motion.a
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="mailto:careers@yourcompany.com"
-                  className="!inline-flex !items-center !gap-3 !bg-white !text-yellow-500 !font-semibold !px-8 !py-2 !rounded-2xl !shadow-2xl hover:!shadow-white/25 !transition-all !duration-300"
-                >
-                  <MessageCircle className="!w-5 !h-5" />
-                  Contact Our Team
-                </motion.a>
-
-                <motion.a
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#openings"
-                  className="!inline-flex !items-center !gap-3 !bg-transparent !border-2 !border-white/30 !text-white !font-semibold !px-8 !py-2 !rounded-2xl !backdrop-blur-sm hover:!bg-white/10 hover:!border-white/50 !transition-all !duration-300"
-                >
-                  <ArrowRight className="!w-5 !h-5" />
-                  View Open Roles
-                </motion.a>
+              <div className="!flex !justify-center !gap-2.5">
+                {[
+                  { icon: Linkedin, href: "#" },
+                  { icon: Twitter, href: "#" },
+                  { icon: Instagram, href: "#" },
+                ].map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    className="!flex !h-8 !w-8 !items-center !justify-center !rounded-full !border !border-white/10 !bg-white/[0.04] !text-white/70 !transition-all hover:!border-[var(--brand)] hover:!bg-[var(--brand)] hover:!text-black"
+                  >
+                    <social.icon size={13} />
+                  </a>
+                ))}
               </div>
-
-              <div className="!border-t !border-white/20 !pt-6">
-                <p className="!text-white !mb-8">Follow our journey</p>
-                <div className="!flex !justify-center !gap-8">
-                  {[
-                    { icon: Linkedin, href: "#", color: "hover:!text-white" },
-                    { icon: Twitter, href: "#", color: "hover:!text-white" },
-                    { icon: Instagram, href: "#", color: "hover:!text-white" },
-                  ].map((social, idx) => (
-                    <motion.a
-                      key={idx}
-                      whileHover={{ scale: 1.2, y: -2 }}
-                      href={social.href}
-                      className={`!text-white ${social.color} !transition-all !duration-300`}
-                    >
-                      <social.icon className="!w-6 !h-6" />
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            </div> */}
+          </motion.div>
         </section>
       </div>
     </RiddaLayout>
