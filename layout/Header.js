@@ -1276,7 +1276,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { FiX, FiMenu } from "react-icons/fi";
+import { FiX, FiMenu, FiDownload } from "react-icons/fi";
 import { CircleArrowRight } from "lucide-react";
 
 const Header = () => {
@@ -1311,7 +1311,7 @@ const Header1 = () => {
     };
   }, [open]);
 
-   const menuData = [
+  const menuData = [
     {
       title: "About",
       icon: "🏢",
@@ -1319,6 +1319,7 @@ const Header1 = () => {
         { text: "About Us", href: "/about" },
         { text: "How we work", href: "how-we-work" },
         { text: "Careers", href: "career" },
+        { text: "Download Pdf", href: "download-pdf" },
       ],
     },
     {
@@ -1330,22 +1331,22 @@ const Header1 = () => {
         { text: "Rigid & Folding Packaging", href: "/packaging" },
         { text: "Jars, Bottles & Containers", href: "/packaging" },
         { text: "Labels & Stickers", href: "/packaging" },
-        {text: "E-Commerce & Shipping Packaging",href: "/packaging"},
-        {text: "Specialty & Gifting Packaging",href: "/packaging"},
+        { text: "E-Commerce & Shipping Packaging", href: "/packaging" },
+        { text: "Specialty & Gifting Packaging", href: "/packaging" },
         { text: "Industry-Specific Packaging", href: "/packaging" },
         { text: "FMCG", href: "/packaging" },
       ],
     },
-      {
+    {
       title: "WEB DEVELOPMENT & DESIGN",
       href: "/web-development-&-design",
       icon: "🌐",
       links: [
         { text: "UI/UX Design", href: "/web-development-&-design" },
         { text: "Web Design & Development", href: "/web-development-&-design" },
-        { text: "Static Website Designing",href: "/web-development-&-design",},
+        { text: "Static Website Designing", href: "/web-development-&-design" },
         { text: "Dynamic Website Designing", href: "/web-development-&-design" },
-        { text: "Ecommerce Website Designing",href: "/web-development-&-design",},
+        { text: "Ecommerce Website Designing", href: "/web-development-&-design" },
         { text: "Corporate Website Designing", href: "/web-development-&-design" },
         { text: "Multi-Vendor Ecommerce", href: "/web-development-&-design" },
         { text: "Website Re-Designing", href: "/web-development-&-design" },
@@ -1370,27 +1371,26 @@ const Header1 = () => {
         { text: "SEO Analytics & Reporting", href: "/seo" },
       ],
     },
-     {
+    {
       title: "Digital Marketing",
       href: "/digital-marketing",
       icon: "📱",
       links: [
-        {text: "Performance Marketing",href: "/digital-marketing",},
+        { text: "Performance Marketing", href: "/digital-marketing" },
         { text: "Influencer Marketing", href: "/digital-marketing" },
         { text: "Pay-Per-Click (PPC)", href: "/digital-marketing" },
-        {text: "Social Media Marketing (SMM)",href: "/digital-marketing",},
+        { text: "Social Media Marketing (SMM)", href: "/digital-marketing" },
         { text: "Content Marketing", href: "/digital-marketing" },
-        {text: "Meta Ads",href: "/digital-marketing",},
-        {text: "Google Ads",href: "/digital-marketing",},
+        { text: "Meta Ads", href: "/digital-marketing" },
+        { text: "Google Ads", href: "/digital-marketing" },
         { text: "Ads Shoot", href: "/digital-marketing" },
         { text: "eCommerce Ads", href: "/digital-marketing" },
         { text: "Amazon Ads", href: "/digital-marketing" },
         { text: "Flipkart Ads", href: "/digital-marketing" },
         { text: "Email Marketing", href: "/digital-marketing" },
         { text: "Multi Level Marketing", href: "/digital-marketing" },
-
       ],
-    }, 
+    },
     {
       title: "BRAND DESIGN",
       href: "/brand-design",
@@ -1399,12 +1399,11 @@ const Header1 = () => {
         { text: "Brand Naming", href: "/brand-design" },
         { text: "Brand Logo", href: "/brand-design" },
         { text: "Brand Identity", href: "/brand-design" },
-        { text: "Brand Storytelling",href: "/brand-design",},
+        { text: "Brand Storytelling", href: "/brand-design" },
         { text: "Brand Personality", href: "/brand-design" },
         { text: "Brand Guidelines", href: "/brand-design" },
         { text: "Catalogue", href: "/brand-design" },
         { text: "Company Profile Design", href: "/brand-design" },
-
       ],
     },
     {
@@ -1418,31 +1417,26 @@ const Header1 = () => {
         { text: "Motion Graphics", href: "/photography-&-videography" },
         { text: "Model Video Shoots", href: "/photography-&-videography" },
         { text: "Ads Design", href: "/photography-&-videography" },
-
       ],
     },
-   
-  
     {
       title: " E-COMMERCE",
-      // href: "/web-designing",
       href: "/e-commerce",
-
       icon: "🌐",
       links: [
         { text: "Ecommerce Website Designing", href: "/e-commerce" },
         { text: "Multi-Vendor Ecommerce", href: "/e-commerce" },
         { text: "eCommerce SEO", href: "/e-commerce" },
-        { text: "eCommerce Ads ",href: "/e-commerce"},
-        { text: "Quick Commerce",href: "/e-commerce"},
-        { text: "Amazon Ads",href: "/e-commerce"},
+        { text: "eCommerce Ads ", href: "/e-commerce" },
+        { text: "Quick Commerce", href: "/e-commerce" },
+        { text: "Amazon Ads", href: "/e-commerce" },
         { text: "Flipkart Ads", href: "/e-commerce" },
         { text: "Email Marketing", href: "/e-commerce" },
       ],
     },
     {
       title: "CONTENT WRITING",
-       href: "/content-writing",
+      href: "/content-writing",
       icon: "🛒",
       links: [
         { text: "Competitor Research", href: "/content-writing" },
@@ -1454,10 +1448,9 @@ const Header1 = () => {
         { text: "Ad Copywriting", href: "/content-writing" },
         { text: "Brand Messaging & Taglines", href: "/content-writing" },
         { text: "Email & Newsletter Content", href: "/content-writing" },
-
       ],
     },
-     {
+    {
       title: "DESIGNING & EDITING",
       href: "/designing-&-editing",
       icon: "🛒",
@@ -1470,10 +1463,8 @@ const Header1 = () => {
         { text: "Infographic Design", href: "/designing-&-editing" },
         { text: "GIF & Animation Design", href: "/designing-&-editing" },
         { text: "Thumbnail Design", href: "/designing-&-editing" },
-
       ],
     },
-
     {
       title: "Others",
       icon: "📂",
@@ -1484,20 +1475,18 @@ const Header1 = () => {
         { text: "Contact", href: "/contact" },
         { text: "Pay Now", href: "/pay-now" },
         { text: "FAQ", href: "/faqs" },
-        // { text: "Privacy                   Policy", href: "/privacy-policy" },
-        // { text: "Terms & Conditions", href: "/terms-conditions" },
       ],
     },
   ];
+
   return (
     <>
       {/* ================= Main Header ================= */}
       <header
-        className={`!fixed !top-0 !left-0 !w-full !z-50 !transition-all !duration-500 ${
-          scrolled
+        className={`!fixed !top-0 !left-0 !w-full !z-50 !transition-all !duration-500 ${scrolled
             ? "!bg-black/80 !backdrop-blur-xl !py-3 !shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]"
             : "!bg-black !py-5"
-        }`}
+          }`}
       >
         {/* Glowing bottom divider */}
         <div className="!pointer-events-none !absolute !bottom-0 !left-0 !h-px !w-full !bg-gradient-to-r !from-transparent !via-orange-500/50 !to-transparent" />
@@ -1528,14 +1517,27 @@ const Header1 = () => {
             <img
               src="/assets/images/logos/RCLogo.png"
               alt="Logo"
-              className={`!w-auto !transition-all !duration-500 ${
-                scrolled ? "!h-7 md:!h-8" : "!h-9 md:!h-10"
-              } !drop-shadow-[0_0_18px_rgba(249,115,22,0.35)]`}
+              className={`!w-auto !transition-all !duration-500 ${scrolled ? "!h-7 md:!h-8" : "!h-9 md:!h-10"
+                } !drop-shadow-[0_0_18px_rgba(249,115,22,0.35)]`}
             />
           </Link>
 
           {/* ---------- RIGHT: Menu Button ---------- */}
-          <div className="!ml-auto">
+          {/* ---------- RIGHT: Download PDF + Menu Button ---------- */}
+          <div className="!ml-auto !flex !items-center !gap-2 sm:!gap-3">
+            {/* Download PDF button */}
+            <Link
+              href="/download-pdf"
+              className="!group !hidden sm:!inline-flex !items-center !gap-2 !rounded-full !border !border-orange-400/40 !bg-orange-500/10 !px-4 !py-2.5 !text-[12px] !font-semibold !uppercase !tracking-[0.15em] !text-orange-300 !backdrop-blur-md !transition-all !duration-300 hover:!border-orange-400 hover:!bg-orange-500/20 hover:!text-white hover:!shadow-[0_0_25px_-5px_rgba(249,115,22,0.7)]"
+            >
+              <FiDownload
+                size={14}
+                className="!transition-transform !duration-300 group-hover:!translate-y-0.5"
+              />
+              Download PDF
+            </Link>
+
+            {/* Menu button */}
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
@@ -1553,13 +1555,12 @@ const Header1 = () => {
         </div>
       </header>
 
-      {/* ================= Overlay Menu (unchanged) ================= */}
+      {/* ================= Overlay Menu ================= */}
       <div
-        className={`!fixed !inset-0 !bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white !z-[60] !transform transition-all !duration-500 !ease-in-out ${
-          open
+        className={`!fixed !inset-0 !bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white !z-[60] !transform transition-all !duration-500 !ease-in-out ${open
             ? "!opacity-100 !visible !translate-x-0"
             : "!opacity-0 !invisible !translate-x-full"
-        }`}
+          }`}
       >
         <div className=" !bg-black/40 !backdrop-blur-md">
           <div className="!container !mx-auto !px-4 !flex !items-center !justify-between !py-4">
@@ -1570,17 +1571,25 @@ const Header1 = () => {
                 className="h-8 sm:h-8 md:h-8"
               />
             </Link>
-            <button
-              className="!p-2 !text-white hover:!text-blue-400 !transition-all !rounded-full"
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-            >
-              <FiX size={26} />
-            </button>
+
+            {/* ---------- TOP-RIGHT: Download PDF + Close ---------- */}
+            <div className="!flex !items-center !gap-3">
+              
+              <button
+                className="!p-2 !text-white hover:!text-blue-400 !transition-all !rounded-full"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+              >
+                <FiX size={26} />
+              </button>
+            </div>
           </div>
         </div>
 
         <div className="container !mx-auto !px-6 !py-8 !overflow-y-auto h-[calc(100%-64px)] scrollbar-hide">
+          
+
+          {/* ================= MENU GRID ================= */}
           <div className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4 !gap-6">
             {menuData.map((section, i) => (
               <div
@@ -1640,13 +1649,3 @@ const Header1 = () => {
     </>
   );
 };
-
-
-
-
-
-
-
-
-
-
