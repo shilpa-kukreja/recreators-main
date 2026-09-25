@@ -63,7 +63,7 @@ const FloatingContact = () => {
       </div>
 
       {/* ============ Footer Inline Pills ============ */}
-      <div className="!flex !flex-wrap !items-center !gap-3">
+      {/* <div className="!flex !flex-wrap !items-center !gap-3">
         <FooterPill
           href={WA_HREF}
           external
@@ -77,7 +77,7 @@ const FloatingContact = () => {
           label="Call Now"
           accent="call"
         />
-      </div>
+      </div> */}
 
       {/* ============ Global keyframes ============ */}
       <style jsx global>{`
