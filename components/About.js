@@ -30,7 +30,7 @@ const About = ({ counter }) => {
                 data-aos-duration={1500}
                 data-aos-offset={50}
               >
-               Marketing
+               Story
               </div>
             </div>
           </div>

@@ -1284,6 +1284,14 @@ const Header = () => {
 };
 export default Header;
 
+const navLinks = [
+  { text: "Home", href: "/" },
+  { text: "About", href: "/about" },
+  { text: "Contact", href: "/contact" },
+  { text: "Portfolio", href: "/project-list" },
+  { text: "Our Plan", href: "/pricing" },
+];
+
 const Header1 = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -1303,7 +1311,7 @@ const Header1 = () => {
     };
   }, [open]);
 
-  const menuData = [
+   const menuData = [
     {
       title: "About",
       icon: "🏢",
@@ -1481,37 +1489,71 @@ const Header1 = () => {
       ],
     },
   ];
-
   return (
     <>
-      {/* Main Header */}
+      {/* ================= Main Header ================= */}
       <header
         className={`!fixed !top-0 !left-0 !w-full !z-50 !transition-all !duration-500 ${
-          scrolled ? "!bg-black/90 !shadow-lg !py-3" : "!bg-black !py-4"
+          scrolled
+            ? "!bg-black/80 !backdrop-blur-xl !py-3 !shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]"
+            : "!bg-black !py-5"
         }`}
       >
-        <div className="!container !mx-auto !px-4 !flex !items-center !justify-between">
-          {/* Logo */}
-          <Link href="/" className="inline-block">
+        {/* Glowing bottom divider */}
+        <div className="!pointer-events-none !absolute !bottom-0 !left-0 !h-px !w-full !bg-gradient-to-r !from-transparent !via-orange-500/50 !to-transparent" />
+
+        {/* Soft ambient glow */}
+        <div className="!pointer-events-none !absolute !-top-24 !left-1/2 !h-40 !w-[600px] !-translate-x-1/2 !rounded-full !bg-orange-500/10 !blur-[100px]" />
+
+        <div className="!container !mx-auto !px-4 sm:!px-6 !flex !items-center !justify-between !relative">
+          {/* ---------- LEFT: Desktop Nav ---------- */}
+          <nav className="!hidden lg:!flex !items-center !gap-1">
+            {navLinks.map((item) => (
+              <Link
+                key={item.text}
+                href={item.href}
+                className="!group !relative !px-4 !py-2 !text-[15px] !font-medium !tracking-wide !text-gray-300 hover:!text-white !transition-colors !duration-300"
+              >
+                {item.text}
+                <span className="!absolute !left-1/2 !bottom-0 !h-[2px] !w-0 !-translate-x-1/2 !rounded-full !bg-gradient-to-r !from-orange-400 !to-amber-500 !transition-all !duration-300 group-hover:!w-6" />
+              </Link>
+            ))}
+          </nav>
+
+          {/* ---------- CENTER: Logo ---------- */}
+          <Link
+            href="/"
+            className="!absolute !left-1/2 !-translate-x-1/2 !inline-flex !items-center !transition-transform !duration-300 hover:!scale-105"
+          >
             <img
               src="/assets/images/logos/RCLogo.png"
               alt="Logo"
-              className="h-8 sm:h-8 md:h-8 "
+              className={`!w-auto !transition-all !duration-500 ${
+                scrolled ? "!h-7 md:!h-8" : "!h-9 md:!h-10"
+              } !drop-shadow-[0_0_18px_rgba(249,115,22,0.35)]`}
             />
           </Link>
 
-          {/* Menu Button */}
-          <button
-            className="!flex !items-center !text-white hover:!text-orange-400 !transition-all"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <FiMenu size={28} />
-          </button>
+          {/* ---------- RIGHT: Menu Button ---------- */}
+          <div className="!ml-auto">
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="!group !flex !items-center !gap-2 !rounded-full !border !border-white/15 !bg-white/5 !px-3.5 !py-2.5 sm:!px-5 sm:!py-3 !text-white !backdrop-blur-md !transition-all !duration-300 hover:!border-orange-400/60 hover:!bg-orange-500/10 hover:!text-orange-300 hover:!shadow-[0_0_25px_-5px_rgba(249,115,22,0.6)]"
+            >
+              <span className="!hidden sm:!block !text-[12px] !font-semibold !uppercase !tracking-[0.2em]">
+                Menu
+              </span>
+              <FiMenu
+                size={22}
+                className="!transition-transform !duration-300 group-hover:!rotate-90"
+              />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Overlay Menu */}
+      {/* ================= Overlay Menu (unchanged) ================= */}
       <div
         className={`!fixed !inset-0 !bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white !z-[60] !transform transition-all !duration-500 !ease-in-out ${
           open
@@ -1519,14 +1561,9 @@ const Header1 = () => {
             : "!opacity-0 !invisible !translate-x-full"
         }`}
       >
-        {/* Header with Close Button */}
         <div className=" !bg-black/40 !backdrop-blur-md">
           <div className="!container !mx-auto !px-4 !flex !items-center !justify-between !py-4">
-            <Link
-              href="/"
-              className="inline-block"
-              onClick={() => setOpen(false)}
-            >
+            <Link href="/" className="inline-block" onClick={() => setOpen(false)}>
               <img
                 src="/assets/images/logos/RCLogo.png"
                 alt="Logo"
@@ -1534,7 +1571,7 @@ const Header1 = () => {
               />
             </Link>
             <button
-              className="!p-2 !text-white hover:!text-blue-400 !transition-all !rounded-full "
+              className="!p-2 !text-white hover:!text-blue-400 !transition-all !rounded-full"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
@@ -1543,7 +1580,6 @@ const Header1 = () => {
           </div>
         </div>
 
-        {/* Menu Grid */}
         <div className="container !mx-auto !px-6 !py-8 !overflow-y-auto h-[calc(100%-64px)] scrollbar-hide">
           <div className="!grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-4 !gap-6">
             {menuData.map((section, i) => (
@@ -1572,7 +1608,7 @@ const Header1 = () => {
                           onClick={() => setOpen(false)}
                           className="relative pl-2 text-gray-300 hover:text-white transition-all duration-300 inline-block group"
                         >
-                          <span className="text-[15px] !text-gray-400  !rounded-md">
+                          <span className="text-[15px] !text-gray-400 !rounded-md">
                             {link.text}
                           </span>
                           <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-orange-400 transition-all duration-300 group-hover:w-full"></span>
@@ -1604,3 +1640,13 @@ const Header1 = () => {
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+

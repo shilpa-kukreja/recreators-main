@@ -46,7 +46,7 @@ const CTA = ({ extraClass }) => {
   };
 
   return (
-    <section className="cta-area-two !relative !z-10 ">
+    <section className="cta-area-two !relative !z-10  ">
       <div
         className={` !px-sm-0 !py-24 md:!py-32 !rounded-2xl !shadow-lg !text-center ${extraClass}`}
         style={{
@@ -68,7 +68,7 @@ Let's Talk        </button>
 
       {/* Popup Modal */}
       {isOpen && (
-        <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/50 !backdrop-blur-sm">
+        <div className="!fixed !inset-0 !mt-[40px] !z-50 !flex !items-center !justify-center !bg-black/50 !backdrop-blur-sm">
           <div className="!bg-white/95 !w-full! max-w-lg !rounded-2xl !shadow-2xl !p-8 !relative !animate-fadeIn !border !border-gray-100">
             {/* Close Button */}
             <button

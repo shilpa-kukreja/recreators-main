@@ -94,9 +94,9 @@ const page = () => {
           </div>
         </div>
         <div className="hero-area-shapes">
-          <div className="shape">
+          {/* <div className="shape">
             <img src="assets/images/shapes/Logo1.png" alt="Shape" />
-          </div>
+          </div> */}
           {/* <div className="shape">
             <video
               src="assets/videos/LogoAnimation.mp4"
@@ -133,9 +133,9 @@ const page = () => {
         </div>
         <div className="container text-white blank-container " />
         <div className="counter-shapes">
-          <div className="shape">
+          {/* <div className="shape">
             <img src="assets/images/shapes/counter.png" alt="Shape" />
-          </div>
+          </div> */}
           <span className="marquee-wrap">
             <span className="marquee-inner left">
               <span className="marquee-item">Web Design Agency</span>

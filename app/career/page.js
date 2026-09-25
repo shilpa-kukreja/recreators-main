@@ -923,21 +923,21 @@ export default function CareerPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const benefits = [
-    { title: "Competitive Salary", desc: "Industry-leading pay with bonuses.", icon: TrendingUp },
-    { title: "Flexible Hours", desc: "Work when you're most productive.", icon: Clock },
-    { title: "Remote First", desc: "Work from anywhere, async culture.", icon: Globe },
-    { title: "Health & Wellness", desc: "Medical, dental, vision & mental health.", icon: Shield },
-    { title: "Learning Budget", desc: "$3,000/year for courses & conferences.", icon: BookOpen },
-    { title: "Team Retreats", desc: "Annual paid retreats, global locations.", icon: Rocket },
+    { title: "Pay That Grows With You", desc: "Regular compensation reviews and performance bonuses that reflect your real impact.", icon: TrendingUp },
+    { title: "Freedom to Focus", desc: "We measure outcomes, not hours. Work in the way that brings out your best thinking.", icon: Clock },
+    { title: "Retreats That Aren’t Just for Show", desc: "Fully covered annual team retreats to recharge, connect, and come back inspired.", icon: Globe },
+    { title: "Learning That Moves You Forward", desc: "Access to opportunities, resources, and experiences that help you build skills and grow your career.", icon: Shield },
+    { title: "Recognition That Feels Real", desc: "Great work gets noticed, appreciated, and rewarded—not lost in the everyday hustle.", icon: BookOpen },
+    { title: "A Team Worth Showing Up For", desc: "Collaborate with talented people, share ideas openly, and grow in an environment built on trust.", icon: Rocket },
   ];
 
   const culture = [
-    { icon: Users, title: "Collaborative Excellence", desc: "Work with seasoned creatives in a culture of mentorship." },
-    { icon: Target, title: "Impact-Driven Results", desc: "Lead projects with strategies focused on outcomes." },
-    { icon: Award, title: "Uncompromising Quality", desc: "Work that looks exceptional and performs reliably." },
-    { icon: Zap, title: "Bold Innovation", desc: "Prototype ideas, test concepts, push conventions." },
-    { icon: Heart, title: "People First", desc: "Your well-being and growth are at our heart." },
-    { icon: TrendingUp, title: "Continuous Growth", desc: "Personalized paths and mentorship for your career." },
+    { icon: Users, title: "Real ownership.", desc: "You're not a cog moving pixels around- your ideas shape the final work, and your name is on it." },
+    { icon: Target, title: "No ego, just craft.", desc: "Feedback is direct, mentorship is real, and everyone's still learning, including the founders." },
+    { icon: Award, title: "Work that matters.", desc: "Every project ships to a real client, a real market, a real result- not a portfolio piece that never sees daylight." },
+    { icon: Zap, title: "Room to grow.", desc: "Your role today isn't your ceiling. We build people up as fast as we build brands." },
+    // { icon: Heart, title: "People First", desc: "Your well-being and growth are at our heart." },
+    // { icon: TrendingUp, title: "Continuous Growth", desc: "Personalized paths and mentorship for your career." },
   ];
 
   useEffect(() => {
@@ -1094,8 +1094,7 @@ export default function CareerPage() {
               variants={fadeInUp}
               className="!mx-auto !mt-4 !max-w-md !text-[13px] !leading-relaxed !text-white/55 sm:!text-sm"
             >
-              Join our elite team of strategists, designers & technologists
-              redefining digital creativity.
+              We're not looking for people who want a job. We're looking for people who want to make work they're genuinely proud to put their name on- strategists, designers, and builders who'd rather do it right than do it fast.
             </motion.p>
 
             {/* CTA */}
@@ -1137,7 +1136,7 @@ export default function CareerPage() {
                   className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
                   style={{ color: "var(--brand)" }}
                 >
-                  Our Culture
+                  Life at Recreators
                 </span>
                 <span
                   className="!h-[2px] !w-6 !rounded-full"
@@ -1146,12 +1145,12 @@ export default function CareerPage() {
               </div>
 
               <h2 className="!text-[20px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[26px]">
-                Where excellence meets{" "}
-                <span style={{ color: "var(--brand)" }}>innovation.</span>
+                What It's Actually Like to {" "}
+                <span style={{ color: "var(--brand)" }}>Work Here.</span>
               </h2>
 
               <p className="!mx-auto !mt-2 !max-w-md !text-[12px] !leading-relaxed !text-neutral-500">
-                Bold ideas, meticulous craft, and measurable results — every day.
+                A place where your ideas count and your growth never stops.
               </p>
             </motion.div>
 
@@ -1160,7 +1159,7 @@ export default function CareerPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="!grid !gap-3 sm:!grid-cols-2 lg:!grid-cols-3"
+              className="!grid !gap-3 sm:!grid-cols-2 lg:!grid-cols-2"
             >
               {culture.map((item, idx) => (
                 <motion.div
@@ -1174,10 +1173,10 @@ export default function CareerPage() {
                   >
                     <item.icon size={15} />
                   </div>
-                  <h3 className="!text-[12.5px] !font-bold !text-neutral-900">
+                  <h3 className="!text-[18px] !font-bold !text-neutral-900">
                     {item.title}
                   </h3>
-                  <p className="!mt-1 !text-[11px] !leading-relaxed !text-neutral-500">
+                  <p className="!mt-1 !text-[14px] !leading-relaxed !text-neutral-500">
                     {item.desc}
                   </p>
                   <div
@@ -1211,7 +1210,7 @@ export default function CareerPage() {
                   className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
                   style={{ color: "var(--brand)" }}
                 >
-                  Why Join Us
+                  What You Get
                 </span>
                 <span
                   className="!h-[2px] !w-6 !rounded-full"
@@ -1220,14 +1219,14 @@ export default function CareerPage() {
               </div>
 
               <h2 className="!text-[20px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[26px]">
-                Work with visionaries.{" "}
+                 Good Work Deserves.{" "}
                 <span style={{ color: "var(--brand)" }}>
-                  Grow beyond limits.
+                  Good Terms.
                 </span>
               </h2>
 
               <p className="!mx-auto !mt-2 !max-w-md !text-[12px] !leading-relaxed !text-neutral-500">
-                Creativity, innovation, and impact — where your work inspires change.
+                We don't just ask for your best work- we back it with the kind of terms that make staying an easy choice.
               </p>
             </motion.div>
 
@@ -1247,10 +1246,10 @@ export default function CareerPage() {
                   >
                     <benefit.icon size={15} />
                   </div>
-                  <h3 className="!text-[12.5px] !font-bold !text-neutral-900">
+                  <h3 className="!text-[18px] !font-bold !text-neutral-900">
                     {benefit.title}
                   </h3>
-                  <p className="!mt-1 !text-[11px] !leading-relaxed !text-neutral-500">
+                  <p className="!mt-1 !text-[14px] !leading-relaxed !text-neutral-500">
                     {benefit.desc}
                   </p>
                   <div
@@ -1379,12 +1378,12 @@ export default function CareerPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="!text-[14px] !font-bold !leading-snug !text-neutral-900 transition-colors group-hover:!text-[var(--brand)]">
+                    <h3 className="!text-[16px] !font-bold !leading-snug !text-neutral-900 transition-colors group-hover:!text-[var(--brand)]">
                       {job.title}
                     </h3>
 
                     {/* Meta */}
-                    <div className="!mt-2 !flex !flex-wrap !items-center !gap-x-3 !gap-y-1 !text-[10.5px] !text-neutral-500">
+                    <div className="!mt-2 !flex !flex-wrap !items-center !gap-x-3 !gap-y-1 !text-[12px] !text-neutral-500">
                       {job.location && (
                         <span className="!flex !items-center !gap-1">
                           <MapPin size={11} className="!opacity-60" />
@@ -1401,7 +1400,7 @@ export default function CareerPage() {
 
                     {/* Description */}
                     <div
-                      className="!mt-2.5 !line-clamp-2 !text-[11.5px] !leading-relaxed !text-neutral-500"
+                      className="!mt-2.5 !line-clamp-2 !text-[13px] !leading-relaxed !text-neutral-500"
                       dangerouslySetInnerHTML={{ __html: job.description }}
                     />
 
@@ -1409,12 +1408,12 @@ export default function CareerPage() {
                     {(job.salary || job.experience) && (
                       <div className="!mt-3 !flex !flex-wrap !gap-1.5">
                         {job.salary && (
-                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[10px] !font-bold !text-neutral-700">
+                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[12px] !font-bold !text-neutral-700">
                             💰 {job.salary}
                           </span>
                         )}
                         {job.experience && (
-                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[10px] !font-bold !text-neutral-700">
+                          <span className="!rounded-md !bg-neutral-100 !px-2 !py-1 !text-[12px] !font-bold !text-neutral-700">
                             ⚡ {job.experience}
                           </span>
                         )}
@@ -1427,7 +1426,7 @@ export default function CareerPage() {
                         {job.tags.map((tag, i) => (
                           <span
                             key={i}
-                            className="!rounded-full !border !border-neutral-200 !bg-white !px-2 !py-0.5 !text-[9px] !font-semibold !text-neutral-600"
+                            className="!rounded-full !border !border-neutral-200 !bg-white !px-2 !py-0.5 !text-[10px] !font-semibold !text-neutral-600"
                           >
                             {tag}
                           </span>
@@ -1444,7 +1443,7 @@ export default function CareerPage() {
                     <div className="!mt-auto !pt-4">
                       <button
                         onClick={() => handleApplyClick(job.title)}
-                        className="!group/btn !flex !w-full !items-center !justify-center !gap-1.5 !rounded-lg !border !border-neutral-200 !bg-neutral-50 !py-2 !text-[11.5px] !font-bold !text-neutral-900 !transition-all hover:!border-[var(--brand)] hover:!bg-[var(--brand)] hover:!text-black"
+                        className="!group/btn !flex !w-full !items-center !justify-center !gap-1.5 !rounded-lg !border !border-neutral-200 !bg-neutral-50 !py-2 !text-[13px] !font-bold !text-neutral-900 !transition-all hover:!border-[var(--brand)] hover:!bg-[var(--brand)] hover:!text-black"
                       >
                         Apply now
                         <ArrowRight
@@ -1482,7 +1481,7 @@ export default function CareerPage() {
                   style={{ background: "var(--brand)" }}
                 />
                 <span
-                  className="!text-[10px] !font-bold !uppercase !tracking-[0.25em]"
+                  className="!text-[12px] !font-bold !uppercase !tracking-[0.25em]"
                   style={{ color: "var(--brand)" }}
                 >
                   Apply Now
@@ -1613,7 +1612,7 @@ export default function CareerPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="!group !flex !w-full !items-center !justify-center !gap-2 !rounded-lg !py-3 !text-[12.5px] !font-bold !text-black !transition-transform hover:!scale-[1.01] disabled:!cursor-not-allowed disabled:!opacity-60"
+                className="!group !flex !w-full !items-center !justify-center !gap-2 !rounded-lg !py-3 !text-[14px] !font-bold !text-black !transition-transform hover:!scale-[1.01] disabled:!cursor-not-allowed disabled:!opacity-60"
                 style={{
                   background: "var(--brand)",
                   boxShadow:

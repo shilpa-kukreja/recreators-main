@@ -37,7 +37,7 @@ const PageBanner = ({ pageTitle, pageName, textCenter = false }) => {
       </div>
       <div className="page-banner-shapes">
         <div className={`shape ${textCenter ? "position-two" : ""}`}>
-          <img src="assets/images/shapes/hero-shape.png" alt="Shape" />
+          <img src="/assets/images/shapes/hero-shape.png" alt="Shape" />
         </div>
         {/* {!textCenter && (
           <div
