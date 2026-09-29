@@ -6,6 +6,7 @@ import PageBanner from "@/components/PageBanner";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
+import { workingProcessData } from "@/components/data/workingProcess";
 import Link from "next/link";
 
 const page = () => {
@@ -13,53 +14,60 @@ const page = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const services = [
     {
-      title: "Branding & Identity",
+      title: "Competitor Research",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "In-depth analysis of what your competitors are saying and ranking for. So your content fills the gaps instead of repeating what's already out there. Built to give you an edge, not just a benchmark.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "SEO Content Writing",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Keyword-informed content built to rank. Without sacrificing readability or sounding like it was written for a search engine. Content that satisfies algorithms and actual readers at the same time.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Website Copywriting",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Clear, persuasive copy for every page of your website. Built to guide visitors toward the action you actually want them to take. Every line written with a purpose, not just to fill space.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Blog & Article Writing",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Long-form content that builds authority and drives organic traffic. Written to give your audience a reason to keep coming back. Content built for the long game, not a one-time read.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Product Descriptions",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Descriptions that sell the benefit, not just list the features. Built to convert browsers into buyers on your website or marketplace listings. Written to answer the question a buyer is actually asking.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Social Media Content Writing",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "Captions and copy built for how people actually scroll. Short, sharp, and written to stop the thumb. Every word earns its place in three seconds or less.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "Ad Copywriting",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Copy built specifically for paid campaigns. Headlines and body text designed to grab attention and drive clicks. Written to perform, not just to sound clever.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "Brand Messaging & Taglines",
       description:
         "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
+     {
+      title: "Email & Newsletter Content",
+      description:
+        "Email copy built to be opened, read, and acted on. Not deleted before the second line. Written to earn the next open, not just fill an inbox.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+   
   ];
 
   return (
@@ -78,12 +86,11 @@ const page = () => {
             >
               <div className="section-title mb-50">
                 <span className="subtitle mt-10 mb-15">
-                  What We Provide
+                  Copywriting Services 
                 </span>
 
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Words That Get Read and Get You Ranked
                 </h2>
               </div>
 
@@ -107,10 +114,7 @@ const page = () => {
               </div>
 
               <p>
-                Understanding your marketing performance can be like looking
-                for a needle in a haystack. We combine strategy, creativity,
-                technology, and data-driven insights to build powerful digital
-                experiences that support your business goals.
+                Good content does two jobs at once- it convinces search engines you're relevant, and it convinces real people you're worth listening to. We write content built to do both, across every touchpoint your brand has.
               </p>
 
               <Link
@@ -118,7 +122,7 @@ const page = () => {
                 className="theme-btn hover-primary mt-25"
                 data-hover="Learn More"
               >
-                <span>Learn More</span>
+                <span>Start Your Content Project</span>
               </Link>
             </div>
           </div>
@@ -126,12 +130,12 @@ const page = () => {
       </section>
 
       {/* Working Process */}
-      <WorkingProcess titleColor="" />
+       <WorkingProcess titleColor="" {...workingProcessData.contentwriting} />
 
       {/* Services Grid */}
       <section className="blog-grid-page !w-full rel z-1">
         <div className="container px-sm-0 py-130 rpy-100">
-                        <h2 className="text-center mb-50">Our Services</h2>
+                        <h2 className="text-center mb-50">What We Cover</h2>
 
           <div className="row">
             <div className="col-12">
@@ -229,13 +233,9 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+               
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+              
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -246,31 +246,31 @@ const page = () => {
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you research competitors before writing, or just start writing?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "We research first- competitor content, keyword gaps, and audience intent all inform the writing before a single word is drafted.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you write in our brand's existing tone of voice?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes- we study your existing content and messaging to match your tone, or help define a brand voice if you don't have one yet.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. Do you write product descriptions for marketplaces like Amazon and Flipkart too?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "Yes- product descriptions are written to work across your website and marketplace listings, optimized for each platform's requirements.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. Can you handle both blog content and ad copy, or do you specialize in one?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Both- long-form content, ad copy, and everything in between are handled by the same team, so messaging stays consistent across formats.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing content writing, or one-off projects?",
+                    answer:
+                      "Both- one-off projects and ongoing content calendars are available, depending on how much content your brand needs on a regular basis.",
                   },
                 ].map((faq, index) => (
                   <div

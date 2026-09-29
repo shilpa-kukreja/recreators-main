@@ -5,6 +5,7 @@ import { Faq2 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import Services, { Services2 } from "@/components/Services";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
+import { workingProcessData } from "@/components/data/workingProcess";
 import WorkingProcess from "@/components/WorkingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
@@ -13,51 +14,51 @@ const page = () => {
   
 const services = [
     {
-      title: "Branding & Identity",
+      title: "On-Page SEO",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "We optimize what's directly on your website- titles, meta descriptions, headings, image alt text, internal linking, and content structure so every page is built to rank and convert.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Off-Page SEO",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Authority is earned outside your website too. We build high-quality backlinks, manage brand mentions, and run outreach campaigns that strengthen your domain's credibility in the eyes of search engines.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Technical SEO",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "We fix site speed, mobile responsiveness, indexing issues, broken links, and structured data- so your site's technical foundation supports everything else you do.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Local SEO",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "For businesses that serve a city, region, or neighborhood, we optimize your Google Business Profile, local citations, and location-based keywords to help you show up when nearby customers search.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Keyword Research",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "We identify high-intent, high-opportunity keywords across your industry- balancing search volume, competition, and relevance to your actual business goals.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Content SEO",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "We plan, structure, and optimize blog posts, landing pages, and product content that ranks well and reads naturally- no keyword stuffing, no fluff.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "E-commerce SEO",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Online stores have unique SEO challenges- product pages, category structures, duplicate content, and site search. We optimize your store from the product level up.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "SEO Analytics & Reporting",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "We track rankings, organic traffic, conversions, and key metrics, and translate the data into clear, actionable reports- so you always know what's working and what's next.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -75,11 +76,10 @@ const services = [
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <div className="section-title mb-50">
-                <span className="subtitle mt-10 mb-15">What We Provide</span>
+              <div className="section-title mb-50"> 
+                <span className="subtitle mt-10 mb-15">Rank Smarter</span>
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                 Rankings That Bring In Customers, Not Just Traffic
                 </h2>
               </div>
               <img
@@ -100,26 +100,23 @@ const services = [
                 />
               </div>
               <p>
-                Understanding your marketing videos’ performance can be like
-                looking for needle in a haystack. Vidyard’s online video
-                marketing platform is a magnet We'll discuss your project needs,
-                goals, and budget, and provide
+                Ranking on Google isn't luck- it's structure, strategy, and consistency. We build SEO programs that cover every layer of your online presence, from the code behind your site to the content your customers actually read, so the people searching for what you offer actually find you.
               </p>
               <Link
                 href="about"
                 className="theme-btn hover-primary mt-25"
                 
               >
-                <span>Learn More Us</span>
+                <span>Start Your SEO Project</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <WorkingProcess titleColor="" />
+      <WorkingProcess titleColor="" {...workingProcessData.seo}  />
        <section className="blog-grid-page !w-full rel z-1">
       <div className="container   px-sm-0 py-130 rpy-100">
-                                    <h2 className="text-center mb-50">Our Services</h2>
+                                    <h2 className="text-center mb-50">What We Cover</h2>
 
         <div className="row">
           {/* ===== Left Section (Blogs) ===== */}
@@ -207,13 +204,9 @@ const services = [
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+                
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+             
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -224,31 +217,31 @@ const services = [
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you only do keyword research and content, or also fix technical issues?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both- we handle everything from technical SEO and site structure through content and off-page strategy, so your site isn't just optimized on paper, it actually performs.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you improve our existing SEO instead of starting from scratch?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes- we regularly audit and rebuild underperforming SEO strategies, whether that means fixing technical issues, restructuring content, or rebuilding your backlink profile.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. How long does it take to see results from SEO?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "It depends on your industry, competition, and current site health- but we set realistic timelines upfront and report on progress consistently, not just at the end.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. Do you handle local SEO for businesses with physical locations?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Yes- local SEO is a dedicated service, including Google Business Profile optimization, local citations, and location-based keyword targeting.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing SEO support, or is this a one-time project?",
+                    answer:
+                      "SEO isn't a one-time fix- algorithms and competitors change. Ongoing optimization, reporting, and strategy updates are available to keep your rankings growing.",
                   },
                 ].map((faq, index) => (
                   <div

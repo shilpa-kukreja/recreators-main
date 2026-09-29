@@ -5,6 +5,7 @@ import { Faq2 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 
@@ -13,51 +14,51 @@ const page = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const services = [
     {
-      title: "Branding & Identity",
+      title: "Photo Editing & Retouching",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Clean, professional edits that make your photos look their best. Color correction, background work, and retouching done with precision. Every image polished without looking overworked or unnatural. Built to make your visuals shelf-ready, whether it's for print, web, or social.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Video Editing",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Full video editing services- cutting, pacing, sound, and polish. Raw footage turned into content that's genuinely ready to publish. Built for flow, not just stitched-together clips. Every edit is shaped around keeping the viewer watching till the end.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Reels & Short-Form Video Editing",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Fast-paced, platform-native editing built specifically for Reels and Shorts. Formats that live or die in the first three seconds. Every cut, transition, and caption timed to hold attention till the end. Built for how people actually consume short-form content.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Graphic Designing",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Static posts, carousels, and Amazon A+ content designed to stop the scroll. Built specifically for the platform they're going on. Every design communicates clearly before it even needs a caption. From single posts to multi-slide carousels, consistency is built in from the first frame.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Presentation & PPT Design",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Professional, on-brand presentation design for pitches, reports, and decks. Built to make your slides look as strong as the content inside them. Designed to hold attention in the room, not just on screen.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Infographic Design",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
-      image: "/assets/images/blog/blog-standard3.jpg",
-    },
-    {
-      title: "Content Creation & Storytelling",
-      description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Complex information turned into clear, visual formats. Built to explain quickly and get shared further. Data and ideas simplified without losing their substance or accuracy. Designed to make dense information feel approachable at a glance.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "GIF & Animation Design",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "Short animated content that adds motion and personality to your brand. Built to bring static visuals to life across platforms. Small details that make your content feel more alive and engaging. Designed to add movement without overwhelming the message.",
+      image: "/assets/images/blog/blog-standard3.jpg",
+    },
+    {
+      title: "Thumbnail Design",
+      description:
+        "High-click thumbnails built around what actually gets people to press play. Tested visual formulas, not guesswork. Designed to earn the click before the content even starts. Every element- text, color, and expression- chosen to perform, not just look nice.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -78,12 +79,11 @@ const page = () => {
             >
               <div className="section-title mb-50">
                 <span className="subtitle mt-10 mb-15">
-                  What We Provide
+                  Creative Design 
                 </span>
 
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Visuals That Get Noticed and Get Used
                 </h2>
               </div>
 
@@ -107,18 +107,15 @@ const page = () => {
               </div>
 
               <p>
-                Understanding your marketing performance can be like looking
-                for a needle in a haystack. We combine strategy, creativity,
-                technology, and data-driven insights to build powerful digital
-                experiences that support your business goals.
+                A great design that never gets opened is useless. We create graphics, edits, and visual content built to actually get seen- polished, on-brand, and ready for wherever it needs to go.
               </p>
 
               <Link
                 href="/about"
                 className="theme-btn hover-primary mt-25"
-                data-hover="Learn More"
+                
               >
-                <span>Learn More</span>
+                <span> Start Your Design Project</span>
               </Link>
             </div>
           </div>
@@ -126,14 +123,14 @@ const page = () => {
       </section>
 
       {/* Working Process */}
-      <WorkingProcess titleColor="" />
+      <WorkingProcess titleColor="" {...workingProcessData.designanediting} />
 
       {/* Services Grid */}
       <section className="blog-grid-page !w-full rel z-1">
         <div className="container px-sm-0 py-130 rpy-100">
           <div className="row">
             <div className="col-12">
-              <h2 className="text-center mb-50">Our Services</h2>
+              <h2 className="text-center mb-50">What We Cover</h2>
 
               <div className="row">
                 {services.map((service, index) => (
@@ -229,13 +226,9 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+               
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+             
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -246,31 +239,31 @@ const page = () => {
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you edit our existing footage, or only footage you've shot?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both– we edit footage from your own shoots or ours, so you're not limited to using only content our team has captured.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you design Amazon A+ content, or just social media graphics?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes– Amazon A+ Images design is part of our graphic design service, alongside social media static posts and carousels.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. Do you handle both long-form video editing and short-form Reels?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "Yes- full video editing and Reels/short-form editing are both covered, edited specifically for how each format is meant to be watched.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. Can you design a full presentation deck, not just individual slides?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Yes- Presentation & PPT Design covers full decks, built to be consistent and on-brand from the first slide to the last.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing design support, or only one-off projects?",
+                    answer:
+                      "Both- one-off projects and ongoing design packages are available, depending on how much content your brand needs on a regular basis.",
                   },
                 ].map((faq, index) => (
                   <div

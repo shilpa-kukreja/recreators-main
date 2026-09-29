@@ -14,20 +14,20 @@ export default function PrivacyPolicyPage() {
           <div className="!text-center !mb-16">
             <div className="!inline-flex !items-center !text-sm !text-gray-600 !mb-4 !px-4 !py-2 !bg-white !rounded-full !shadow-sm !border !border-gray-200">
               <span className="!w-2 !h-2 !bg-blue-500 !rounded-full !mr-2"></span>
-              Last Updated: December 19, 2024 at 10:35
+              Last Updated: September 19, 2026 at 10:35
             </div>
             <h1 className="!text-4xl lg:!text-5xl !font-bold  !mb-6 !bg-gradient-to-r from-gray-900 to-blue-900 !bg-clip-text !text-transparent">
               Privacy Policy
             </h1>
             <p className="!text-lg !text-gray-600 !max-w-2xl !mx-auto">
-              Your privacy is our priority. Learn how Recreaters Design & Media Pvt. Ltd. safeguards and manages your personal information responsibly.
+              Your privacy is our priority. Learn how Recreators Design &amp; Media Pvt. Ltd. safeguards and manages your personal information responsibly.
             </p>
           </div>
 
           {/* Privacy Policy Content */}
           <div className="!bg-white !rounded-2xl !shadow-lg !border !border-gray-100 !p-8 lg:!p-12">
             <div className="!space-y-12">
-              {/* Introduction */}
+              {/* 1. Introduction */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 sm:flex hidden  !h-12 !bg-blue-50 !rounded-xl !items-center !justify-center group-hover:!bg-blue-100 !transition-colors !duration-300">
@@ -38,31 +38,15 @@ export default function PrivacyPolicyPage() {
                       Introduction
                     </h3>
                     <p className="!text-gray-700 !leading-relaxed !text-justify !text-lg">
-                      <strong>Recreators Design & Media Pvt. Ltd.</strong> (“we,” “us,” “our”) is dedicated to protecting your personal data and maintaining your trust. This Privacy Policy explains how we collect, use, and share your information when you visit our website, engage with our campaigns, or use any of our design, media, or digital marketing services (collectively, the “Services”).
-                      By using our Services, you consent to the terms outlined in this Privacy Policy.
+                      <strong>Recreators Design &amp; Media Pvt. Ltd.</strong> (“Recreators,” “we,” “us,” or “our”) respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, store, and protect your information when you visit our website, use our services, or interact with us in any capacity.
+                      <br />
+                      By using our website or services, you agree to the terms outlined in this Privacy Policy.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Policy Updates */}
-              <section className="!group">
-                <div className="!flex !items-start !space-x-4">
-                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-green-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-green-100 !transition-colors !duration-300">
-                    <span className="!text-green-600 !font-semibold !text-lg">🔄</span>
-                  </div>
-                  <div className="!flex-1">
-                    <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      Changes to the Privacy Policy
-                    </h3>
-                    <p className="!text-gray-700 !text-justify !leading-relaxed !text-lg">
-                      We may revise this policy from time to time to comply with legal, operational, or service updates. The “Last Updated” date on this page reflects the latest version. Continued use of our Services after such updates signifies your acceptance of the revised policy.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Information Collection */}
+              {/* 2. Information We Collect */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-purple-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-purple-100 !transition-colors !duration-300">
@@ -70,51 +54,48 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <div className="!flex-1">
                     <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      What Information We Collect
+                      Information We Collect
                     </h3>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !mb-6 !text-justify">
+                      We may collect the following types of information:
+                    </p>
                     <div className="!space-y-6 !text-justify">
                       <div className="!bg-gray-50 !p-2 sm:!p-6 !rounded-xl ">
-                        <h4 className="!font-semibold !text-gray-900 !mb-3 !text-lg">Information Provided by You</h4>
+                        <h4 className="!font-semibold !text-gray-900 !mb-3 !text-lg">Personal Information You Provide</h4>
                         <ul className="!space-y-2 !text-gray-700">
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Contact details: Name, email, phone number, and address
+                            Name, email address, phone number
                           </li>
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Account details: Username, password, and login credentials
+                            Company name and business details
                           </li>
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Payment details: Billing address, transaction records, and order history
+                            Project requirements and briefs shared during consultations
                           </li>
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Support communication: Details shared while contacting our customer team
+                            Payment and billing information (processed securely via third-party payment gateways)
                           </li>
                         </ul>
                       </div>
 
                       <div className="!bg-gray-50 !p-2 sm:!p-6 !rounded-xl">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2 !text-lg">Information Collected Automatically</h4>
-                        <p className="!text-gray-700">
-                         Usage data: IP address, browser type, device identifiers, and pages visited.
-                        </p>
-                         <p className="!text-gray-700">
-                         Cookies & analytics: Behavior tracking through cookies, analytics tools, and other technologies
-                        </p>
-                      </div>
-
-                      <div className="!bg-gray-50 !p-2 sm:!p-6 !rounded-xl">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2 !text-lg">Information from Third Parties</h4>
+                        <h4 className="!font-semibold !text-gray-900 !mb-3 !text-lg">Information Collected Automatically</h4>
                         <ul className="!space-y-2 !text-gray-700">
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Payment processors: For secure and verified transactions
+                            IP address, browser type, and device information
                           </li>
                           <li className="!flex !items-start">
                             <span className="!text-purple-500 !mr-2">•</span>
-                            Marketing partners: For campaign optimization and performance tracking
+                            Pages visited, time spent on our website, and referral source
+                          </li>
+                          <li className="!flex !items-start">
+                            <span className="!text-purple-500 !mr-2">•</span>
+                            Cookies and similar tracking technologies (see Section 5)
                           </li>
                         </ul>
                       </div>
@@ -123,7 +104,7 @@ export default function PrivacyPolicyPage() {
                 </div>
               </section>
 
-              {/* How We Use Information */}
+              {/* 3. How We Use Your Information */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-orange-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-orange-100 !transition-colors !duration-300">
@@ -133,46 +114,40 @@ export default function PrivacyPolicyPage() {
                     <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
                       How We Use Your Information
                     </h3>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !mb-6">
+                      We use the information we collect to:
+                    </p>
                     <div className="!grid md:!grid-cols-2 !gap-4">
                       <div className="!bg-orange-50 !p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Providing and Managing Services</h4>
-                        <p className="!text-gray-700 !text-sm">To process payments, deliver projects, and manage customer accounts efficiently.</p>
-                      </div>
-                      <div className="bg-orange-50 p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Marketing and Communication</h4>
-                        <p className="!text-gray-700 !text-sm">To share updates, newsletters, offers, and content tailored to your interests.</p>
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Respond to Inquiries</h4>
+                        <p className="!text-gray-700 !text-sm">Respond to inquiries and provide requested services.</p>
                       </div>
                       <div className="!bg-orange-50 !p-4 !rounded-lg">
-                        <h4 className="font-semibold text-gray-900 mb-2">Customer Support</h4>
-                        <p className="text-gray-700 text-sm">To respond to inquiries, feedback, and provide post-service assistance.</p>
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Deliver &amp; Improve Services</h4>
+                        <p className="!text-gray-700 !text-sm">Deliver, manage, and improve our design, development, and marketing services.</p>
                       </div>
-                      <div className="bg-orange-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-gray-900 mb-2">Security and Compliance</h4>
-                        <p className="text-gray-700 text-sm">To detect and prevent fraudulent activity, maintain data integrity, and meet regulatory obligations.</p>
+                      <div className="!bg-orange-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Project Communications</h4>
+                        <p className="!text-gray-700 !text-sm">Send project updates, invoices, and relevant communications.</p>
+                      </div>
+                      <div className="!bg-orange-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Website Experience</h4>
+                        <p className="!text-gray-700 !text-sm">Improve our website's functionality and user experience.</p>
+                      </div>
+                      <div className="!bg-orange-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Marketing Communications</h4>
+                        <p className="!text-gray-700 !text-sm">Send marketing communications (only with your consent, and you may opt out anytime).</p>
+                      </div>
+                      <div className="!bg-orange-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Legal Compliance</h4>
+                        <p className="!text-gray-700 !text-sm">Comply with legal obligations.</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
 
-              {/* Cookies */}
-              <section className="group">
-                <div className="flex items-start space-x-4">
-                  <div className="!flex-shrink-0 !w-12 !h-12  !bg-red-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-red-100 !transition-colors !duration-300">
-                    <span className="!text-red-600 !font-semibold !text-lg">🍪</span>
-                  </div>
-                  <div className="!flex-1 !text-justify">
-                    <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      Cookies and Tracking Technologies
-                    </h3>
-                    <p className="!text-gray-700 !leading-relaxed !text-lg">
-                      Our website uses cookies to improve functionality, personalize user experiences, and analyze performance metrics. You may choose to disable cookies through your browser settings, though doing so may affect certain features or services.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Information Sharing */}
+              {/* 4. How We Share Your Information */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-indigo-50 !rounded-xl sm:flex hidden  !items-center !justify-center group-hover:!bg-indigo-100 !transition-colors !duration-300">
@@ -180,68 +155,50 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <div className="!flex-1">
                     <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      Information Sharing
+                      How We Share Your Information
                     </h3>
                     <p className="!text-gray-700 !leading-relaxed !text-lg !mb-4">
-                      We may share your personal information in limited and secure ways, including:
+                      We do not sell your personal information. We may share your information with:
                     </p>
                     <ul className="!space-y-3 !text-gray-700">
                       <li className="!flex !items-start">
                         <span className="!text-indigo-500 !mr-2">•</span>
-                        With trusted service providers such as payment gateways and hosting partners
+                        Service providers who assist us in delivering our services (e.g., hosting providers, payment processors)
                       </li>
                       <li className="!flex !items-start">
                         <span className="!text-indigo-500 !mr-2">•</span>
-                         To comply with legal requirements or enforce our terms
+                        Legal authorities if required by law or to protect our rights
                       </li>
                       <li className="!flex !items-start">
                         <span className="!text-indigo-500 !mr-2">•</span>
-                          With affiliates or partners for marketing and operational collaboration
+                        Business partners, only with your explicit consent, for collaborative projects
                       </li>
                     </ul>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !mt-4">
+                      We ensure any third party we share data with maintains adequate data protection standards.
+                    </p>
                   </div>
                 </div>
               </section>
 
-              {/* Your Rights */}
-              <section className="!group">
-                <div className="!flex !items-start !space-x-4">
-                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-teal-50 sm:flex hidden  !rounded-xl  !items-center !justify-center group-hover:!bg-teal-100 !transition-colors !duration-300">
-                    <span className="!text-teal-600 !font-semibold !text-lg">🔒</span>
+              {/* 5. Cookies & Tracking Technologies */}
+              <section className="group">
+                <div className="flex items-start space-x-4">
+                  <div className="!flex-shrink-0 !w-12 !h-12  !bg-red-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-red-100 !transition-colors !duration-300">
+                    <span className="!text-red-600 !font-semibold !text-lg">🍪</span>
                   </div>
-                  <div className="!flex-1">
+                  <div className="!flex-1 !text-justify">
                     <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      Your Rights and Choices
+                      Cookies &amp; Tracking Technologies
                     </h3>
-                    <p className="!text-gray-700 !leading-relaxed !text-lg !mb-4">
-                      Depending on your location, you may be entitled to the following rights:
-                    </p>
-                    <div className="!grid md:!grid-cols-2 !gap-4 !mb-6">
-                      <div className="!bg-teal-50 !p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Access & Review:</h4>
-                        <p className="!text-gray-700 !text-sm">Request a copy of your personal data we hold</p>
-                      </div>
-                      <div className="!bg-teal-50 !p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Correction & Deletion:</h4>
-                        <p className="!text-gray-700 !text-sm">Ask for correction or removal of inaccurate data</p>
-                      </div>
-                      <div className="!bg-teal-50 !p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Opt-out:</h4>
-                        <p className="!text-gray-700 !text-sm"> Unsubscribe from marketing communications at any time</p>
-                      </div>
-                      <div className="!bg-teal-50 !p-4 !rounded-lg">
-                        <h4 className="!font-semibold !text-gray-900 !mb-2">Control:</h4>
-                        <p className="!text-gray-700 !text-sm">Adjust cookie preferences and data-sharing permissions</p>
-                      </div>
-                    </div>
                     <p className="!text-gray-700 !leading-relaxed !text-lg">
-                      To exercise these rights, contact us through the details provided below.
+                      Our website uses cookies to improve user experience, analyze site traffic, and understand visitor behavior. You can control or disable cookies through your browser settings, though this may affect certain website functionalities.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Security */}
+              {/* 6. Data Security */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-gray-50 !rounded-xl sm:flex hidden !items-center !justify-center group-hover:!bg-gray-100 !transition-colors !duration-300">
@@ -249,16 +206,74 @@ export default function PrivacyPolicyPage() {
                   </div>
                   <div className="!flex-1">
                     <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
-                      Security of Your Information
+                      Data Security
                     </h3>
-                    <p className="!text-gray-700 !leading-relaxed !text-lg">
-                      We use advanced security measures, including SSL encryption, restricted access, and secure data storage, to protect your personal information. However, no online transmission is entirely risk-free. We recommend using strong passwords and informing us immediately of any unauthorized activity.
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !text-justify">
+                      We implement reasonable technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Third Party Links */}
+              {/* 7. Data Retention */}
+              <section className="!group">
+                <div className="!flex !items-start !space-x-4">
+                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-cyan-50 !rounded-xl sm:flex hidden !items-center !justify-center group-hover:!bg-cyan-100 !transition-colors !duration-300">
+                    <span className="!text-cyan-600 !font-semibold !text-lg">🗂️</span>
+                  </div>
+                  <div className="!flex-1">
+                    <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
+                      Data Retention
+                    </h3>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !text-justify">
+                      We retain personal information only for as long as necessary to fulfill the purposes outlined in this policy, or as required by applicable law.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* 8. Your Rights */}
+              <section className="!group">
+                <div className="!flex !items-start !space-x-4">
+                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-teal-50 sm:flex hidden  !rounded-xl  !items-center !justify-center group-hover:!bg-teal-100 !transition-colors !duration-300">
+                    <span className="!text-teal-600 !font-semibold !text-lg">🔒</span>
+                  </div>
+                  <div className="!flex-1">
+                    <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
+                      Your Rights
+                    </h3>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg !mb-4">
+                      Depending on applicable law, you may have the right to:
+                    </p>
+                    <div className="!grid md:!grid-cols-2 !gap-4 !mb-6">
+                      <div className="!bg-teal-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Access:</h4>
+                        <p className="!text-gray-700 !text-sm">Access the personal information we hold about you.</p>
+                      </div>
+                      <div className="!bg-teal-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Correction:</h4>
+                        <p className="!text-gray-700 !text-sm">Request correction of inaccurate information.</p>
+                      </div>
+                      <div className="!bg-teal-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Deletion:</h4>
+                        <p className="!text-gray-700 !text-sm">Request deletion of your personal information.</p>
+                      </div>
+                      <div className="!bg-teal-50 !p-4 !rounded-lg">
+                        <h4 className="!font-semibold !text-gray-900 !mb-2">Withdraw Consent:</h4>
+                        <p className="!text-gray-700 !text-sm">Withdraw consent for marketing communications at any time.</p>
+                      </div>
+                    </div>
+                    <p className="!text-gray-700 !leading-relaxed !text-lg">
+                      To exercise any of these rights, contact us at{" "}
+                      <a href="mailto:contact@recreators.com" className="!text-blue-600 hover:!text-blue-700 !break-all">
+                        contact@recreators.com
+                      </a>.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* 9. Third-Party Links */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-pink-50 !rounded-xl sm:flex hidden  !items-center !justify-center group-hover:!bg-pink-100 !transition-colors !duration-300">
@@ -269,13 +284,13 @@ export default function PrivacyPolicyPage() {
                       Third-Party Links
                     </h3>
                     <p className="!text-gray-700 !leading-relaxed !text-lg !text-justify">
-                      Our website may include links to third-party websites or tools. We are not responsible for their content or privacy practices and encourage you to review their respective privacy policies before providing personal information.
+                      Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites. We encourage you to review their privacy policies separately.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Children's Privacy */}
+              {/* 10. Children's Privacy */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
                   <div className="!flex-shrink-0 !w-12 !h-12 !bg-yellow-50 !rounded-xl sm:flex hidden  !items-center !justify-center group-hover:!bg-yellow-100 !transition-colors !duration-300">
@@ -286,18 +301,35 @@ export default function PrivacyPolicyPage() {
                       Children's Privacy
                     </h3>
                     <p className="!text-gray-700 !leading-relaxed !text-lg !text-justify">
-                      Our Services are not directed to individuals under the age of 16. If you believe a minor has provided us with personal data, please contact us promptly to request its removal.
+                      Our services are not directed toward individuals under the age of 18. We do not knowingly collect personal information from minors.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* 11. Changes to This Policy */}
+              <section className="!group">
+                <div className="!flex !items-start !space-x-4">
+                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-green-50 sm:flex hidden !rounded-xl  !items-center !justify-center group-hover:!bg-green-100 !transition-colors !duration-300">
+                    <span className="!text-green-600 !font-semibold !text-lg">🔄</span>
+                  </div>
+                  <div className="!flex-1">
+                    <h3 className="!text-2xl !font-bold !text-gray-900 !mb-4">
+                      Changes to This Policy
+                    </h3>
+                    <p className="!text-gray-700 !text-justify !leading-relaxed !text-lg">
+                      We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. The updated version will be posted on this page with a revised "Last Updated" date.
                     </p>
                   </div>
                 </div>
               </section>
             </div>
 
-            {/* Contact Information */}
+            {/* 12. Contact Information */}
             <div className="!mt-12 !p-2 !bg-gradient-to-r from-blue-50 to-indigo-50 !rounded-2xl !border !border-blue-200">
               <h3 className="!text-2xl !font-bold !text-gray-900 !mb-6 !text-center">Contact Us</h3>
               <p className="!text-gray-700 !text-lg !text-center !mb-6">
-                For questions or concerns regarding this Privacy Policy, reach out to us at:
+                If you have questions or concerns about this Privacy Policy, please contact us at:
               </p>
 
               <div className="!grid md:!grid-cols-2 lg:!grid-cols-4 !gap-6 !text-center">

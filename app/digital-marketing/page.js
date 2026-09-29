@@ -6,6 +6,7 @@ import PageBanner from "@/components/PageBanner";
 import Services, { Services2 } from "@/components/Services";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 const page = () => {
@@ -14,51 +15,87 @@ const page = () => {
 
 const services = [
     {
-      title: "Branding & Identity",
+      title: "Performance Marketing",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Data-driven campaigns focused on measurable outcomes. Leads, sales, and ROI, not just reach and impressions. Every rupee spent is tracked back to a result.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Influencer Marketing",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Partnerships with creators who actually move your audience. From micro-influencers to established names, matched to your brand and budget. Built for authentic reach, not just follower counts.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Pay-Per-Click (PPC)",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Paid search and display campaigns built to capture high-intent traffic. Designed to turn clicks into customers, not just visitors. Every campaign optimized to lower cost per acquisition over time.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Social Media Marketing (SMM)",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Organic and paid social strategy across platforms. Content, community management, and campaigns that build an audience that sticks around. Built for engagement that actually translates to brand recall.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Content Marketing",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Blogs, videos, and campaigns built to educate and engage. Designed to move your audience closer to a purchase decision. Content that earns attention, not just fills a calendar.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Meta Ads",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "Facebook and Instagram ad campaigns built around your funnel. From awareness to retargeting to conversion, every stage is covered. Creative and targeting built to perform, not just look good.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "Google Ads",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Search, display, and YouTube campaigns built for intent. Designed to put your business in front of people actively looking for what you offer. Every campaign is structured around conversion, not just clicks.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "Ads Shoot",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "Product and brand shoots created specifically for ad performance. Built to stop the scroll, not just look nice in isolation. Every frame is designed with the platform and funnel in mind.",
+      image: "/assets/images/blog/blog-standard1.jpg",
+    },
+     {
+      title: "Google Ads",
+      description:
+        "Search, display, and YouTube campaigns built for intent. Designed to put your business in front of people actively looking for what you offer. Every campaign is structured around conversion, not just clicks.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+    {
+      title: "eCommerce Ads",
+      description:
+        "Ad strategies built specifically for online stores. Product-focused campaigns designed to drive purchases, not just clicks. Built around your catalog, not a generic ad template.",
+      image: "/assets/images/blog/blog-standard1.jpg",
+    },
+    {
+      title: "Amazon Ads",
+      description:
+        "Sponsored product and brand campaigns for the Amazon marketplace. Built to improve visibility and sales within the platform's own ecosystem. Optimized around Amazon's ranking and conversion signals.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+    {
+      title: "Flipkart Ads",
+      description:
+        "Marketplace advertising tailored to Flipkart's platform. Built to boost product ranking and conversions where your buyers already are. Strategy shaped around how Flipkart shoppers actually search and buy.",
+      image: "/assets/images/blog/blog-standard1.jpg",
+    },
+     {
+      title: "Email Marketing",
+      description:
+        "Campaigns and automations that nurture leads and bring customers back. Built around segmentation, not mass blasts. Every email designed to earn the next open, not just get sent.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+    {
+      title: "Multi Level Marketing",
+      description:
+        "Marketing strategy and campaign support tailored to MLM structures. Built around network growth and downline engagement. Designed to support distributors, not just the brand at the top.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -77,10 +114,9 @@ const services = [
               data-aos-offset={50}
             >
               <div className="section-title mb-50">
-                <span className="subtitle mt-10 mb-15">What We Provide</span>
+                <span className="subtitle mt-10 mb-15">Sales, Not Views</span>
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Marketing That's Built to Sell, Not Just Show Up
                 </h2>
               </div>
               <img
@@ -101,26 +137,23 @@ const services = [
                 />
               </div>
               <p>
-                Understanding your marketing videos’ performance can be like
-                looking for needle in a haystack. Vidyard’s online video
-                marketing platform is a magnet We'll discuss your project needs,
-                goals, and budget, and provide
+                Getting seen is easy. Getting seen by the right people, at the right moment, in a way that actually drives sales- that's the hard part. We run digital marketing campaigns built around performance, not vanity metrics, so every rupee spent has a job to do.
               </p>
               <Link
                 href="about"
                 className="theme-btn hover-primary mt-25"
                 
               >
-                <span>Learn More Us</span>
+                <span>Start Your Marketing Campaign</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <WorkingProcess titleColor="" />
+       <WorkingProcess titleColor="" {...workingProcessData.digitalmarketing} />
        <section className="blog-grid-page !w-full rel z-1">
       <div className="container   px-sm-0 py-130 rpy-100">
-                                    <h2 className="text-center mb-50">Our Services</h2>
+                                    <h2 className="text-center mb-50">What We Cover</h2>
 
         <div className="row">
           {/* ===== Left Section (Blogs) ===== */}
@@ -212,13 +245,9 @@ const services = [
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+                
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+             
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -229,31 +258,31 @@ const services = [
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you only run ads, or also handle content and strategy?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both- we handle strategy, creative, ad shoots, and campaign management end-to-end, so your marketing isn't just running ads with no direction behind them.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Which platforms do you recommend for our business?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "It depends on where your actual customers spend time and how they buy- we recommend platforms based on your audience and goals, not a one-size-fits-all package.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. Do you provide models for our video and ad shoots, or do we need to arrange that ourselves?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "We can arrange models as part of the shoot- from casting to on-set direction- so you get content ready for ads without having to source talent separately. ",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. How do you measure whether a campaign is working?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Every campaign is tracked against clear KPIs- leads, sales, ROAS, or whatever metric actually matters to your business, with regular reporting to show what's working.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing campaign management, or is this a one-time project?",
+                    answer:
+                      "Digital marketing isn't a one-time push- platforms and audiences shift. Ongoing management, testing, and optimization are available to keep performance improving.",
                   },
                 ].map((faq, index) => (
                   <div

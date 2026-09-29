@@ -6,6 +6,7 @@ import PageBanner from "@/components/PageBanner";
 import Services, { Services2 } from "@/components/Services";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 const page = () => {
@@ -13,51 +14,51 @@ const page = () => {
 
 const services = [
     {
-      title: "Branding & Identity",
+      title: "Brand Naming",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Strategic naming that's memorable, available, and aligned with what your business actually stands for. Not just a word that sounds good, but one that holds up in trademark checks and everyday use. A name your business can grow into, not grow out of.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Brand Logo",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Distinctive, versatile logo design built to work across every size and surface. From a favicon to a storefront sign, without losing clarity or impact. Designed to be recognizable at a glance, not just admired up close.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Brand Identity",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "The full visual system- color palette, typography, imagery style, and design language. Built to make your brand instantly recognizable across every touchpoint. Consistent enough to feel like one brand, wherever it shows up.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Brand Storytelling",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "The narrative behind your brand- who you are, why you exist, and why customers should care. Shaped into a story that sticks, not just a mission statement nobody reads. Built to give your brand a voice people actually remember.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Brand Personality",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Defining how your brand talks, feels, and behaves. So every piece of communication sounds like it's coming from the same place. Consistency that makes your brand feel familiar, not fragmented.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Brand Guidelines",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "A clear, practical rulebook covering logo usage, colors, typography, and tone. Built so your brand stays consistent no matter who's applying it. Guidelines your team will actually follow, not just file away.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "Catalogue",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Product and service catalogues designed to inform and sell. Clean layouts that make browsing and decision-making easy. Built to guide a customer from curiosity to conversion.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "Company Profile Design",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "Professional company profiles built to build trust and credibility. Designed for pitches, partnerships, and client-facing conversations. A document that makes the right first impression before you even speak.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -76,10 +77,9 @@ const services = [
               data-aos-offset={50}
             >
               <div className="section-title mb-50">
-                <span className="subtitle mt-10 mb-15">What We Provide</span>
+                <span className="subtitle mt-10 mb-15">Memorable Branding</span>
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  A Brand People Remember, Not Just Recognize
                 </h2>
               </div>
               <img
@@ -100,26 +100,23 @@ const services = [
                 />
               </div>
               <p>
-                Understanding your marketing videos’ performance can be like
-                looking for needle in a haystack. Vidyard’s online video
-                marketing platform is a magnet We'll discuss your project needs,
-                goals, and budget, and provide
+                Your brand is more than a logo- it's the name people say, the story they remember, and the reason they choose you over someone cheaper. We build brand identities that hold up across every touchpoint, from a business card to a billboard.
               </p>
               <Link
                 href="about"
                 className="theme-btn hover-primary mt-25"
               
               >
-                <span>Learn More Us</span>
+                <span>Start Your Brand Project</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <WorkingProcess titleColor="" />
+      <WorkingProcess titleColor="" {...workingProcessData.branddesign}  />
        <section className="blog-grid-page !w-full rel z-1">
       <div className="container   px-sm-0 py-130 rpy-100">
-                                    <h2 className="text-center mb-50">Our Services</h2>
+                                    <h2 className="text-center mb-50">What We Cover</h2>
 
         <div className="row">
           {/* ===== Left Section (Blogs) ===== */}
@@ -209,13 +206,9 @@ const services = [
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+               
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+              
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -226,31 +219,31 @@ const services = [
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you only design logos, or the full brand identity?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Full identity- logo design is one part of a larger system that includes color, typography, tone, and guidelines, so your brand is consistent everywhere, not just on your logo.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you help name our brand, not just design around an existing name?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes- brand naming is a dedicated service, including strategy, availability checks, and testing against what your business actually stands for.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. We already have a logo- can you just build guidelines and other assets around it?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "Yes- we can work with an existing logo and build out the full identity system, guidelines, catalogues, and profile design around it.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. How long does a full brand identity project take?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "It depends on scope- naming and full identity systems take longer than a logo refresh. We set clear timelines upfront based on what's included.",
+                  },
+                  {
+                    question: "5. Do you provide ongoing brand support after the initial identity is delivered?",
+                    answer:
+                      "Yes- ongoing support is available for new collateral, guideline updates, and applying the brand system to new materials as your business grows.",
                   },
                 ].map((faq, index) => (
                   <div

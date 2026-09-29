@@ -1,34 +1,23 @@
-const WorkingProcess = ({ titleColor = "color-primary" }) => {
-  const steps = [
-    {
-      number: "01",
-      title: "Consultation",
-      text: "Planning is the foundational stage any successful project or strategy where goals defined resources are allocated",
-    },
-    {
-      number: "02",
-      title: "Planning",
-      text: "Planning is the foundational stage any successful project or strategy where goals defined resources are allocated",
-    },
-    {
-      number: "03",
-      title: "Production",
-      text: "Planning is the foundational stage any successful project or strategy where goals defined resources are allocated",
-    },
-    {
-      number: "04",
-      title: "Distribution",
-      text: "Planning is the foundational stage any successful project or strategy where goals defined resources are allocated",
-    },
-    {
-      number: "05",
-      title: "Optimization",
-      text: "Planning is the foundational stage any successful project or strategy where goals defined resources are allocated",
-    },
-  ];
+// components/WorkingProcess.jsx
 
+// fallback so existing pages that don't pass anything still work
+const defaultSteps = [
+  { number: "01", title: "Consultation", text: "Planning is the foundational stage..." },
+  { number: "02", title: "Planning",     text: "Planning is the foundational stage..." },
+  { number: "03", title: "Production",   text: "Planning is the foundational stage..." },
+  { number: "04", title: "Distribution", text: "Planning is the foundational stage..." },
+  { number: "05", title: "Optimization", text: "Planning is the foundational stage..." },
+];
+
+const WorkingProcess = ({
+  titleColor = "color-primary",
+  subtitle = "Our Working Process",
+  heading = "Step-by-Step The Video Marketing Journey",
+  steps = defaultSteps,
+  extraClass = "",
+}) => {
   return (
-    <section className="working-process-area py-100">
+    <section className={`working-process-area py-40 ${extraClass}`}>
       <div className="container container-1290">
         <div className="row justify-content-center">
           <div className="col-lg-12">
@@ -38,16 +27,15 @@ const WorkingProcess = ({ titleColor = "color-primary" }) => {
               data-aos-duration={1500}
               data-aos-offset={50}
             >
-              <span className={`subtitle  mt-10 mb-15 ${titleColor}`}>
-                Our Working Process
-              </span>
-              <h2>Step-by-Step The Video Marketing Journey</h2>
+              <span className={`subtitle mt-10 mb-15 ${titleColor}`}>{subtitle}</span>
+              <h2>{heading}</h2>
             </div>
           </div>
         </div>
+
         <div className="working-step-wrap">
-          {steps.map((step) => (
-            <div className="work-step-item hover-item" key={step.number}>
+          {steps.map((step, i) => (
+            <div className="work-step-item hover-item" key={step.number ?? i}>
               <span className="number">{step.number}</span>
               <h6>{step.title}</h6>
               <div className="hover-content">{step.text}</div>
@@ -58,6 +46,7 @@ const WorkingProcess = ({ titleColor = "color-primary" }) => {
     </section>
   );
 };
+
 export default WorkingProcess;
 
 export const WorkingProcess2 = ({ extraClass = "bgc-black text-white" }) => {

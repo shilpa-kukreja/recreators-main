@@ -5,6 +5,7 @@ import { Faq2 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 
@@ -13,51 +14,75 @@ const page = () => {
 
   const services = [
     {
-      title: "Branding & Identity",
+      title: "UI/UX Design",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Before a single line of code is written, we map out how people will actually navigate your site- intuitive layouts, clear user journeys, and interfaces designed to reduce friction. Every screen is planned around real user behavior, not assumptions.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Web Design & Development",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "End-to-end website creation from visual design to full development built to reflect your brand identity. We handle everything from the first wireframe to the final line of code, so nothing gets lost in translation between design and build.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Static Website Designing",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Simple, fast-loading websites for businesses that need a strong digital presence without the complexity of dynamic content- ideal for portfolios and informational sites. Perfect for businesses that need to look credible online without managing a complex backend.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Dynamic Website Designing",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Websites with content that updates, personalizes, and scales- built with databases and backend logic for businesses that need more than a static page. As your content grows or your offerings change, the site adapts without needing a rebuild. ",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Ecommerce Website Designing",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Online stores designed to sell- clean product pages, smooth checkout flows, and mobile-first design. Every step from browsing to checkout is built to reduce friction and keep customers moving toward purchase.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Corporate Website Designing",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "Professional, credibility-building websites for established businesses built to reflect scale and trust. These sites are designed to reassure- clients, partners, and investors should feel your business's legitimacy the moment the page loads.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "Multi-Vendor Ecommerce",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Marketplace-style platforms supporting multiple sellers, vendor dashboards and scalable catalog management- built for businesses growing beyond a single-brand store. Designed for platforms that need to grow sellers, not just products.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "Website Re-Designing",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "If your current website is holding your brand back- we rebuild outdated, slow, or poorly converting sites into something that actually matches where your business is today. Whether it's a full rebuild or targeted fixes to underperforming pages.",
+      image: "/assets/images/blog/blog-standard1.jpg",
+    },
+     {
+      title: "React.js / Next.js Development",
+      description:
+        "Modern, high-performance web applications built on React.js and Next.js for businesses that need speed and scalability. These frameworks let us build fast, responsive experiences that hold up as your traffic and features grow.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+    {
+      title: "Custom Web Development",
+      description:
+        "When off-the-shelf platforms can't do what your business needs, we build fully custom web solutions. No forcing your business into a template that wasn't built for it- we build around your actual workflow and requirements. If it doesn't exist yet, we build it from scratch.",
+      image: "/assets/images/blog/blog-standard1.jpg",
+    },
+     {
+      title: "Web Portal Development",
+      description:
+        "Secure, functional portals for internal teams, clients, or partners- dashboards, login-gated content, and data management systems. Built to organize information and restrict access exactly the way your business needs it to.",
+      image: "/assets/images/blog/blog-standard4.jpg",
+    },
+    {
+      title: "CRM Development",
+      description:
+        "Custom CRM systems designed around how your team actually sells and manages relationships- built to organize leads, track pipelines, and keep every interaction in one place. We build the system around your actual workflow.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -78,12 +103,11 @@ const page = () => {
             >
               <div className="section-title mb-50">
                 <span className="subtitle mt-10 mb-15">
-                  What We Provide
+                  Build & Design
                 </span>
 
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Websites Built to Convert, Not Just Exist
                 </h2>
               </div>
 
@@ -107,10 +131,7 @@ const page = () => {
               </div>
 
               <p>
-                Understanding your marketing videos’ performance can be like
-                looking for a needle in a haystack. We combine strategy,
-                creativity, technology, and data-driven insights to build
-                powerful digital experiences that support your business goals.
+                 A website is often the first real interaction someone has with your brand and the last thing standing between "interested" and "bought." We build websites that load fast, look sharp, and are engineered around one goal: turning visitors into customers.
               </p>
 
               <Link
@@ -118,7 +139,7 @@ const page = () => {
                 className="theme-btn hover-primary mt-25"
                 data-hover="Learn More"
               >
-                <span>Learn More</span>
+                <span>Start Your Web Project</span>
               </Link>
             </div>
           </div>
@@ -126,14 +147,14 @@ const page = () => {
       </section>
 
       {/* Working Process */}
-      <WorkingProcess titleColor="" />
+      <WorkingProcess titleColor="" {...workingProcessData.webdevelopment} />
 
       {/* Services Grid */}
       <section className="blog-grid-page !w-full rel z-1">
         <div className="container px-sm-0 py-130 rpy-100">
           <div className="row">
             <div className="col-12">
-                            <h2 className="text-center mb-50">Our Services</h2>
+                            <h2 className="text-center mb-50">What We Cover</h2>
 
               <div className="row">
                 {services.map((service, index) => (
@@ -239,12 +260,10 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
+                <h2></h2>
               </div>
               <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
+               
               </p>
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
@@ -256,31 +275,31 @@ const page = () => {
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you only design websites, or also handle development?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both- we handle everything from UI/UX design through full front-end and back-end development, so your site isn't just good-looking, it actually functions the way it's supposed to.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you redesign our existing website instead of building from scratch?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes, website re-designing is one of our core services, whether that means a full rebuild or improving specific pages and flows that aren't converting.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. What platform do you build websites on?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "It depends on what your business actually needs from custom development (including React.js/Next.js) for performance and to simpler builds for straightforward content-driven sites.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. Can you build a multi-vendor marketplace, not just a single-brand store?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Yes- multi-vendor ecommerce is a dedicated service, including vendor dashboards, commission handling, and scalable catalog management.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing support after the website is launched?",
+                    answer:
+                      "Yes- we don't disappear after launch. Ongoing maintenance, updates, and optimization are available to keep your site performing as your business grows.",
                   },
                 ].map((faq, index) => (
                   <div

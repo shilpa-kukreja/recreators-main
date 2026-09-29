@@ -5,6 +5,7 @@ import { Faq2 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 
@@ -13,51 +14,51 @@ const page = () => {
 
   const services = [
     {
-      title: "Branding & Identity",
+      title: "Ecommerce Website Designing",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Online stores designed to sell. Clean product pages, smooth checkout flows, and mobile-first design at every step. Built to guide browsers toward checkout, not just showcase products.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Multi-Vendor Ecommerce",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Marketplace-style platforms supporting multiple sellers. Vendor dashboards and scalable catalog management for businesses growing beyond a single-brand store. Built to handle complexity without becoming unmanageable.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "eCommerce SEO",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Product page and category optimization built to get your store found before your competitors. From product titles to structured data, every detail accounted for. Built to bring in traffic that's actually ready to buy.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "eCommerce Ads",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Ad strategies built specifically for online stores. Product-focused campaigns designed to drive purchases, not just clicks. Every campaign tied back to actual store revenue.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Quick Commerce (Amazon, Blinkit, Meesho & Flipkart Listing)",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Listing setup and optimization across quick commerce and marketplace platforms. Built to get your products discovered and bought fast. Every listing structured for how these platforms actually rank and convert.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Amazon Ads",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "Sponsored product and brand campaigns for the Amazon marketplace. Built to improve visibility and sales within the platform's own ecosystem. Optimized around what actually drives Amazon's ranking algorithm.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Content Creation & Storytelling",
+      title: "Flipkart Ads",
       description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
+        "Marketplace advertising tailored to Flipkart's platform. Built to boost product ranking and conversions where your buyers already are. Strategy shaped around Flipkart's specific shopper behavior.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Influencer & Community Marketing",
+      title: "Email Marketing",
       description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
+        "Campaigns and automations that nurture leads and bring customers back. Built around segmentation, not mass blasts. Every email designed to earn the next open, not just get sent.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
   ];
@@ -79,12 +80,11 @@ const page = () => {
             >
               <div className="section-title mb-50">
                 <span className="subtitle mt-10 mb-15">
-                  What We Provide
+                 Ecommerce Development 
                 </span>
 
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Online Stores Built to Sell, Not Just Exist on a Marketplace
                 </h2>
               </div>
 
@@ -109,11 +109,7 @@ const page = () => {
               </div>
 
               <p>
-                Understanding your marketing videos’ performance can be like
-                looking for a needle in a haystack. Vidyard’s online video
-                marketing platform is a magnet. We'll discuss your project
-                needs, goals, and budget, and provide the right strategy to
-                help your business grow.
+                Listing a product online isn't the same as selling it. We build and manage ecommerce presences- from the website itself to every marketplace it lives on- designed around one goal: turning browsers into buyers.
               </p>
 
               <Link
@@ -121,7 +117,7 @@ const page = () => {
                 className="theme-btn hover-primary mt-25"
                 data-hover="Learn More"
               >
-                <span>Learn More</span>
+                <span>Start Your Ecommerce Project</span>
               </Link>
             </div>
           </div>
@@ -129,12 +125,12 @@ const page = () => {
       </section>
 
       {/* Working Process */}
-      <WorkingProcess titleColor="" />
+       <WorkingProcess titleColor="" {...workingProcessData.ecommerce} />
 
       {/* Services Section */}
       <section className="blog-grid-page w-full rel z-1">
         <div className="container px-sm-0 py-130 rpy-100">
-                                      <h2 className="text-center mb-50">Our Services</h2>
+                                      <h2 className="text-center mb-50">What We Cover</h2>
 
           <div className="row">
             {/* Services */}
@@ -238,13 +234,8 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+             
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -255,9 +246,9 @@ const page = () => {
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you build the website and manage marketplace listings, or just one?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both- we handle your own ecommerce website alongside marketplace listings on Amazon, Flipkart, Meesho, and Blinkit, so everything stays coordinated.",
                   },
                   {
                     question: "2. How long does it take to complete a project?",
@@ -266,20 +257,20 @@ const page = () => {
                   },
                   {
                     question:
-                      "3. Do you work with startups or only established brands?",
+                      "3. Do you run ads for marketplaces as well as our own website?",
                     answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes- Amazon Ads and Flipkart Ads are dedicated services alongside eCommerce Ads for your own store, so paid visibility is covered across channels.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "4. Can you help with a multi-vendor marketplace, not just a single-brand store?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "Yes- multi-vendor ecommerce is a dedicated service, including vendor dashboards, commission handling, and scalable catalog management.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question: "5. Do you offer ongoing management, or is this a one-time setup?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Ongoing management is available- pricing, listings, and ad performance need continuous attention, not a one-time setup and walk away.",
                   },
                 ].map((faq, index) => (
                   <div

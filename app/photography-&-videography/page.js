@@ -5,6 +5,7 @@ import { Faq2 } from "@/components/Faq";
 import PageBanner from "@/components/PageBanner";
 import { WhyChooseUs3 } from "@/components/WhyChooseUs";
 import WorkingProcess from "@/components/WorkingProcess";
+import { workingProcessData } from "@/components/data/workingProcess";
 import RiddaLayout from "@/layout/RiddaLayout";
 import Link from "next/link";
 
@@ -13,53 +14,42 @@ const page = () => {
 
   const services = [
     {
-      title: "Branding & Identity",
+      title: "Product Photography",
       description:
-        "Crafting memorable logos, visuals, and brand stories that give your business a unique voice and lasting recognition.",
+        "Clean, high-detail shots that make your product look as good in a photo as it does in person. Built for websites, catalogues, and ads. Every angle and detail shot to earn the click, not just fill a page.",
       image: "/assets/images/blog/blog-standard1.jpg",
     },
     {
-      title: "Packaging Design",
+      title: "Corporate Shoot",
       description:
-        "Innovative, custom packaging that not only protects but also persuades, turning every product into a brand experience.",
+        "Professional photography for your team, office, and events. Built to build trust and put a real face to your brand. Images that make your business feel credible, not stock-photo generic.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Website & E-Commerce Development",
+      title: "Corporate Video Graphics",
       description:
-        "From sleek websites to high-performance online stores, we build digital platforms that are fast, responsive, and conversion-driven.",
+        "Branded video content for internal communication, presentations, and corporate storytelling. Polished and on-brand, built to represent your business properly. Content that looks as professional as the message it's carrying.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
     {
-      title: "Print & Communication Design",
+      title: "Motion Graphics",
       description:
-        "Brochures, catalogs, and print campaigns that leave a tangible, lasting impression on your audience.",
+        "Animated visuals and graphics that bring static ideas to life. Built for ads, explainers, and social content that needs to move. Complex ideas simplified through motion, not just decoration.",
       image: "/assets/images/blog/blog-standard4.jpg",
     },
     {
-      title: "Social Media Marketing",
+      title: "Model Video Shoots",
       description:
-        "Strategic campaigns and engaging content that amplify your reach and spark real conversations with your audience.",
+        "Professional model-led video content for ads and campaigns. From casting to on-set direction, every detail is handled. Built to convert, not just look good on a reel.",
       image: "/assets/images/blog/blog-standard2.jpg",
     },
     {
-      title: "Ad & Campaign Management",
+      title: "Ads Design",
       description:
-        "Smart, ROI-focused ad strategies across platforms to maximize visibility, engagement, and lead generation.",
+        "Visual ad creative designed specifically for performance. Built to stop the scroll and drive the click, not just look good. Every design tested against what actually gets results.",
       image: "/assets/images/blog/blog-standard3.jpg",
     },
-    {
-      title: "Content Creation & Storytelling",
-      description:
-        "From visuals to campaigns, we craft meaningful content that captures attention and strengthens brand loyalty.",
-      image: "/assets/images/blog/blog-standard4.jpg",
-    },
-    {
-      title: "Influencer & Community Marketing",
-      description:
-        "Connecting your brand with authentic voices and communities that inspire trust and drive growth.",
-      image: "/assets/images/blog/blog-standard1.jpg",
-    },
+    
   ];
 
   return (
@@ -80,12 +70,11 @@ const page = () => {
             >
               <div className="section-title mb-50">
                 <span className="subtitle mt-10 mb-15">
-                  What We Provide
+                  Brand Photography 
                 </span>
 
                 <h2>
-                  The Complete Suite of Services We Provide for Your Online
-                  Success
+                  Visuals That Stop the Scroll and Sell the Story
                 </h2>
               </div>
 
@@ -109,10 +98,7 @@ const page = () => {
               </div>
 
               <p>
-                Understanding your marketing performance can be like looking
-                for a needle in a haystack. We combine strategy, creativity,
-                technology, and data-driven insights to build powerful digital
-                experiences that support your business goals.
+                People don't read everything- but they see everything. Every photo and video we shoot is built to grab attention fast and hold it long enough to sell your product, your brand, or your business.
               </p>
 
               <Link
@@ -120,7 +106,7 @@ const page = () => {
                 className="theme-btn hover-primary mt-25"
                 data-hover="Learn More"
               >
-                <span>Learn More</span>
+                <span>Start Your Shoot</span>
               </Link>
             </div>
           </div>
@@ -129,13 +115,13 @@ const page = () => {
       {/* What We Provide Area End */}
 
       {/* Working Process Area Start */}
-      <WorkingProcess titleColor="" />
+      <WorkingProcess titleColor="" {...workingProcessData.photography} />
       {/* Working Process Area End */}
 
       {/* Services Area Start */}
       <section className="blog-grid-page !w-full rel z-1">
         <div className="container px-sm-0 py-130 rpy-100">
-                                      <h2 className="text-center mb-50">Our Services</h2>
+                                      <h2 className="text-center mb-50">What We Cover</h2>
 
           <div className="row">
             {/* Services Grid */}
@@ -244,13 +230,8 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>Frequently Asked Questions</h2>
               </div>
-              <p>
-                We incorporate SEO best practices into website build this
-                includes optimizing site structure page load speed, mobile
-                responsiveness.
-              </p>
+             
               <Link href="contact" className="theme-btn style-two mt-15">
                 <span>Get A Quote</span>
               </Link>
@@ -261,31 +242,31 @@ const page = () => {
                 {[
                   {
                     question:
-                      "1. What makes Recreators different from other design and marketing agencies?",
+                      "1. Do you only shoot photos, or handle video too?",
                     answer:
-                      "We do not just create, we collaborate. Our process blends design thinking, storytelling, and marketing strategy to craft visuals and campaigns that truly connect and convert.",
+                      "Both- we handle photography and videography end-to-end, from product shoots to motion graphics, so all your visual content comes from one team.",
                   },
                   {
-                    question: "2. How long does it take to complete a project?",
+                    question: "2. Can you provide models for our shoots?",
                     answer:
-                      "Timelines depend on the project scope, but we are known for efficiency without compromising creativity. Whether it is a logo, website, or campaign, we ensure every detail is pixel-perfect before delivery.",
-                  },
-                  {
-                    question:
-                      "3. Do you work with startups or only established brands?",
-                    answer:
-                      "Both. From budding entrepreneurs to global enterprises, we partner with every kind of brand ready to grow, glow, and go digital the right way.",
+                      "Yes- model video shoots are a dedicated service, including casting and on-set direction, so you get campaign-ready content without sourcing talent separately.",
                   },
                   {
                     question:
-                      "4. Can you handle everything from branding to digital marketing?",
+                      "3. Do you shoot on location or only in-studio?",
                     answer:
-                      "Yes. From creating your brand identity to launching and managing your online presence, our full-service approach covers design, development, and digital strategy, all under one roof.",
+                      "Both- depending on what the shoot needs, we handle in-studio product shoots as well as on-location corporate and campaign shoots.",
                   },
                   {
-                    question: "5. Do you provide customized design solutions?",
+                    question:
+                      "4. Can you design ads using footage or photos you didn't shoot?",
                     answer:
-                      "Always. Every design, campaign, or website we create is tailored to reflect your unique story, voice, and goals. Never template-based, always original.",
+                      "Yes- we can work with existing footage and images, though shoots planned and executed by our team typically give the best results for ad performance.",
+                  },
+                  {
+                    question: "5. Do you offer ongoing content shoots, or is this a one-time service?",
+                    answer:
+                      "Both- we handle one-off shoots as well as ongoing content packages for brands that need a steady stream of photo and video content.",
                   },
                 ].map((faq, index) => (
                   <div
