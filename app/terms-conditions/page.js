@@ -99,7 +99,7 @@ export default function TermsPage() {
               {/* Section 4 */}
               <section className="!group">
                 <div className="!flex !items-start !space-x-4">
-                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-orange-50 sm:flex !hidden !rounded-xl  !items-center !justify-center group-hover:!bg-orange-100 !transition-colors !duration-300">
+                  <div className="!flex-shrink-0 !w-12 !h-12 !bg-orange-50 sm:!flex !hidden !rounded-xl  !items-center !justify-center group-hover:!bg-orange-100 !transition-colors !duration-300">
                     <span className="!text-orange-600 !font-semibold !text-lg">04</span>
                   </div>
                   <div className="!flex-1">
