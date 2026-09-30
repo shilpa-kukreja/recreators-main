@@ -99,13 +99,11 @@ export default function CrmTypes() {
           </div> */}
 
           <h2 className="!text-[24px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-3xl lg:!text-[34px]">
-            Not Just Sales CRMs.{" "}
-            <span style={{ color: "var(--brand)" }}>Every CRM.</span>
+             Built for the Brands We Already Know Best
           </h2>
 
           <p className="!mx-auto !mt-3 !max-w-lg !text-[13px] !leading-relaxed !text-neutral-500 sm:!text-sm">
-            Whether you run a clinic, a college, a store, or a global enterprise
-            — we build a CRM shaped around your exact business.
+            We don't just design your packaging or run your ads — we build the CRM that manages the customers behind them. Real industries, real workflows
           </p>
         </div>
 

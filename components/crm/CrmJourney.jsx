@@ -4,8 +4,8 @@ export default function CrmJourney() {
   const stages = [
     {
       step: "01",
-      title: "Attract",
-      desc: "Capture leads from every channel — web, social, ads, referrals.",
+      title: "Discover",
+      desc: "We map your exact sales process, team structure, and workflow gaps before writing a single line of code.",
       icon: (
         <svg className="!h-4 !w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -14,8 +14,8 @@ export default function CrmJourney() {
     },
     {
       step: "02",
-      title: "Convert",
-      desc: "Score, nurture, and move deals through a visual pipeline.",
+      title: "Design",
+      desc: "We architect a CRM structure- pipelines, fields, automations, built around your business, not a generic template.",
       icon: (
         <svg className="!h-4 !w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -24,8 +24,8 @@ export default function CrmJourney() {
     },
     {
       step: "03",
-      title: "Retain",
-      desc: "Automate follow-ups, tasks, and health scores so no one slips.",
+      title: "Build",
+      desc: "Our developers build your custom CRM, integrated with the tools you already use.",
       icon: (
         <svg className="!h-4 !w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -34,8 +34,8 @@ export default function CrmJourney() {
     },
     {
       step: "04",
-      title: "Expand",
-      desc: "Spot upsell signals and turn customers into advocates.",
+      title: "Support",
+      desc: "Post-launch training, refinements, and ongoing support as your business grows.",
       icon: (
         <svg className="!h-4 !w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />

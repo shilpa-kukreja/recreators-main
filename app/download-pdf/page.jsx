@@ -141,13 +141,9 @@ export default function DownloadPdfPage() {
             </h1>
 
             <p className="!mt-6 !text-base md:!text-lg !text-neutral-500 !max-w-2xl !mx-auto !leading-relaxed">
-              Pick a service, download the deck, and share it with your team.
-              Each PDF is a focused deep-dive into how{' '}
-              <span className="!text-neutral-900 !font-semibold">
-                ReCreators
-              </span>{' '}
-              delivers.
-            </p>
+             
+             Pick a service, download the deck, and share it with your team. Each PDF is a focused deep-dive into what we offer, how we work, and the results we deliver, so you can make decisions faster.
+           </p>
           </div>
 
           {/* Full deck CTA */}

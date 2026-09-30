@@ -367,7 +367,7 @@ export function FullDeckPDFButton() {
         className={buttonClasses}
       >
         <DownloadIcon size={20} />
-        Download Full Capability Deck
+        Download Full Company Profile
       </a>
     );
   }
@@ -382,7 +382,7 @@ export function FullDeckPDFButton() {
       {({ loading }) => (
         <>
           <DownloadIcon size={20} />
-          {loading ? 'Preparing Full Deck…' : 'Download Full Capability Deck'}
+          {loading ? 'Preparing Full Company Profile…' : 'Download Full Company Profile'}
         </>
       )}
     </PDFDownloadLink>

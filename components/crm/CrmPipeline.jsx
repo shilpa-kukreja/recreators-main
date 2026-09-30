@@ -31,10 +31,11 @@ export default function CrmPipeline() {
   ];
 
   const features = [
-    "Auto-capture leads from web, ads & social",
-    "AI lead scoring so you focus on hot deals",
-    "Drag-and-drop pipeline with zero setup",
-    "Instant alerts when a deal needs attention",
+    "Custom pipeline design matched to your actual sales stages",
+    "Lead capture integration from your website, ads, and social channels",
+    "Automated follow-ups, task assignments, and internal alerts",
+    "Role-based access for your sales, support, and management teams",
+    "Integration with your existing tools (WhatsApp, email, payment gateways, etc.)"
   ];
 
   return (
@@ -64,11 +65,11 @@ export default function CrmPipeline() {
           </div> */}
 
           <h2 className="!text-[24px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-3xl lg:!text-[34px]">
-            Every lead. Every deal. One pipeline.
+            A CRM Built Around Your Workflow — Not the Other Way Around
           </h2>
 
           <p className="!mx-auto !mt-3 !max-w-md !text-[13px] !leading-relaxed !text-neutral-500 sm:!text-sm">
-            Watch deals move from first touch to closed-won — without spreadsheets, guesswork, or missed follow-ups.
+            No bloated, one-size-fits-all software. We build CRM systems shaped around how your team actually sells, serves, and grows. 
           </p>
         </div>
 
@@ -77,7 +78,7 @@ export default function CrmPipeline() {
           {/* LEFT: Features */}
           <div>
             <h3 className="!text-[16px] !font-bold !text-neutral-900 sm:!text-lg">
-              Built to close deals faster.
+              What's included:
             </h3>
 
             <ul className="!mt-5 !space-y-3">

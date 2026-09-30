@@ -27,145 +27,123 @@ export const services = [
   {
     id: 'packaging',
     title: 'Packaging',
-    shortDesc: 'Packaging that stops the scroll — on shelves and online.',
+    shortDesc: 'Packaging that sells, on shelves and online.',
     longDesc:
       'We design packaging that commands attention the moment it is seen. Every box, label, and unboxing moment is engineered to turn a first impression into a lasting brand memory.',
     color: '#FF5F1F',
     icon: 'box',
     pdfFile: null, // 👈 '/downloads/packaging.pdf' if you have one
     deliverables: [
-      'Primary & secondary packaging design',
-      'Label, sticker, and seal design',
-      'Dieline creation & print-ready files',
-      'Unboxing experience design',
-      'Sustainable material consultation',
-      'Retail shelf impact mockups',
+      'Flexible, rigid & folding packaging',
+      'Labels, stickers & dieline files',
+      'E-commerce & gifting packaging',
+    
     ],
   },
   {
     id: 'web',
     title: 'Web Development & Design',
-    shortDesc: 'Websites engineered to convert, not just exist.',
+    shortDesc: ' Websites built to convert, not just exist.',
     longDesc:
       'We build fast, beautiful, and conversion-obsessed websites. Every pixel and interaction is designed to guide visitors toward action — not just to look pretty.',
     color: '#FF5F1F',
     icon: 'code',
     pdfFile: null, // 👈 '/downloads/web-development.pdf'
     deliverables: [
-      'Custom UI/UX design',
-      'Frontend development (Next.js / React)',
-      'Backend & CMS integration',
-      'E-commerce solutions',
-      'Performance & SEO optimization',
-      'Analytics & conversion tracking',
+      'UI/UX & custom web design',
+      'Next.js / React development',
+      'Ecommerce, portals & CRM',
     ],
   },
   {
     id: 'seo',
     title: 'SEO',
-    shortDesc: 'Rank higher. Get found. Grow organically.',
+    shortDesc: 'Rankings that bring in customers.',
     longDesc:
       'We engineer search visibility that compounds. From technical audits to content strategy, every move is built to drive qualified organic traffic and lasting rankings.',
     color: '#FF5F1F',
     icon: 'search',
     pdfFile: null, // 👈 '/downloads/seo.pdf'
     deliverables: [
-      'Technical SEO audit',
-      'Keyword research & strategy',
-      'On-page optimization',
-      'Content strategy & briefs',
-      'Link building & authority',
-      'Monthly rank & traffic reporting',
+      'Technical & on-page SEO',
+      'Keyword research & local SEO',
+      'Analytics & reporting',
     ],
   },
   {
     id: 'marketing',
     title: 'Digital Marketing',
-    shortDesc: 'Campaigns engineered to convert.',
+    shortDesc: 'Campaigns built to sell, not just show up.',
     longDesc:
       'We design and run performance campaigns that turn ad spend into revenue. Every funnel, creative, and audience is tested, measured, and optimized.',
     color: '#FF5F1F',
     icon: 'megaphone',
     pdfFile: null, // 👈 '/downloads/digital-marketing.pdf'
     deliverables: [
-      'Paid ads (Meta, Google, LinkedIn)',
-      'Funnel & landing page design',
-      'Email marketing automation',
-      'Conversion rate optimization',
-      'Audience research & targeting',
-      'Performance dashboards',
+      'Meta, Google & PPC ads',
+      'Social media & influencer marketing',
+      'Amazon, Flipkart & email marketing',
     ],
   },
   {
     id: 'brand',
     title: 'Brand Design',
-    shortDesc: 'Brand identities people actually remember.',
+    shortDesc: ' Brands people remember, not just recognise.',
     longDesc:
       'We craft brands that feel inevitable. From logo systems to full visual language, every element is designed to make your brand impossible to confuse and impossible to forget.',
     color: '#FF5F1F',
     icon: 'palette',
     pdfFile: null, // 👈 '/downloads/brand-design.pdf'
     deliverables: [
-      'Logo & wordmark design',
-      'Brand guidelines & style guide',
-      'Color & typography systems',
-      'Visual identity assets',
-      'Brand voice & messaging',
-      'Collateral design',
+      'Brand naming & logo design',
+      'Brand identity & guidelines',
+      'Catalogues & company profiles',
     ],
   },
   {
     id: 'photo',
     title: 'Photography & Videography',
-    shortDesc: 'Scroll-stopping visuals that sell the story.',
+    shortDesc: ' Visuals that stop the scroll.',
     longDesc:
       'We capture the moments that make brands feel real. Product, lifestyle, and campaign visuals engineered to stop the scroll and drive action.',
     color: '#FF5F1F',
     icon: 'camera',
     pdfFile: null, // 👈 '/downloads/photography.pdf'
     deliverables: [
-      'Product photography',
-      'Lifestyle & brand shoots',
-      'Video production',
-      'Reels & short-form content',
-      'Post-production & editing',
-      'Campaign visual assets',
+      'Product & corporate shoots',
+      'Model & ad video shoots',
+      'Motion graphics',
     ],
   },
   {
     id: 'content',
     title: 'Content Writing',
-    shortDesc: 'Words that work — copy that converts.',
+    shortDesc: ' Words that get read and ranked.',
     longDesc:
       'We write copy that sounds like your brand and sells like your best salesperson. From website copy to long-form content, every word earns its place.',
     color: '#FF5F1F',
     icon: 'pen',
     pdfFile: null, // 👈 '/downloads/content-writing.pdf'
     deliverables: [
-      'Website & landing page copy',
-      'Blog & long-form content',
-      'Social media captions',
-      'Email campaigns',
-      'Product descriptions',
-      'Brand messaging & tone',
+      'SEO & website content',
+      'Blogs & product descriptions',
+      'Ad copy, taglines & emails',
     ],
   },
   {
     id: 'editing',
     title: 'Designing & Editing',
-    shortDesc: 'Polished creative that finishes the story.',
+    shortDesc: 'Creative that gets noticed and used.',
     longDesc:
       'We take raw assets and turn them into finished, on-brand creative. From social graphics to video edits, every deliverable is sharp, consistent, and ready to ship.',
     color: '#FF5F1F',
     icon: 'layers',
     pdfFile: null, // 👈 '/downloads/designing-editing.pdf'
     deliverables: [
-      'Social media graphics',
-      'Video editing & motion',
-      'Presentation design',
-      'Print & digital assets',
-      'Photo retouching',
-      'Brand asset templates',
+      'Graphic & social media design',
+      'Video & reels editing',
+      'PPT, infographic & thumbnail design',
+
     ],
   },
 ];

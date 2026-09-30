@@ -50,17 +50,16 @@ export default function CrmHero() {
 
           {/* Headline */}
           <h1 className="!text-[26px] !font-bold !text-white !leading-[1.15] !tracking-tight sm:!text-3xl lg:!text-[38px]">
-            Your business runs on relationships.
+           Your Business Runs on Relationships.
             <br />
             <span style={{ color: "var(--brand)" }}>
-              Your CRM should be built for them.
+              Your CRM Should Be Built Around Them
             </span>
           </h1>
 
           {/* Sub */}
           <p className="!mt-3 !max-w-md !text-[13px] !leading-relaxed !text-white/60 sm:!text-sm">
-            We build custom CRMs that fit your exact workflow — so your team
-            closes more deals, faster.
+            We design and build custom CRM systems tailored to how your team actually works- so nothing falls through the cracks, and every lead gets the follow-up it deserves.
           </p>
 
           {/* CTAs */}
@@ -74,7 +73,7 @@ export default function CrmHero() {
                   "0 0 24px color-mix(in srgb, var(--brand) 45%, transparent)",
               }}
             >
-              Book a Free Call
+              See Our Process | Get in Touch 
               <svg
                 className="!h-3.5 !w-3.5 !transition-transform group-hover:!translate-x-0.5"
                 fill="none"
