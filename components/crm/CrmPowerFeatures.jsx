@@ -39,12 +39,11 @@ export default function CrmPowerFeatures() {
           </div> */}
 
           <h2 className="!text-[22px] !font-bold !leading-tight !tracking-tight !text-neutral-900 sm:!text-[28px] lg:!text-[32px]">
-            See every customer. Automate every step.
+            Know every lead. Streamline every task
           </h2>
 
           <p className="!mx-auto !mt-2 !max-w-md !text-[12.5px] !leading-relaxed !text-neutral-500 sm:!text-sm">
-            Two engines in one platform — full customer intelligence and
-            hands-free workflows for any industry.
+            One platform, two powerful engines: deep customer insights and smart automations that work across every industry
           </p>
         </div>
 
@@ -231,10 +230,10 @@ export default function CrmPowerFeatures() {
         {/* ═══ COMPACT FEATURE STRIP ═══ */}
         <div className="!mt-7 !grid !grid-cols-2 !gap-2.5 lg:!grid-cols-4">
           {[
-            { t: "Unified profiles", d: "Calls, emails, deals — one place." },
-            { t: "Smart notes", d: "Team context on the right person." },
+            { t: "Single view", d: "Chats, calls, deals, all together." },
+            { t: "Team notes", d: "Team context on the right person." },
             { t: "Auto triggers", d: "Forms, status, timing, payments." },
-            { t: "Any channel", d: "Email, SMS & WhatsApp flows." },
+            { t: "Every channel", d: "Email, SMS and WhatsApp journeys." },
           ].map((f, i) => (
             <div
               key={i}
