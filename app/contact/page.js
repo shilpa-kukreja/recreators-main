@@ -60,7 +60,7 @@ const page = () => {
               >
                 <div className="section-title mb-50">
                   <h2>
-                    Ready to get started ? Tell us about your project and we’ll match it with a plan that fits your goals.
+                    Let’s Create Something That Moves Your Brand Forward.
                   </h2>
                 </div>
                 <div className="contact-info-wrap bordered br-10 overflow-hidden">
@@ -77,7 +77,7 @@ const page = () => {
                           <i className="far fa-map-marker-alt" />
                         </div>
                         <div className="text-sm">
-                          metro station, Tower-A, Office no- 910, Spectrum mall, 75, behind Sector 50, above haldirams, Noida, Uttar Pradesh 201301
+                          Metro Station, Tower-A, Office No. 910, Spectrum Mall, Sector 75, Noida, Uttar Pradesh 201301
                         </div>
                       </div>
                     </div>
@@ -157,7 +157,7 @@ const page = () => {
                 >
                   <h3>Get In Touch</h3>
                   <p>
-                     Tell us about your idea — we’ll get back to you to plan the next steps.
+                     Tell us about your project — our team will get back to you with the next steps.
                   </p>
                   <div className="row gap-0 mt-20">
                     <div className="col-sm-6">

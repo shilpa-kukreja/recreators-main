@@ -275,17 +275,17 @@ export const WhyChooseUs2 = ({ bg = "bgc-lighter" }) => {
 
 export const WhyChooseUs3 = ({ className = "why-choose-two-area" }) => {
   const steps = [
-    { number: "01", title: "Modern & Purposeful Design", description: "We create designs that are visually stunning, mobile-friendly, and built to perform across every touchpoint — from web to packaging to print.", icon: "flaticon-curve" },
+    { number: "01", title: "Modern & Purposeful Design", description: "We create branding, packaging, digital experiences, and content that look distinctive, communicate clearly, and are built around your business goals.", icon: "flaticon-curve" },
     {
       number: "02",
-      title: "Your Dedicated Studio Partner",
-      description: "Think of us as an extension of your team. With one dedicated point of contact, we handle everything from strategy to execution seamlessly.",
+      title: "Your Dedicated Creative Partner",
+      description: "From the first idea to final execution, our team works closely with you to understand your brand, audience, and objectives- not just your brief.",
       icon: "flaticon-leadership",
     },
     {
       number: "03",
-      title: "Transparent, Results-Driven Work",
-      description: " Our process is open, collaborative, and data-backed — ensuring clear timelines, fair pricing, and measurable growth for your brand.",
+      title: "Strategy Meets Execution",
+      description: "We combine creative design with digital strategy, performance marketing, and content to turn attention into meaningful business results.",
       icon: "flaticon-satisfaction",
     },
   ];
@@ -302,9 +302,9 @@ export const WhyChooseUs3 = ({ className = "why-choose-two-area" }) => {
           >
             <div className="section-title mt-10 mb-30">
               <span className="subtitle mb-15">Why Choose Us</span>
-              <h2>Discover What Sets Us Apart</h2>
+              <h2>Why Brands Choose Recreators</h2>
               <p>
-                 Creative design, strategy and delivery that turns attention into growth.
+                 Creative thinking, strategic execution, and design that moves your brand forward.
               </p>
             </div>
           </div>
