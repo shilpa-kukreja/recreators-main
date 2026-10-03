@@ -104,7 +104,7 @@ const page = () => {
               <Link
                 href="/about"
                 className="theme-btn hover-primary mt-25"
-                data-hover="Learn More"
+                
               >
                 <span>Start Your Shoot</span>
               </Link>

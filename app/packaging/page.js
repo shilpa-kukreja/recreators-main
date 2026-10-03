@@ -193,7 +193,7 @@ const page = () => {
             >
               <div className="section-title mb-35">
                 <span className="subtitle mt-10 mb-15">FAQs</span>
-                <h2>FAQ Section — Packaging</h2>
+               
               </div>
               
               <Link href="contact" className="theme-btn style-two mt-15">

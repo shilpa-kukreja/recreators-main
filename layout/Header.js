@@ -1511,16 +1511,28 @@ const Header1 = () => {
 
           {/* ---------- CENTER: Logo ---------- */}
           <Link
-            href="/"
-            className="!absolute !left-1/2 !-translate-x-1/2 !inline-flex !items-center !transition-transform !duration-300 hover:!scale-105"
-          >
-            <img
-              src="/assets/images/logos/RCLogo.png"
-              alt="Logo"
-              className={`!w-auto !transition-all !duration-500 ${scrolled ? "!h-7 md:!h-8" : "!h-9 md:!h-10"
-                } !drop-shadow-[0_0_18px_rgba(249,115,22,0.35)]`}
-            />
-          </Link>
+  href="/"
+  className="
+    !absolute
+    !left-4
+    !translate-x-0
+    md:!left-1/2
+    md:!-translate-x-1/2
+    !inline-flex
+    !items-center
+    !transition-transform
+    !duration-300
+    hover:!scale-105
+  "
+>
+  <img
+    src="/assets/images/logos/RCLogo.png"
+    alt="Logo"
+    className={`!w-auto !transition-all !duration-500 ${
+      scrolled ? "!h-7 md:!h-8" : "!h-9 md:!h-10"
+    } !drop-shadow-[0_0_18px_rgba(249,115,22,0.35)]`}
+  />
+</Link>
 
           {/* ---------- RIGHT: Menu Button ---------- */}
           {/* ---------- RIGHT: Download PDF + Menu Button ---------- */}

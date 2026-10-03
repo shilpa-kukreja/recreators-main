@@ -6,6 +6,7 @@ import { Fragment, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import FloatingContact from "@/components/FloatingContact";
+import ChatWidget from "@/components/ChatWidget";
 const RiddaLayout = ({
   children,
   bodyClass = "ridda-body",
@@ -27,6 +28,7 @@ const RiddaLayout = ({
       <div className="page-wrapper">
         <Header header={header} menus={menus} />
         {children}
+        <ChatWidget/>
         <FloatingContact/>
         <Footer footer={footer} />
       </div>
